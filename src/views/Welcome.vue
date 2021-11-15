@@ -4,7 +4,7 @@
             <source src="" type="video/mp4">
         </video>-->
 
-        <img class="w-1/3" src="../assets/logos/kenny-dilogo-transparent.png" alt="Kenny Diogo glasses logo" />
+        <img class="w-1/3" src="../assets/logos/dilogo-light-color.png" alt="Kenny Diogo glasses logo" />
         <Typer class="text-10xl text-center" text="Kenny Diogo" :pre-type-delay="1000" />
         <Typer class="text-8xl text-center" text="Software Developer" :pre-type-delay="2500" keep-caret />
     </div>

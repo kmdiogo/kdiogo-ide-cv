@@ -1,5 +1,6 @@
 <script lang="ts" setup>
-import {reactive, computed, nextTick} from 'vue';
+import {reactive, computed} from 'vue';
+import {useRouter} from "vue-router";
 import {tree} from "../constants/FileTree";
 import {TrieBasedTerminalBackend} from "../services/terminal-backend";
 import {detectBrowser} from "../utils";
@@ -10,6 +11,7 @@ interface ShellState {
     cwdName: string
 }
 
+const router = useRouter()
 const shell = reactive<ShellState>({
     line: '',
     cwdName: '/',
@@ -18,16 +20,48 @@ const shell = reactive<ShellState>({
 const formattedLine = computed(() => shell.line.replace(/\s+/g, ' ').trim())
 
 const terminalBackend = new TrieBasedTerminalBackend(tree, {
-    'ls': args => [],
+    'ls': args => {
+        const dir = args.length === 0 ? undefined : args[0]
+        let results: string[]
+        try {
+            results = terminalBackend.ls(dir)
+            printTerminalResult(terminalBackend.ls(args[0]))
+        } catch(e: any) {
+            printTerminalResult([e.message])
+            return
+        }
+        const formattedResults = results.map(path => {
+            if (path.endsWith('/')) {
+                return `<span class="text-blue-700">${path}</span>`
+            }
+            return path
+        })
+        printTerminalResult(formattedResults)
+    },
     'cd': args => {
         if (args.length === 0) {
             printTerminalResult(['Error: expected at least one argument'])
         }
+        printTerminalResult([])
         try {
-            printTerminalResult([])
             shell.cwdName = terminalBackend.changeDirectory(args[0])
-        } catch (e_) {
-            const e: Error = e_ as Error
+        } catch (e: any) {
+            printTerminalResult([e.message])
+        }
+    },
+    'clear': args => {
+        shell.history = []
+    },
+    'open': args => {
+        if (args.length === 0) {
+            printTerminalResult(['Error: expected at least one argument'])
+        }
+        try {
+            const file = terminalBackend.getFile(args[0])
+            if (file.metadata) {
+                router.push({name: file.metadata.routeName})
+            }
+        } catch (e: any) {
             printTerminalResult([e.message])
         }
     },
@@ -69,8 +103,6 @@ function fillCommandHistory() {}
 
 function processAutoComplete() {
     const autocomplete = terminalBackend.tabComplete(shell.line)
-    console.log('autocomplete results:', autocomplete)
-    console.log('\n')
     if (autocomplete.length === 1) {
         const splitLine = shell.line.split(' ')
         const nonAutoCompletePart = splitLine.slice(0, splitLine.length-1).join(' ')

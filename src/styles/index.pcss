@@ -29,4 +29,26 @@
     h1, h2, h3, h4, h5, h6 {
         @apply my-2
     }
+
+    /* Scrollbar stuff */
+    /* width */
+    ::-webkit-scrollbar {
+        width: 10px
+    }
+
+    /* Track */
+    ::-webkit-scrollbar-track {
+        //background: #f1f1f1;
+        @apply bg-darcula-700
+    }
+
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+        @apply bg-darcula-400
+    }
+
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+        @apply bg-darcula-300
+    }
 }

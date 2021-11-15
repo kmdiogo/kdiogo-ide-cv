@@ -1,15 +1,18 @@
-import {RouteMeta} from "vue-router";
+import {RouteMeta, RouteRecordName} from "vue-router";
 import {FileTreeNode} from "../constants/FileTree";
 import {PathHelper} from "./path-helper";
 import {Trie} from "../utils/data-structures";
 import pathb from 'path-browserify'
 import {findStem} from "../utils";
 
+interface FileMeta extends RouteMeta {
+    routeName?: RouteRecordName
+}
 
 export interface FileTreeTableItem {
     isDir: boolean
     children: string[]
-    metadata?: RouteMeta
+    metadata?: FileMeta
     parent?: string
 }
 
@@ -32,7 +35,10 @@ export function convertToTable(tree: FileTreeNode): FileTreeTable {
             const fileAbsPath = pathb.join(absPath, file.meta!.label)
             table[fileAbsPath] = {
                 isDir: false,
-                metadata: file.meta,
+                metadata: file.meta && {
+                    routeName: file.name,
+                    ...file.meta
+                },
                 children: [],
                 parent: parent
             }
@@ -70,7 +76,7 @@ export class TrieBasedTerminalBackend implements TerminalBackend {
     fileTries: {[key: string]: Trie}
     fileTable: FileTreeTable
 
-    // Trie used for text searching comamnds
+    // Trie used for text searching commands
     commandTrie: Trie
     commands: CommandCollection
 
@@ -124,6 +130,32 @@ export class TrieBasedTerminalBackend implements TerminalBackend {
             throw Error(`No matching command found for '${commandName}'`)
         }
         this.commands[commandName](args)
+    }
+
+    ls(path?: string): string[] {
+        const path_ = path !== undefined ? path : this.cwd
+        const absPath = this.pathHelper.resolve(path_, this.cwd)
+        if (!(absPath in this.fileTable)) {
+            throw Error(`'${path}' not found`)
+        }
+        if (!this.fileTable[absPath].isDir) {
+            throw Error(`'${path}' is not a directory`)
+        }
+        return this.fileTable[absPath].children.map(child => {
+            const basename = pathb.basename(child)
+            if (this.fileTable[child].isDir) {
+                return basename + '/'
+            }
+            return basename
+        })
+    }
+
+    getFile(path: string): FileTreeTableItem {
+        const absPath = this.pathHelper.resolve(path, this.cwd)
+        if (!(absPath in this.fileTable)) {
+            throw Error(`'${path}' not found`)
+        }
+        return this.fileTable[absPath]
     }
 
     tabComplete(line: string) {

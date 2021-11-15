@@ -11,7 +11,8 @@ module.exports = {
         "darcula": {
           50: '#F5F5F6',
           100: '#ECECEC',
-          200: '#CECFD0',
+          //200: '#CECFD0',
+          200: '#DCDCDC',
           300: '#B1B2B3',
           400: '#77797A',
           500: '#3C3F41',
