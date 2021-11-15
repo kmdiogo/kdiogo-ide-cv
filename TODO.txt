@@ -1,0 +1,2 @@
+- Move all script tags above template tags
+- Refactor/fix @ aliases
