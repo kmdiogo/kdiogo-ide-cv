@@ -1,12 +1,19 @@
-import { createStore } from "vuex";
-import TabHistory, {TabHistoryState} from '@/store/tab-history'
+import { InjectionKey } from "vue";
+import { createStore, Store, useStore as baseUseStore } from "vuex";
+import TabHistory, {TabHistoryStoreState} from '../store/tab-history'
 
-export interface GlobalState {
-    tabHistory: TabHistoryState;
+export interface AllStoreState {
+    tabHistory: TabHistoryStoreState;
+    isTerminalOpen: boolean
 }
-export const store =  createStore({
+
+interface RootStoreState {
+    isTerminalOpen: boolean
+}
+
+export const store = createStore<RootStoreState>({
     state: {
-        isTerminalOpen: false
+        isTerminalOpen: false,
     },
     mutations: {
         toggleIsTerminalOpen(state) {
@@ -18,3 +25,8 @@ export const store =  createStore({
         tabHistory: TabHistory
     }
 });
+
+export const key: InjectionKey<Store<AllStoreState>> = Symbol()
+export function useStore() {
+    return baseUseStore(key)
+}

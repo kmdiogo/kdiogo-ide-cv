@@ -1,9 +1,9 @@
 <script lang="ts" setup>
 import {reactive, computed} from 'vue';
 import {useRouter} from "vue-router";
-import {tree} from "../constants/FileTree";
-import {TrieBasedTerminalBackend} from "../services/terminal-backend";
-import {detectBrowser} from "../utils";
+import {tree} from "@/constants/FileTree";
+import {TrieBasedTerminalBackend} from "@/services/terminal-backend";
+import {detectBrowser} from "@/utils";
 
 interface ShellState {
     line: string
@@ -59,7 +59,7 @@ const terminalBackend = new TrieBasedTerminalBackend(tree, {
         try {
             const file = terminalBackend.getFile(args[0])
             if (file.metadata) {
-                router.push({name: file.metadata.routeName})
+                router.push(file.metadata.routePath)
             }
         } catch (e: any) {
             printTerminalResult([e.message])
@@ -117,7 +117,7 @@ function processAutoComplete() {
 
 
 <template>
-    <div class="text-white p-2 bg-darcula-500" style="font-family: 'Ubuntu Mono', monospace">
+    <div class="text-white p-3 pr-0 bg-darcula-500" style="font-family: 'Ubuntu Mono', monospace">
         <div class="flex flex-col h-full overflow-auto bg-darcula-700 box-border p-4" id="inner-terminal">
             <span v-for="(entry, i) in shell.history" v-html="entry" :key="i"></span>
             <div class="flex">

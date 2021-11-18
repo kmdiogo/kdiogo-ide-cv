@@ -8,7 +8,7 @@
 </template>
 
 <script lang="ts" setup>
-import {useStore} from "vuex";
+import {useStore} from "@/store";
 import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
 
 const store = useStore()

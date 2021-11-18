@@ -7,7 +7,7 @@ import TheTerminal from "@/components/TheTerminal.vue";
 import TheFooter from "@/components/TheFooter.vue";
 import emitter, {PubsubEvent} from "@/services/pubsub";
 import { throttle } from "lodash"
-import { useStore } from "vuex";
+import { useStore} from "@/store";
 
 const store = useStore()
 
@@ -35,7 +35,7 @@ const handleMouseMove = throttle((e: MouseEvent) => {
 
 
             <main class="flex flex-col flex-grow overflow-auto">
-                <PageTabs class="flex items-center border-b border-black bg-darcula-500 flex-shrink-0 px-4 py-2" />
+                <PageTabs class="flex items-center border-b border-black bg-darcula-500 flex-shrink-0" />
                 <router-view class="flex-grow overflow-auto h-0 p-5" />
             </main>
         </div>
@@ -45,7 +45,3 @@ const handleMouseMove = throttle((e: MouseEvent) => {
         <TheFooter class="flex-shrink-0 bg-darcula-500 border-black border h-16" />
     </div>
 </template>
-
-<style>
-
-</style>

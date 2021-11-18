@@ -8,7 +8,7 @@ const rootRoutes: Array<RouteRecordRaw> = [
         component: Welcome,
         name: 'Welcome.html',
         meta: {
-            label: 'welcome.html',
+            label: 'Welcome.html',
             icon: 'fas file-code',
             iconColor: 'darkorange',
         }

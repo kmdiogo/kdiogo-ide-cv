@@ -3,7 +3,12 @@
         <div class="flex-grow overflow-auto">
             <slot></slot>
         </div>
-        <span class="bg-darcula-300 h-full w-2 cursor-e-resize" @mousedown="handleMouseDown" draggable="false"></span>
+        <span
+            class="bg-darcula-300 h-full cursor-e-resize"
+            :style="{width: '7px'}"
+            @mousedown="handleMouseDown"
+            draggable="false"
+        />
     </div>
 </template>
 

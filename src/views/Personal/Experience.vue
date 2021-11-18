@@ -1,3 +1,9 @@
+<script lang="ts" setup>
+import PersonalPageLayout from "@/components/shared/PersonalPageLayout.vue";
+import ExperienceItem from "@/components/Experience/ExperienceItem.vue";
+</script>
+
+
 <template>
     <PersonalPageLayout title="Experience">
         <div class="space-y-4">
@@ -79,18 +85,3 @@
 
     </PersonalPageLayout>
 </template>
-
-<script lang="ts">
-import {defineComponent} from 'vue'
-import PersonalPageLayout from "@/components/shared/PersonalPageLayout.vue";
-import ExperienceItem from "@/components/Experience/ExperienceItem.vue";
-
-export default defineComponent({
-    name: "Experience",
-    components: {PersonalPageLayout, ExperienceItem}
-})
-</script>
-
-<style scoped>
-
-</style>

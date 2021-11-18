@@ -1,51 +1,47 @@
-import router from "@/router";
+import router from "../router";
 import {RouteRecordRaw} from "vue-router";
+import {Module} from "vuex"
 
-interface PageTabHistory {
-    [routeName: string]: RouteRecordRaw;
+
+export interface TabHistoryStoreState {
+    pageTabHistory: {[routeName: string]: RouteRecordRaw}
 }
 
-export interface TabHistoryState {
-    pageTabHistory: PageTabHistory;
-}
-
-export default {
+const module: Module<TabHistoryStoreState, any> = {
     state: {
         pageTabHistory: {}
     },
     mutations: {
-        addTabToHistory(state: TabHistoryState, route: RouteRecordRaw) {
-            if (!route.name) {
-                throw `Route with path '${route.path}' must have a defined name to use with the tab history API.`
+        addTabToHistory(state, route: RouteRecordRaw) {
+            // Skip if route is already in table
+            if (state.pageTabHistory[route.path]) {
+                return
             }
-            if (!state.pageTabHistory[route.name as string]) {
-                state.pageTabHistory[route.name as string] = {...route}
-                /*state.pageTabHistory = {
-                    ...state.pageTabHistory,
-                    [route.name as string]: {...route}
-                }*/
-            }
+            state.pageTabHistory[route.path] = {...route}
         },
-        removeTabFromHistory(state: TabHistoryState, tabName: string) {
-            if (state.pageTabHistory[tabName]) {
+        removeTabFromHistory(state, route: RouteRecordRaw) {
+            const keys = Object.keys(state.pageTabHistory);
+            if (!state.pageTabHistory[route.path]) {
+                return
+            }
+            // Don't remove tab from history if there's only one (so a page is always on the screen)
+            if (keys.length <= 1) {
+                return
+            }
+
+            // Automatically redirect to the last route in history if the tab that got deleted was the current page
+            let deletingCurrentTab = false;
+            if (state.pageTabHistory[route.path].name === router.currentRoute.value.name) {
+                deletingCurrentTab = true;
+            }
+            delete state.pageTabHistory[route.path];
+            if (deletingCurrentTab) {
                 const keys = Object.keys(state.pageTabHistory);
-                if (keys.length > 1) {
-                    let isDeletingCurrentTab;
-                    if (state.pageTabHistory[tabName].name === router.currentRoute.value.name)
-                        isDeletingCurrentTab = true;
-
-                    delete state.pageTabHistory[tabName];
-
-                    if (isDeletingCurrentTab) {
-                        const keys = Object.keys(state.pageTabHistory);
-                        const newTo = state.pageTabHistory[keys[keys.length-1]].path;
-                        router.push(newTo);
-                    }
-                }
+                const newTo = state.pageTabHistory[keys[keys.length-1]].path;
+                router.push(newTo);
             }
         }
     },
-    actions: {
-
-    }
 }
+
+export default module

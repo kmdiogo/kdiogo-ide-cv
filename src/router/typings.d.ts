@@ -7,7 +7,7 @@ declare module 'vue-router' {
      */
     interface RouteMeta {
         label: string
-        icon: string
+        icon: string | string[]
         iconColor?: string
     }
 }

@@ -1,12 +1,12 @@
 import {RouteMeta, RouteRecordName} from "vue-router";
-import {FileTreeNode} from "../constants/FileTree";
-import {PathHelper} from "./path-helper";
-import {Trie} from "../utils/data-structures";
+import {FileTreeNode} from "@/constants/FileTree";
+import {PathHelper} from "@/services/path-helper";
+import {Trie} from "@/utils/data-structures";
 import pathb from 'path-browserify'
-import {findStem} from "../utils";
+import {findStem} from "@/utils";
 
 interface FileMeta extends RouteMeta {
-    routeName?: RouteRecordName
+    routePath: string
 }
 
 export interface FileTreeTableItem {
@@ -36,7 +36,7 @@ export function convertToTable(tree: FileTreeNode): FileTreeTable {
             table[fileAbsPath] = {
                 isDir: false,
                 metadata: file.meta && {
-                    routeName: file.name,
+                    routePath: file.path,
                     ...file.meta
                 },
                 children: [],
@@ -166,7 +166,6 @@ export class TrieBasedTerminalBackend implements TerminalBackend {
         }
 
         const words = trimLine.split(' ')
-        console.log(words)
         // Autocomplete command from command table
         if (words.length === 1) {
             return this.commandTrie.find(words[0])

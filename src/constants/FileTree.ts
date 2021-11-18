@@ -32,11 +32,6 @@ export const tree: FileTreeNode = {
             label: 'kenny',
             directories: [],
             files: personalRoutes
-        },
-        {
-            label: 'kenny2',
-            directories: [],
-            files: personalRoutes
         }
     ],
     files: rootRoutes

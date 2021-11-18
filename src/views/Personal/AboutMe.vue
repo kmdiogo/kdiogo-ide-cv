@@ -1,6 +1,11 @@
+<script lang="ts" setup>
+import PersonalPageLayout from "@/components/shared/PersonalPageLayout.vue";
+import AboutMeBackgroundImg from "@/assets/backgrounds/AboutMe.png"
+</script>
+
 <template>
     <!-- TODO: Fix sizing issues with images -->
-    <PersonalPageLayout :bg-img="require('../../assets/backgrounds/AboutMe.png')" title="About Me">
+    <PersonalPageLayout :bg-img="AboutMeBackgroundImg" title="About Me">
         <h2 class="text-4xl font-bold">Kenny Diogo</h2>
         <h3 class="text-2xl font-bold">An avid coder with a passion for solving problems computationally</h3>
         <p>I am currently studying Computer Science with a minor in Mathematics at Youngstown State University.</p>
@@ -20,17 +25,3 @@
         </ul>
     </PersonalPageLayout>
 </template>
-
-<script lang="ts">
-import {defineComponent} from 'vue'
-import PersonalPageLayout from "@/components/shared/PersonalPageLayout.vue";
-
-export default defineComponent({
-    name: "AboutMe",
-    components: {PersonalPageLayout}
-})
-</script>
-
-<style scoped>
-
-</style>

@@ -1,15 +1,9 @@
 <template>
-    <div class="flex items-center text-gray-300" :class="{'border border-darcula-400': isTab}">
+    <div class="flex items-center text-gray-300">
         <div class="w-4">
             <FontAwesomeIcon :icon="normalizeIcon()" :style="{color: iconColor}" />
         </div>
         <router-link class="ml-1 hover:text-darcula-300" :to="to" :class="{'bg-green-900': routeActive}">{{fileName}}</router-link>
-        <div class="ml-1" v-if="isTab">
-            <span class="hover:text-darcula-300">
-                <FontAwesomeIcon :icon="['far', 'window-close']" @click="$store.commit('removeTabFromHistory', fileName)" />
-            </span>
-        </div>
-
     </div>
 </template>
 
@@ -38,10 +32,6 @@ export default defineComponent({
         to: {
             type: [String, Object],
         },
-        isTab: {
-            type: Boolean,
-            default: false
-        }
     },
     setup(props) {
         const route = useRoute()
