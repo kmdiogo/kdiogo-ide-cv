@@ -8,6 +8,8 @@ import {detectBrowser} from "@/utils";
 interface ShellState {
     line: string
     history: string[]
+    cmdHistory: string[]
+    cmdHistoryIndex: number
     cwdName: string
 }
 
@@ -15,6 +17,8 @@ const router = useRouter()
 const shell = reactive<ShellState>({
     line: '',
     cwdName: '/',
+    cmdHistory: [],
+    cmdHistoryIndex: 0,
     history: []
 })
 const formattedLine = computed(() => shell.line.replace(/\s+/g, ' ').trim())
@@ -65,8 +69,10 @@ const terminalBackend = new TrieBasedTerminalBackend(tree, {
             printTerminalResult([e.message])
         }
     },
+    'history': args => {
+        printTerminalResult(shell.cmdHistory.map((cmd, i) => `${i+1}&nbsp;&nbsp;${cmd}`))
+    },
     'help': args => [],
-    'help-2': args => []
 })
 
 const generateTerminalBase = (cwd: string) => (
@@ -94,12 +100,32 @@ function printTerminalResult(results: string[]) {
 }
 
 function processCommand() {
+    if (formattedLine.value === '') {
+        printTerminalResult([''])
+    }
     terminalBackend.processCommand(formattedLine.value)
+    shell.cmdHistory.push(formattedLine.value)
+    shell.cmdHistoryIndex = shell.cmdHistory.length
     shell.line = ''
     scrollBottom()
 }
 
-function fillCommandHistory() {}
+function fillCommandHistory(direction: "up" | "down") {
+    if (shell.cmdHistory.length === 0) {
+        return
+    }
+    shell.cmdHistoryIndex += direction === "up" ? -1 : 1
+    if (shell.cmdHistoryIndex < 0) {
+        shell.cmdHistoryIndex = 0
+        return
+    }
+    if (shell.cmdHistoryIndex >= shell.cmdHistory.length) {
+        shell.cmdHistoryIndex = shell.cmdHistory.length
+        shell.line = ''
+        return
+    }
+    shell.line = shell.cmdHistory[shell.cmdHistoryIndex]
+}
 
 function processAutoComplete() {
     const autocomplete = terminalBackend.tabComplete(shell.line)
@@ -127,7 +153,8 @@ function processAutoComplete() {
                        @keydown.prevent.tab="processAutoComplete"
                        ref="cmdLine"
                        @keyup.enter="processCommand"
-                       @keyup.up="fillCommandHistory"
+                       @keyup.up.prevent="() => fillCommandHistory('up')"
+                       @keyup.down.prevent="() => fillCommandHistory('down')"
                 />
             </div>
         </div>

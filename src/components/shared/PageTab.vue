@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import {useRoute} from "vue-router";
 import {useStore} from "@/store";
-import {computed, defineProps, ref, PropType} from "vue";
+import {computed, ref, PropType} from "vue";
 import {RouteRecordRaw} from "vue-router";
 import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
 

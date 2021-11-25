@@ -11,7 +11,7 @@ import { faLinkedin, faGithubSquare } from "@fortawesome/free-brands-svg-icons";
 import {
     faFileCode, faFileAlt, faChevronDown,
     faFolder, faChevronRight, faTerminal,
-    faBoxOpen, faTimesCircle
+    faBoxOpen, faTimesCircle, faQuestion
 } from "@fortawesome/free-solid-svg-icons";
 
 // Non-js
@@ -21,7 +21,8 @@ library.add(
     faWindowClose, faFileCode, faFileAlt,
     faChevronDown, faFolder, faChevronRight,
     faTerminal, faLinkedin, faGithubSquare,
-    faBoxOpen, faTimesCircle, farTimesCircle
+    faBoxOpen, faTimesCircle, farTimesCircle,
+    faQuestion
 )
 
 const app = createApp(App)

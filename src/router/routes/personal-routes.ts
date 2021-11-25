@@ -1,5 +1,6 @@
 import AboutMe from "@/views/Personal/AboutMe.vue"
 import Experience from "@/views/Personal/Experience.vue";
+import WorkExperience from "@/views/Personal/WorkExperience.vue"
 import Skills from "@/views/Personal/Skills.vue";
 import {RouteRecordRaw} from "vue-router";
 
@@ -30,6 +31,16 @@ const personalRoutes: Array<RouteRecordRaw> = [
         name: 'Experience.html',
         meta: {
             label: 'experience.html',
+            icon: 'fas file-code',
+            iconColor: 'darkorange',
+        }
+    },
+    {
+        path: '/WorkExperience',
+        component: WorkExperience,
+        name: 'WorkExperience.html',
+        meta: {
+            label: 'work-experience.html',
             icon: 'fas file-code',
             iconColor: 'darkorange',
         }
