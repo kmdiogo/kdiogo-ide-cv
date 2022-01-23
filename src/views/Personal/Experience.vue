@@ -1,87 +1,89 @@
 <script lang="ts" setup>
 import PersonalPageLayout from "@/components/shared/PersonalPageLayout.vue";
-import ExperienceItem from "@/components/Experience/ExperienceItem.vue";
-</script>
+import VerticalTimeline from "@/components/shared/VerticalTimeline.vue";
+import {TimelineEntryProps} from "@/components/shared/VerticalTimeline.vue";
 
+const timelineData: TimelineEntryProps[] = [
+    {
+        id: 'exp',
+        date: '06/2020 - Present',
+        company: 'Expedition Technology',
+        jobTitle: 'Software Engineer',
+        description: 'Full-stack Development building RESTful web services and React based front-ends. Containerize and deploy services to Kubernetes environments.',
+        skills: ['Full-stack', 'React.js', 'Python', 'Docker', 'Kubernetes', 'PostgreSQL']
+    },
+    {
+        id: 'ysu-ra',
+        date: '08/2019 - 05/2020',
+        company: 'Youngstown State University',
+        jobTitle: 'Research Assistant',
+        description: `
+            Collaborated with Electrical Engineering department to develop to an Android/IOS mobile application and
+            web server to interface with a Bluetooth Low Energy device to collect pressure sensor readings.
+        `,
+        skills: ['Desktop Apps', 'Web Apps', 'Vue.js', 'Python', 'Android', 'Electronics']
+    },
+    {
+        id: 'jpm',
+        date: '06/2019 - 08/2019',
+        company: 'J.P. Morgan Chase & Co.',
+        jobTitle: 'Software Engineer Intern',
+        description: `
+            Worked in an agile team with 3 other interns to create a web application to help Financial Controllers asses foreign exchange risk.
+            Implemented RESTful microservices using Spring Framework and
+            collaborated with end-users to create an intuitive front-end experience using React.js
+        `,
+        skills: ['Front-end', 'React.js', 'Java Spring', 'OracleDB']
+    },
+    {
+        id: 'itc',
+        date: '03/2018 - 04/2019',
+        company: 'Intellitech Corporation',
+        jobTitle: 'Software Engineer Intern',
+        description: `
+            Developed/maintained a variety modern and legacy public safety software.
+            Projects included web apps, data migration tools, user groups/permissions managers, and VB Access applications.
+        `,
+        skills: ['VB6 Apps', 'Web Development', '.NET', 'Vue.js', 'MicrosoftSQL']
+    },
+    {
+        id: 'ysu-tutor',
+        date: '01/2016 - 05/2020',
+        company: 'Youngstown State University',
+        jobTitle: 'Computer Science Tutor',
+        description: `
+            Teach core programming concepts in C++, Java, and Python.
+            Topics include Problem Solving, Data Structures and Algorithms, Artificial Intelligence, and Object-Oriented Programming
+        `,
+        skills: ['Teaching']
+    },
+    {
+        id: 'ohc',
+        date: '01/2016 - 03/2019',
+        company: 'The Oak Hill Collaborative',
+        jobTitle: 'Instructor',
+        description: `
+            Use Raspberry Pis and Python programming with Minecraft to teach 4th - 6th grade
+            children the basics of computer hardware, software, and programming.
+        `,
+        skills: ['Teaching', 'Working with Children']
+    }
+]
+</script>
 
 <template>
     <PersonalPageLayout title="Experience">
-        <div class="space-y-4">
-            <ExperienceItem year="2020" month="September" job-title="Software Engineer" company="Expedition Technology">
-                <template v-slot:logos>
-                    <img class="w-20" src="../../assets/logos/exp-logo.png" />
-                </template>
-            </ExperienceItem>
-
-            <hr />
-
-            <ExperienceItem year="2019" month="September" job-title="Research Assistant" company="Youngstown State University">
-                <template v-slot:logos>
-                    <img class="w-20" src="../../assets/logos/ysu-logo.png" />
-                </template>
-
-                <p>
-                    Collaborating with Electrical Engineering department to develop to an Android/IOS mobile application and web server
-                    to interface with a Bluetooth Low Energy device to collect pressure sensor readings.
-                </p>
-                <p>Technologies: Android, Django, Vue.js, Electron</p>
-            </ExperienceItem>
-
-            <hr />
-
-            <ExperienceItem year="2019" month="August" job-title="Software Engineer Intern" company="J.P. Morgan Chase & Co.">
-                <template v-slot:logos>
-                    <img class="w-16 rounded" src="../../assets/logos/jpm-logo.png" />
-                </template>
-
-                <p>Worked in an agile team with 3 other interns to create a web application to help Financial Controllers asses foreign exchange risk</p>
-                <p>Implemented RESTful microservices using Spring Framework</p>
-                <p>Collaborated with end-users to create an intuitive front-end experience using React.js</p>
-                <p>Technologies: React, Bootstrap 4, Cloud Technologies, Java w/ Spring Framework</p>
-            </ExperienceItem>
-
-            <hr />
-
-            <ExperienceItem year="2018" month="February" job-title="Software Developer" company="Intellitech Corporation">
-                <template v-slot:logos>
-                    <img class="w-24" src="../../assets/logos/itc-logo.png" />
-                </template>
-
-                <p>Developed Jail Management Systems and Public Safety Software for a variety of counties across the U.S.</p>
-                <p>Technologies: ASP.NET MVC, Vue.js, VBA, MicrosoftSQL, WPF</p>
-            </ExperienceItem>
-
-            <hr />
-
-            <ExperienceItem year="2016" month="January" job-title="Computer Science Tutor" company="YSU Center for Student Progress">
-                <template v-slot:logos>
-                    <img class="w-20" src="../../assets/logos/ysu-logo.png" />
-                </template>
-
-                <p>
-                    Teach core programming concepts in C++, Java, and Python.
-                    Topics include Problem Solving, Data Structures and Algorithms, Artificial Intelligence, and Object-Oriented Programming
-                </p>
-            </ExperienceItem>
-
-            <hr />
-
-            <ExperienceItem year="2016" month="January" job-title="Teacher" company="Oak Hill Collaborative">
-                <template v-slot:logos>
-                    <img class="w-20" src="../../assets/logos/ohc-logo.png" />
-                </template>
-
-                <p>
-                    Use Raspberry Pis and Python programming with Minecraft to teach 4th - 6th grade
-                    children the basics of computer hardware, software, and programming.
-                </p>
-                <p>
-                    Partnered through Success after Six 6, the Oak Hill Collaborative Raspberry Program is designed
-                    to give underprivileged children in the Youngstown area access to technology and technology education.
-                    Each child is taught how to operate and maintain the Raspberry Pis they are given at the end of the program
-                </p>
-            </ExperienceItem>
-        </div>
-
+        <VerticalTimeline :timeline-data="timelineData" class="mt-6">
+            <template v-slot:exp-icon><img class="bg-white" alt="Expedition Technology Logo" src="../../assets/logos/exp-logo.png" /></template>
+            <template v-slot:ysu-ra-icon><img class="w-14" alt="Youngstown State University Logo" src="../../assets/logos/ysu-logo.png" /></template>
+            <template v-slot:jpm-icon><img class="w-10" alt="J.P. Morgan Chase & Co. Logo" src="../../assets/logos/jpm-logo.png" /></template>
+            <template v-slot:itc-icon>
+                <div class="bg-white h-full flex justify-center items-center">
+                    <img src="../../assets/logos/itc-logo.png" alt="Intellitech Corporation Logo" />
+                </div>
+            </template>
+            <template v-slot:ysu-tutor-icon><img class="w-14" src="../../assets/logos/ysu-logo.png" alt="Youngstown State University Logo" /></template>
+            <template v-slot:ohc-icon><img class="w-14" src="../../assets/logos/ohc-logo.png" alt="Oak Hill Collaborative Logo" /></template>
+        </VerticalTimeline>
     </PersonalPageLayout>
 </template>

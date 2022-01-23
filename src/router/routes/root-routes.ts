@@ -16,9 +16,9 @@ const rootRoutes: Array<RouteRecordRaw> = [
     {
         path: '/README',
         component: README,
-        name: 'README.txt',
+        name: 'README.md',
         meta: {
-            label: 'README.txt',
+            label: 'README.md',
             icon: 'fas file-alt',
         }
     }

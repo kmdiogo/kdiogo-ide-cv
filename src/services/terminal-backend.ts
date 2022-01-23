@@ -71,6 +71,12 @@ export interface TerminalBackend {
     changeDirectory: (directory: string) => string
 }
 
+export class CommandNotExistsError extends Error {
+    constructor(msg: string) {
+        super(msg);
+    }
+}
+
 export class TrieBasedTerminalBackend implements TerminalBackend {
     // Tries generated for each directory (so we can text search their contents)
     fileTries: {[key: string]: Trie}
@@ -127,7 +133,7 @@ export class TrieBasedTerminalBackend implements TerminalBackend {
         const args = split.slice(1)
 
         if (!(commandName in this.commands)) {
-            throw Error(`No matching command found for '${commandName}'`)
+            throw new CommandNotExistsError(`No matching command found for '${commandName}'`)
         }
         this.commands[commandName](args)
     }
@@ -154,6 +160,9 @@ export class TrieBasedTerminalBackend implements TerminalBackend {
         const absPath = this.pathHelper.resolve(path, this.cwd)
         if (!(absPath in this.fileTable)) {
             throw Error(`'${path}' not found`)
+        }
+        if (this.fileTable[absPath].isDir) {
+            throw Error(`'${path}' is a directory`)
         }
         return this.fileTable[absPath]
     }

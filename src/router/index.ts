@@ -1,6 +1,6 @@
 import {createRouter, createWebHashHistory, RouteRecordRaw} from "vue-router";
-import {store} from "@/store"
 import routes from "@/router/routes";
+import {useTabHistoryStore} from "@/stores/tab-history";
 
 const router = createRouter({
     history: createWebHashHistory(),
@@ -8,7 +8,8 @@ const router = createRouter({
 });
 
 router.afterEach((to => {
-    store.commit('addTabToHistory', to)
+    const tabHistoryStore = useTabHistoryStore()
+    tabHistoryStore.addTabToHistory(to)
 }))
 
 export default router;

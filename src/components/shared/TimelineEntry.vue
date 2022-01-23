@@ -21,6 +21,10 @@ const props = defineProps({
     direction: {
         type: String as PropType<"left" | "right">,
         default: "left"
+    },
+    skills: {
+        type: Array as PropType<string[]>,
+        default: []
     }
 })
 
@@ -36,7 +40,7 @@ const props = defineProps({
             </div>
 
             <!-- White bar -->
-            <div class="w-1 bg-darcula-200 rounded absolute left-0 right-0 ml-auto mr-auto -top-2" style="height: 135%"></div>
+            <div class="w-1 bg-darcula-200 rounded absolute left-0 right-0 ml-auto mr-auto -top-6" style="height: 135%"></div>
         </div>
 
         <div
@@ -44,20 +48,25 @@ const props = defineProps({
             :class="{'md:order-1': direction === 'left', 'md:order-3': direction === 'right'}"
         >
             <div class="bg-darcula-600 rounded p-4 w-full flex flex-col">
-                <span class="text-xl">{{company}}</span>
-                <span class="text-lg font-semibold mb-0 md:mb-4">{{jobTitle}}</span>
+                <span class="text-2xl font-semibold">{{jobTitle}}</span>
+                <span class="text-xl mb-0 md:mb-4">{{company}}</span>
                 <span class="mb-4 text-sm block md:hidden">{{date}}</span>
                 <span>
                     {{description}}
                 </span>
+                <div class="mt-4 flex gap-2 flex-wrap" v-if="skills.length > 0">
+                    <span class="rounded-lg p-1 px-2 text-sm bg-darcula-300 text-darcula-900 font-semibold" v-for="skill in skills">
+                        {{skill}}
+                    </span>
+                </div>
             </div>
             <span class="arrow-left block md:hidden" />
             <span class="arrow-right hidden md:block" v-if="direction === 'left'" />
             <span class="arrow-left hidden md:block" v-else />
         </div>
 
-        <div class="flex-1 hidden md:block font-bold relative" :class="{'order-3': direction === 'left', 'order-1 text-right': direction === 'right'}">
-            <div class="top-4 absolute w-full">
+        <div class="flex-1 hidden md:block relative" :class="{'order-3': direction === 'left', 'order-1 text-right': direction === 'right'}">
+            <div class="top-4 absolute w-full font-semibold text-lg">
                 {{date}}
             </div>
         </div>

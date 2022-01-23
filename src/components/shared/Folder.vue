@@ -1,5 +1,5 @@
 <template>
-    <div class="flex flex-col">
+    <div class="flex flex-col leading-snug">
         <div class="flex">
             <button class="text-black hover:text-white mr-5 w-1 focus:outline-none" @click="toggleExpanded">
                 <FontAwesomeIcon :icon="['fas', 'chevron-down']" style="width: 1rem" v-if="isExpanded && !isEmpty" />

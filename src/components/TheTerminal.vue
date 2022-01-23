@@ -2,7 +2,7 @@
 import {reactive, computed} from 'vue';
 import {useRouter} from "vue-router";
 import {tree} from "@/constants/FileTree";
-import {TrieBasedTerminalBackend} from "@/services/terminal-backend";
+import {CommandNotExistsError, TrieBasedTerminalBackend} from "@/services/terminal-backend";
 import {detectBrowser} from "@/utils";
 
 interface ShellState {
@@ -45,10 +45,12 @@ const terminalBackend = new TrieBasedTerminalBackend(tree, {
     'cd': args => {
         if (args.length === 0) {
             printTerminalResult(['Error: expected at least one argument'])
+            return
         }
-        printTerminalResult([])
         try {
-            shell.cwdName = terminalBackend.changeDirectory(args[0])
+            const newCwd = terminalBackend.changeDirectory(args[0])
+            printTerminalResult([])
+            shell.cwdName = newCwd
         } catch (e: any) {
             printTerminalResult([e.message])
         }
@@ -103,7 +105,16 @@ function processCommand() {
     if (formattedLine.value === '') {
         printTerminalResult([''])
     }
-    terminalBackend.processCommand(formattedLine.value)
+    try {
+        terminalBackend.processCommand(formattedLine.value)
+    } catch (e) {
+        if (e instanceof CommandNotExistsError) {
+            printTerminalResult([e.message])
+        } else {
+            throw e
+        }
+    }
+
     shell.cmdHistory.push(formattedLine.value)
     shell.cmdHistoryIndex = shell.cmdHistory.length
     shell.line = ''

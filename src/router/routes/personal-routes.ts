@@ -34,16 +34,6 @@ const personalRoutes: Array<RouteRecordRaw> = [
             icon: 'fas file-code',
             iconColor: 'darkorange',
         }
-    },
-    {
-        path: '/WorkExperience',
-        component: WorkExperience,
-        name: 'WorkExperience.html',
-        meta: {
-            label: 'work-experience.html',
-            icon: 'fas file-code',
-            iconColor: 'darkorange',
-        }
     }
 ];
 

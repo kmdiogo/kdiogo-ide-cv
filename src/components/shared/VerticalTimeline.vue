@@ -1,30 +1,39 @@
 <script lang="ts" setup>
 import TimelineEntry from "./TimelineEntry.vue"
+import {defineProps, PropType} from "vue";
+
+export interface TimelineEntryProps {
+    id: string
+    company: string
+    jobTitle: string
+    description?: string,
+    skills: string[]
+    date: string
+}
+
+const props = defineProps({
+    timelineData: {
+        type: Array as PropType<TimelineEntryProps[]>,
+        required: true
+    }
+})
 </script>
 
 <template>
-<div class="relative">
-<!--    <div class="w-1 bg-darcula-200 rounded absolute left-0 right-0 ml-auto mr-auto -top-1" style="height: 101%"></div>-->
-    <div class="flex flex-col space-y-10">
-        <TimelineEntry
-            date="1/8/2018"
-            job-title="Software Engineer"
-            company="Expedition Technology"
-            description="Full-stack Development building RESTful web services and React based front-ends. Also containerized and deployed the services to Kubernetes environments."
-        >
-            <template v-slot:icon>
-                <img class="bg-white" src="../../assets/logos/exp-logo.png" />
-            </template>
-        </TimelineEntry>
-        <TimelineEntry
-            date="1/8/2018"
-            job-title="Software Engineer"
-            company="Expedition Technology"
-            description="Kubernetes and stuff"
-            direction="right"
-        />
-    </div>
-
+<div class="flex flex-col space-y-10">
+    <TimelineEntry
+        v-for="(entry, i) in timelineData"
+        :date="entry.date"
+        :job-title="entry.jobTitle"
+        :company="entry.company"
+        :skills="entry.skills"
+        :description=entry.description
+        :direction="i % 2 === 0 ? 'left' : 'right'"
+    >
+        <template v-slot:icon>
+            <slot :name="`${entry.id}-icon`"></slot>
+        </template>
+    </TimelineEntry>
 </div>
 </template>
 

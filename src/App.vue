@@ -7,9 +7,9 @@ import TheTerminal from "@/components/TheTerminal.vue";
 import TheFooter from "@/components/TheFooter.vue";
 import emitter, {PubsubEvent} from "@/services/pubsub";
 import { throttle } from "lodash"
-import { useStore} from "@/store";
+import { useLayoutStore } from "@/stores/layout";
 
-const store = useStore()
+const layoutStore = useLayoutStore()
 
 function handleMouseUp() {
     emitter.emit(PubsubEvent.MOUSE_UP);
@@ -40,7 +40,7 @@ const handleMouseMove = throttle((e: MouseEvent) => {
             </main>
         </div>
 
-        <TheTerminal class="flex-shrink-0 h-1/5" v-if="store.state.isTerminalOpen" />
+        <TheTerminal class="flex-shrink-0 h-1/5" v-if="layoutStore.terminalOpen" />
 
         <TheFooter class="flex-shrink-0 bg-darcula-500 border-black border h-16" />
     </div>
