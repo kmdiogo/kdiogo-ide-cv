@@ -8,12 +8,13 @@ import { createPinia } from "pinia";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faWindowClose, faTimesCircle as farTimesCircle } from "@fortawesome/free-regular-svg-icons";
 import {
-    faLinkedin, faGithubSquare
+    faLinkedin, faGithubSquare, faGithub
 } from "@fortawesome/free-brands-svg-icons";
 import {
     faFileCode, faFileAlt, faChevronDown,
     faFolder, faChevronRight, faTerminal,
-    faBoxOpen, faTimesCircle, faQuestion
+    faBoxOpen, faTimesCircle, faQuestion,
+    faLongArrowAltDown
 } from "@fortawesome/free-solid-svg-icons";
 
 // Non-js
@@ -24,7 +25,7 @@ library.add(
     faChevronDown, faFolder, faChevronRight,
     faTerminal, faLinkedin, faGithubSquare,
     faBoxOpen, faTimesCircle, farTimesCircle,
-    faQuestion
+    faQuestion, faGithub, faLongArrowAltDown
 )
 
 const app = createApp(App)

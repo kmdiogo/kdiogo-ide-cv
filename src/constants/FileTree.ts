@@ -14,18 +14,7 @@ export const tree: FileTreeNode = {
     directories: [
         {
             label: 'projects',
-            directories: [
-                {
-                    label: 'lag',
-                    directories: [],
-                    files: []
-                },
-                {
-                    label: 'hangman',
-                    directories: [],
-                    files: []
-                }
-            ],
+            directories: [],
             files: projectRoutes
         },
         {

@@ -19,7 +19,7 @@ import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
             <a class="hover:animate-pendulum" href="https://github.com/kmdiogo">
                 <FontAwesomeIcon :icon="['fab', 'github-square']"/>
             </a>
-            <span>Kenneth Diogo</span>
+            <span class="font-bold">Kenneth Diogo</span>
             <img class="ml-1" src="../assets/logos/dilogo-light-white.png" style="width: 4rem" />
         </div>
     </div>

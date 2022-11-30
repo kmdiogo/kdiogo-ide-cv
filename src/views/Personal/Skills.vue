@@ -34,7 +34,7 @@ const skills = [
 <template>
     <PersonalPageLayout title="Skills">
         <div class="flex flex-col gap-2 mt-6">
-            <div class="border border-darcula-600 rounded-lg py-2">
+            <div class="border border-darcula-600 rounded-lg py-2 px-2">
                 <h2 class="font-bold text-4xl text-center mb-2">Featured</h2>
                 <div class="grid grid-cols-1 lg:grid-cols-3 xl:grid-cols-4 justify-center gap-6">
                     <SkillHighlight
@@ -42,7 +42,6 @@ const skills = [
                         v-bind="skill"
                     />
                 </div>
-
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
