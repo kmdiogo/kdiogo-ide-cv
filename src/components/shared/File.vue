@@ -1,60 +1,56 @@
-<template>
-    <div class="flex items-center text-gray-300">
-        <div class="w-4">
-            <FontAwesomeIcon :icon="normalizeIcon()" :style="{color: iconColor}" />
-        </div>
-        <router-link class="ml-1 hover:text-darcula-300" :to="to" :class="{'bg-green-900': routeActive}">{{fileName}}</router-link>
-    </div>
-</template>
-
-<script lang="ts">
-import {defineComponent, computed} from 'vue'
-import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
-import {useRoute} from 'vue-router'
+<script lang="ts" setup>
+import { computed } from "vue";
+import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+import { useRoute } from "vue-router";
 
 interface ToRoute {
-    name: string;
+  name: string;
 }
-export default defineComponent({
-    name: "File",
-    components: {FontAwesomeIcon},
-    props: {
-        fileName: {
-            type: String,
-            required: true
-        },
-        iconColor: {
-            type: String,
-        },
-        icon: {
-            type: [String, Array]
-        },
-        to: {
-            type: [String, Object],
-        },
-    },
-    setup(props) {
-        const route = useRoute()
-        function normalizeIcon() {
-            if (typeof props.icon == 'string') return props.icon.split(' ')
-            return props.icon
-        }
 
-        const routeActive = computed(() => {
-            if (typeof props.to == 'string') {
-                return route.matched.some(({ path }) => path === props.to)
-            }
-            return route.matched.some(({ name }) => name === (props.to as ToRoute).name)
-        })
+const props = defineProps({
+  fileName: {
+    type: String,
+    required: true,
+  },
+  iconColor: {
+    type: String,
+  },
+  icon: {
+    type: [String, Array],
+  },
+  to: {
+    type: [String, Object],
+  },
+});
 
-        return {
-            normalizeIcon,
-            routeActive
-        }
-    }
-})
+const route = useRoute();
+
+function normalizeIcon() {
+  if (typeof props.icon == "string") return props.icon.split(" ");
+  return props.icon;
+}
+
+const routeActive = computed(() => {
+  if (typeof props.to == "string") {
+    return route.matched.some(({ path }) => path === props.to);
+  }
+  return route.matched.some(({ name }) => name === (props.to as ToRoute).name);
+});
 </script>
 
-<style scoped>
-
-</style>
+<template>
+  <div class="flex">
+    <div class="mr-4 w-1" />
+    <div class="flex overflow-hidden">
+      <span class="mr-2"
+        ><FontAwesomeIcon :icon="normalizeIcon()" :style="{ color: iconColor }"
+      /></span>
+      <router-link
+        class="hover:text-darcula-300"
+        :to="to"
+        :class="{ 'bg-green-900': routeActive }"
+        >{{ fileName }}</router-link
+      >
+    </div>
+  </div>
+</template>

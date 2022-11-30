@@ -1,1 +1,1 @@
-declare module 'pubsub'
+declare module "pubsub";

@@ -1,16 +1,16 @@
-import { defineStore } from 'pinia'
+import { defineStore } from "pinia";
 
 interface LayoutState {
-    terminalOpen: boolean
+  terminalOpen: boolean;
 }
 
-export const useLayoutStore = defineStore('layout-state', {
-    state: (): LayoutState => ({
-        terminalOpen: false
-    }),
-    actions: {
-        toggleTerminalOpen() {
-            this.terminalOpen = !this.terminalOpen
-        }
-    }
-})
+export const useLayoutStore = defineStore("layout-state", {
+  state: (): LayoutState => ({
+    terminalOpen: false,
+  }),
+  actions: {
+    toggleTerminalOpen() {
+      this.terminalOpen = !this.terminalOpen;
+    },
+  },
+});
