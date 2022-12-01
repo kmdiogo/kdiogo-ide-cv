@@ -10,7 +10,7 @@ export interface FileTreeNode {
 }
 
 export const tree: FileTreeNode = {
-  label: "", // TODO: figure out why adding string contents here causes an error in the terminal
+  label: "/",
   directories: [
     {
       label: "projects",

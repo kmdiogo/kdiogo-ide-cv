@@ -27,7 +27,7 @@ const handleMouseMove = throttle((e: MouseEvent) => {
     @mousemove="handleMouseMove"
     @mouseleave="handleMouseUp"
   >
-    <div class="bg-darcula-500 p-1 border-b border-black flex-shrink-0">
+    <div class="bg-darcula-500 border-b border-gray-800 flex-shrink-0">
       <TheToolbar />
     </div>
 
@@ -41,7 +41,7 @@ const handleMouseMove = throttle((e: MouseEvent) => {
 
       <main class="flex flex-col flex-grow overflow-auto">
         <PageTabs
-          class="flex items-center border-b border-black bg-darcula-500 flex-shrink-0"
+          class="flex items-center border-b border-gray-800 bg-darcula-500 flex-shrink-0"
         />
         <router-view class="flex-grow overflow-auto h-0 p-5" />
       </main>
@@ -49,6 +49,8 @@ const handleMouseMove = throttle((e: MouseEvent) => {
 
     <TheTerminal class="flex-shrink-0 h-1/5" v-if="layoutStore.terminalOpen" />
 
-    <TheFooter class="flex-shrink-0 bg-darcula-500 border-black border h-16" />
+    <TheFooter
+      class="flex-shrink-0 bg-darcula-500 border-gray-800 border h-16"
+    />
   </div>
 </template>

@@ -23,7 +23,7 @@ export class PathHelper {
     let runningDir = normCurDir;
     for (const pathPiece of normPath.split("/")) {
       if (pathPiece === "..") {
-        if (this.fileTable[runningDir].parent !== undefined) {
+        if (this.fileTable[runningDir]?.parent !== undefined) {
           runningDir = this.fileTable[runningDir].parent as string;
         }
         continue;

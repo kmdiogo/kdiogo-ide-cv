@@ -26,8 +26,10 @@ export interface FileTreeTable {
  */
 export function convertToTable(tree: FileTreeNode): FileTreeTable {
   const table: FileTreeTable = {};
-  function recursiveCall(node: FileTreeNode, parent: string) {
-    const absPath = pathb.join(parent, node.label);
+  function recursiveCall(node: FileTreeNode, parent?: string) {
+    // No parent means this node is the root, so set parent as itself
+    const nodeParent = parent ? parent : node.label;
+    const absPath = parent ? pathb.join(parent, node.label) : nodeParent;
 
     const children = node.directories.map((node) =>
       pathb.join(absPath, node.label)
@@ -63,7 +65,7 @@ export function convertToTable(tree: FileTreeNode): FileTreeTable {
       recursiveCall(n, absPath);
     }
   }
-  recursiveCall(tree, "/");
+  recursiveCall(tree);
   return table;
 }
 
@@ -105,7 +107,7 @@ export class TrieBasedTerminalBackend implements TerminalBackend {
     this.fileTable = convertToTable(fileTree);
     this.commands = commands;
     this.pathHelper = new PathHelper(this.fileTable);
-    this.cwd = "/";
+    this.cwd = fileTree.label;
 
     // Populate file tries
     this.fileTries = {};
@@ -145,9 +147,7 @@ export class TrieBasedTerminalBackend implements TerminalBackend {
     const args = split.slice(1);
 
     if (!(commandName in this.commands)) {
-      throw new CommandNotExistsError(
-        `No matching command found for '${commandName}'`
-      );
+      throw new TerminalError(`No matching command found for '${commandName}'`);
     }
     this.commands[commandName](args);
   }
@@ -156,10 +156,10 @@ export class TrieBasedTerminalBackend implements TerminalBackend {
     const path_ = path !== undefined ? path : this.cwd;
     const absPath = this.pathHelper.resolve(path_, this.cwd);
     if (!(absPath in this.fileTable)) {
-      throw Error(`'${path}' not found`);
+      throw new TerminalError(`'${path}' not found`);
     }
     if (!this.fileTable[absPath].isDir) {
-      throw Error(`'${path}' is not a directory`);
+      throw new TerminalError(`'${path}' is not a directory`);
     }
     return this.fileTable[absPath].children.map((child) => {
       const basename = pathb.basename(child);
@@ -173,10 +173,10 @@ export class TrieBasedTerminalBackend implements TerminalBackend {
   getFile(path: string): FileTreeTableItem {
     const absPath = this.pathHelper.resolve(path, this.cwd);
     if (!(absPath in this.fileTable)) {
-      throw Error(`'${path}' not found`);
+      throw new TerminalError(`'${path}' not found`);
     }
     if (this.fileTable[absPath].isDir) {
-      throw Error(`'${path}' is a directory`);
+      throw new TerminalError(`'${path}' is a directory`);
     }
     return this.fileTable[absPath];
   }

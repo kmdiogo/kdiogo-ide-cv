@@ -14,7 +14,7 @@ import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
         ></FontAwesomeIcon>
         Kenny's Portfolio</span
       >
-      <hr class="my-2" />
+      <hr class="my-1" />
     </div>
 
     <Folder

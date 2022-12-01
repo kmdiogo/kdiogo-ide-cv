@@ -3,7 +3,6 @@ import { reactive, computed } from "vue";
 import { useRouter } from "vue-router";
 import { tree } from "@/constants/FileTree";
 import {
-  CommandNotExistsError,
   TrieBasedTerminalBackend,
   TerminalError,
 } from "@/services/terminal-backend";
@@ -20,7 +19,7 @@ interface ShellState {
 const router = useRouter();
 const shell = reactive<ShellState>({
   line: "",
-  cwdName: "/",
+  cwdName: tree.label,
   cmdHistory: [],
   cmdHistoryIndex: 0,
   history: [],
@@ -37,6 +36,7 @@ const terminalBackend = new TrieBasedTerminalBackend(tree, {
     } catch (e) {
       if (e instanceof TerminalError) {
         printTerminalResult([e.message]);
+        return;
       }
       throw e;
     }
@@ -60,6 +60,7 @@ const terminalBackend = new TrieBasedTerminalBackend(tree, {
     } catch (e) {
       if (e instanceof TerminalError) {
         printTerminalResult([e.message]);
+        return;
       }
       throw e;
     }
@@ -77,7 +78,11 @@ const terminalBackend = new TrieBasedTerminalBackend(tree, {
         router.push(file.metadata.routePath);
       }
     } catch (e) {
-      printTerminalResult([e.message]);
+      if (e instanceof TerminalError) {
+        printTerminalResult([e.message]);
+        return;
+      }
+      throw e;
     }
   },
   history: () => {
@@ -118,15 +123,17 @@ function processCommand() {
   try {
     terminalBackend.processCommand(formattedLine.value);
   } catch (e) {
-    if (e instanceof CommandNotExistsError) {
+    if (e instanceof TerminalError) {
       printTerminalResult([e.message]);
     } else {
       throw e;
     }
   }
 
-  shell.cmdHistory.push(formattedLine.value);
-  shell.cmdHistoryIndex = shell.cmdHistory.length;
+  if (formattedLine.value !== "") {
+    shell.cmdHistory.push(formattedLine.value);
+    shell.cmdHistoryIndex = shell.cmdHistory.length;
+  }
   shell.line = "";
   scrollBottom();
 }

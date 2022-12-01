@@ -26,6 +26,7 @@ import {
   faTimesCircle,
   faQuestion,
   faLongArrowAltDown,
+  faBars,
 } from "@fortawesome/free-solid-svg-icons";
 
 // Non-js
@@ -46,10 +47,27 @@ library.add(
   farTimesCircle,
   faQuestion,
   faGithub,
-  faLongArrowAltDown
+  faLongArrowAltDown,
+  faBars
 );
 
 const app = createApp(App);
 app.use(router);
 app.use(createPinia());
+
+// Custom directives
+app.directive("click-outside", {
+  mounted(el, binding) {
+    el.clickOutsideEvent = function (event: any) {
+      if (!(el === event.target || el.contains(event.target))) {
+        binding.value(event, el);
+      }
+    };
+    document.body.addEventListener("click", el.clickOutsideEvent);
+  },
+  unmounted(el) {
+    document.body.removeEventListener("click", el.clickOutsideEvent);
+  },
+});
+
 app.mount("#app");

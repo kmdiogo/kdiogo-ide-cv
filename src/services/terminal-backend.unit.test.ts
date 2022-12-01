@@ -1,8 +1,8 @@
 import { TrieBasedTerminalBackend } from "./terminal-backend";
-import { FileTreeNode } from "../constants/FileTree";
+import { FileTreeNode } from "@/constants/FileTree";
 
 export const TEST_FILE_TREE: FileTreeNode = {
-  label: "",
+  label: "/",
   directories: [
     {
       label: "my_photos",
@@ -64,3 +64,5 @@ describe("terminal-backend", () => {
     expect(terminalBackend.tabComplete(input).sort()).toEqual(expected.sort());
   });
 });
+
+// TODO: test conversion to file table
