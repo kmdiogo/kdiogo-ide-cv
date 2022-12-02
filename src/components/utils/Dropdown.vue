@@ -2,10 +2,12 @@
 import { ref } from "vue";
 const isOpen = ref(false);
 function toggleDropdown() {
+    console.log("button clicked")
   isOpen.value = !isOpen.value;
 }
 
 function closeDropdown() {
+    console.log("close dropdown")
   isOpen.value = false;
 }
 </script>

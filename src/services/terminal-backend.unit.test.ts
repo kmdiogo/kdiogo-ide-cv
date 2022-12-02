@@ -1,4 +1,4 @@
-import { TrieBasedTerminalBackend } from "./terminal-backend";
+import {TrieBasedTerminalBackend, convertToTable, FileTreeTable} from "./terminal-backend";
 import { FileTreeNode } from "@/constants/FileTree";
 
 export const TEST_FILE_TREE: FileTreeNode = {
@@ -64,5 +64,69 @@ describe("terminal-backend", () => {
     expect(terminalBackend.tabComplete(input).sort()).toEqual(expected.sort());
   });
 });
+
+describe("convert tree to file table", () => {
+  it("should produce expected file table from file tree", () => {
+    const fileTable = convertToTable(TEST_FILE_TREE)
+    const expectedFileTable: FileTreeTable = {
+      "/": {
+        isDir: true,
+        children: [
+          "/my_photos",
+          "/my_documents",
+          "/temp"
+        ],
+        parent: "/"
+      },
+      "/my_photos": {
+        isDir: true,
+        children: [
+          "/my_photos/vacation",
+          "/my_photos/wallpaper.jpg"
+        ],
+        parent: "/"
+      },
+      "/my_photos/vacation": {
+        isDir: true,
+        children: [
+          "/my_photos/vacation/paris.jpg"
+        ]
+      },
+      "/my_photos/vacation/paris.jpg": {
+        isDir: false,
+        children: [],
+        parent: "/my_photos",
+        metadata: {
+          label: "paris.jpg",
+          icon: "test-icon",
+          iconColor: "green",
+          routePath: ""
+        },
+      },
+      "/my_photos/wallpaper.jpg": {
+        isDir: false,
+        children: [],
+        parent: "/",
+        metadata: {
+          label: "wallpaper.jpg",
+          icon: "test-icon",
+          iconColor: "green",
+          routePath: ""
+        }
+      },
+      "/my_documents": {
+        isDir: true,
+        children: [],
+        parent: "/"
+      },
+      "/temp": {
+        isDir: true,
+        children: [],
+        parent: "/"
+      },
+    }
+    expect(fileTable).toMatchObject(expectedFileTable)
+  })
+})
 
 // TODO: test conversion to file table

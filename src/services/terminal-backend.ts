@@ -49,7 +49,7 @@ export function convertToTable(tree: FileTreeNode): FileTreeTable {
           ...file.meta,
         },
         children: [],
-        parent: parent,
+        parent: nodeParent,
       };
       // Make sure to record the file as a child of the directory we're processing
       children.push(fileAbsPath);
@@ -59,7 +59,7 @@ export function convertToTable(tree: FileTreeNode): FileTreeTable {
     table[absPath] = {
       isDir: true,
       children,
-      parent,
+      parent: nodeParent,
     };
     for (const n of node.directories) {
       recursiveCall(n, absPath);
@@ -80,12 +80,6 @@ export interface TerminalBackend {
 }
 
 export class TerminalError extends Error {
-  constructor(msg: string) {
-    super(msg);
-  }
-}
-
-export class CommandNotExistsError extends TerminalError {
   constructor(msg: string) {
     super(msg);
   }
