@@ -40,17 +40,19 @@ const routeActive = computed(() => {
 
 <template>
   <div class="flex">
-    <div class="mr-4 w-1" />
-    <div class="flex overflow-hidden">
-      <span class="mr-2"
-        ><FontAwesomeIcon :icon="normalizeIcon()" :style="{ color: iconColor }"
-      /></span>
-      <router-link
-        class="hover:text-darcula-300"
-        :to="to"
-        :class="{ 'bg-green-900': routeActive }"
-        >{{ fileName }}</router-link
-      >
-    </div>
+    <div class="mr-4 w-1 flex-shrink-0" />
+    <router-link
+      class="hover:text-darcula-300 whitespace-nowrap"
+      :to="to"
+      :class="{ 'bg-green-900': routeActive }"
+    >
+      <span class="mr-2">
+        <FontAwesomeIcon
+          :icon="normalizeIcon()"
+          :style="{ color: iconColor }"
+        />
+      </span>
+      <span>{{ fileName }}</span>
+    </router-link>
   </div>
 </template>

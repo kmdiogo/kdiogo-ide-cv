@@ -1,4 +1,8 @@
-import {TrieBasedTerminalBackend, convertToTable, FileTreeTable} from "./terminal-backend";
+import {
+  TrieBasedTerminalBackend,
+  convertToTable,
+  FileTreeTable,
+} from "./terminal-backend";
 import { FileTreeNode } from "@/constants/FileTree";
 
 export const TEST_FILE_TREE: FileTreeNode = {
@@ -67,30 +71,21 @@ describe("terminal-backend", () => {
 
 describe("convert tree to file table", () => {
   it("should produce expected file table from file tree", () => {
-    const fileTable = convertToTable(TEST_FILE_TREE)
+    const fileTable = convertToTable(TEST_FILE_TREE);
     const expectedFileTable: FileTreeTable = {
       "/": {
         isDir: true,
-        children: [
-          "/my_photos",
-          "/my_documents",
-          "/temp"
-        ],
-        parent: "/"
+        children: ["/my_photos", "/my_documents", "/temp"],
+        parent: "/",
       },
       "/my_photos": {
         isDir: true,
-        children: [
-          "/my_photos/vacation",
-          "/my_photos/wallpaper.jpg"
-        ],
-        parent: "/"
+        children: ["/my_photos/vacation", "/my_photos/wallpaper.jpg"],
+        parent: "/",
       },
       "/my_photos/vacation": {
         isDir: true,
-        children: [
-          "/my_photos/vacation/paris.jpg"
-        ]
+        children: ["/my_photos/vacation/paris.jpg"],
       },
       "/my_photos/vacation/paris.jpg": {
         isDir: false,
@@ -100,7 +95,7 @@ describe("convert tree to file table", () => {
           label: "paris.jpg",
           icon: "test-icon",
           iconColor: "green",
-          routePath: ""
+          routePath: "",
         },
       },
       "/my_photos/wallpaper.jpg": {
@@ -111,22 +106,22 @@ describe("convert tree to file table", () => {
           label: "wallpaper.jpg",
           icon: "test-icon",
           iconColor: "green",
-          routePath: ""
-        }
+          routePath: "",
+        },
       },
       "/my_documents": {
         isDir: true,
         children: [],
-        parent: "/"
+        parent: "/",
       },
       "/temp": {
         isDir: true,
         children: [],
-        parent: "/"
+        parent: "/",
       },
-    }
-    expect(fileTable).toMatchObject(expectedFileTable)
-  })
-})
+    };
+    expect(fileTable).toMatchObject(expectedFileTable);
+  });
+});
 
 // TODO: test conversion to file table
