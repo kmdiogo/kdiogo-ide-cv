@@ -189,6 +189,11 @@ function processAutoComplete() {
           @keydown.prevent.tab="processAutoComplete"
           ref="cmdLine"
           @keyup.enter="processCommand"
+          @keyup.esc="
+            (e) => {
+              e.target.blur();
+            }
+          "
           @keyup.up.prevent="() => fillCommandHistory('up')"
           @keyup.down.prevent="() => fillCommandHistory('down')"
         />

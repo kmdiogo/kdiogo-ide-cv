@@ -1,56 +1,72 @@
 <script lang="ts" setup>
 import PersonalPageLayout from "@/components/shared/PersonalPageLayout.vue";
-import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import VueLogo from "@/assets/logo.png";
-import PythonLogo from "@/assets/python-logo.png";
-import ReactLogo from "@/assets/react-logo.png";
-import DockerLogo from "@/assets/docker-logo.png";
-import PostgresLogo from "@/assets/postgres-logo.png";
-import JenkinsLogo from "@/assets/jenkins-logo.png";
-import SkillHighlight from "@/components/Skills/SkillHighlight.vue";
+import PythonLogo from "@/assets/ext-logos/python-logo.png";
+import ReactLogo from "@/assets/ext-logos/react-logo.png";
+import DockerLogo from "@/assets/ext-logos/docker-logo.png";
+import PostgresLogo from "@/assets/ext-logos/postgres-logo.png";
+import JenkinsLogo from "@/assets/ext-logos/jenkins-logo.png";
+import KubernetesLogo from "@/assets/ext-logos/kubernetes-logo.png";
+import JestLogo from "@/assets/ext-logos/jest-logo.png";
+import BootstrapLogo from "@/assets/ext-logos/bootstrap-logo.png";
+import CypressLogo from "@/assets/ext-logos/cypress-logo.png";
+import TailwindLogo from "@/assets/ext-logos/tailwind-logo.png";
+import ReactQueryLogo from "@/assets/ext-logos/react-query-logo.svg";
+import AWSLogo from "@/assets/ext-logos/aws-logo.png";
+import SkillBox from "@/components/Skills/SkillBox.vue";
+import PytestLogo from "@/assets/ext-logos/pytest-logo.png";
 
-const languages = [
-  "Python",
-  "Javascript/Typescript",
-  "C#",
-  "Java",
-  "HTML/CSS",
-  "C/C++",
-  "VBA/VB.NET",
-  "SQL",
-];
-const frameworks = [
-  "React.js",
-  "Vue.js",
-  "FastAPI",
-  "SQLAlchemy",
-  "ASP.NET",
-  "Django",
-  "Bootstrap 4",
-  "Jquery",
-];
-const other = [
-  "Full-stack Development",
-  "Docker + Kubernetes",
-  "Micro-service Orchestration",
-  "REST Services",
-  "Teaching",
-  "Android Mobile Development",
-];
-
-const skills = [
+const backendSkills = [
   { name: "Python", details: "v3.6+, Web Services", imgSrc: PythonLogo },
-  { name: "React.js", details: "JS/TS, Hooks API", imgSrc: ReactLogo },
+  { name: "Pytest", details: "Python Unit Testing", imgSrc: PytestLogo },
   { name: "PostgreSQL", details: "+PostGIS", imgSrc: PostgresLogo },
+  { name: "AWS", details: "S3, SQS, SNS, RDS", imgSrc: AWSLogo },
+];
+
+const frontendSkills = [
+  { name: "React.js", details: "JS/TS, Hooks API", imgSrc: ReactLogo },
+  {
+    name: "Vue.js",
+    details: "JS/TS, Composition API",
+    imgSrc: VueLogo,
+  },
+  {
+    name: "Jest",
+    details: "UI Unit Testing",
+    imgSrc: JestLogo,
+  },
+  {
+    name: "Cypress",
+    details: "E2E Testing",
+    imgSrc: CypressLogo,
+  },
+  {
+    name: "TailwindCSS",
+    details: "Utility-first CSS",
+    imgSrc: TailwindLogo,
+  },
+  {
+    name: "Bootstrap",
+    details: "v4",
+    imgSrc: BootstrapLogo,
+  },
+  {
+    name: "React Query",
+    details: "Data Synchronization, +Axios",
+    imgSrc: ReactQueryLogo,
+  },
+];
+
+const infrastructureSkills = [
   {
     name: "Docker",
-    details: "+Kubernetes, Micro-services",
+    details: "+Docker Compose",
     imgSrc: DockerLogo,
   },
   {
-    name: "Vue.js",
-    details: "Composition API, Personal Projects",
-    imgSrc: VueLogo,
+    name: "Kubernetes",
+    details: "Helm Charts, Micro-services",
+    imgSrc: KubernetesLogo,
   },
   { name: "Jenkins", details: "CI/CD", imgSrc: JenkinsLogo },
 ];
@@ -58,40 +74,10 @@ const skills = [
 
 <template>
   <PersonalPageLayout title="Skills">
-    <div class="flex flex-col gap-2 mt-6">
-      <div class="border border-darcula-600 rounded-lg py-2 px-2">
-        <h2 class="font-bold text-4xl text-center mb-2">Featured</h2>
-        <div
-          class="grid grid-cols-1 lg:grid-cols-3 xl:grid-cols-4 justify-center gap-6"
-        >
-          <SkillHighlight
-            v-for="skill in skills"
-            v-bind="skill"
-            :key="skill.name + skill.details"
-          />
-        </div>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <div>
-          <h1 class="text-blue-700 text-3xl font-bold">Languages</h1>
-          <p class="mb-2" v-for="skill in languages" :key="skill">
-            <FontAwesomeIcon :icon="['fas', 'chevron-right']" /> {{ skill }}
-          </p>
-        </div>
-        <div>
-          <h1 class="text-blue-700 text-3xl font-bold">Libraries</h1>
-          <p v-for="skill in frameworks" :key="skill">
-            <FontAwesomeIcon :icon="['fas', 'chevron-right']" /> {{ skill }}
-          </p>
-        </div>
-        <div>
-          <h1 class="text-blue-700 text-3xl font-bold">Other</h1>
-          <p v-for="skill in other" :key="skill">
-            <FontAwesomeIcon :icon="['fas', 'chevron-right']" /> {{ skill }}
-          </p>
-        </div>
-      </div>
+    <div class="flex flex-col gap-10 mt-6">
+      <SkillBox title="Back-end" :skills="backendSkills" />
+      <SkillBox title="Front-end" :skills="frontendSkills" />
+      <SkillBox title="Infrastructure" :skills="infrastructureSkills" />
     </div>
   </PersonalPageLayout>
 </template>
