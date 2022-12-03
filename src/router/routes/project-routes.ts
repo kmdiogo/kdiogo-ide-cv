@@ -1,6 +1,5 @@
 import Trivialize from "@/views/Projects/Trivialize.vue";
 //import LAG from "@/views/Projects/LAG.vue"
-import TAC from "@/views/Projects/TAC.vue";
 import Waru from "@/views/Projects/Waru.vue";
 import Ext2EC from "@/views/Projects/Ext2EC.vue";
 import GeneticFB from "@/views/Projects/GeneticFB.vue";
@@ -25,16 +24,6 @@ const projectRoutes: Array<RouteRecordRaw> = [
       label: "GeneticFB.cs",
       icon: "fas file-code",
       iconColor: "mediumpurple",
-    },
-  },
-  {
-    path: "/TAC",
-    component: TAC,
-    name: "TAC.html",
-    meta: {
-      label: "TAC.html",
-      icon: "fas file-code",
-      iconColor: "darkorange",
     },
   },
   {

@@ -1,6 +1,7 @@
 import Welcome from "@/views/Welcome.vue";
 import README from "@/views/README.vue";
 import { RouteRecordRaw } from "vue-router";
+import Resume from "@/views/Resume.vue";
 
 const rootRoutes: Array<RouteRecordRaw> = [
   {
@@ -11,6 +12,16 @@ const rootRoutes: Array<RouteRecordRaw> = [
       label: "Welcome.html",
       icon: "fas file-code",
       iconColor: "darkorange",
+    },
+  },
+  {
+    path: "/Resume",
+    component: Resume,
+    name: "Resume.pdf",
+    meta: {
+      label: "Resume.pdf",
+      icon: "fas file-pdf",
+      iconColor: "#ff0000",
     },
   },
   {

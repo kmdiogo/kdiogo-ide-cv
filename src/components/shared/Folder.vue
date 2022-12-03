@@ -38,22 +38,15 @@ function toggleExpanded() {
 
 <template>
   <div class="flex flex-col leading-snug">
-    <div class="flex">
-      <button
-        class="text-darcula-300 hover:text-white mr-4 w-1 focus:outline-none"
-        @click="toggleExpanded"
-      >
+    <button class="flex hover:text-darcula-300" @click="toggleExpanded">
+      <div class="mr-4 w-1" @click="() => undefined">
         <FontAwesomeIcon
           class="w-3"
           :icon="['fas', 'chevron-down']"
-          v-if="isExpanded && !isEmpty"
+          :transform="isExpanded ? '' : 'rotate-270'"
+          v-if="!isEmpty"
         />
-        <FontAwesomeIcon
-          class="w-2"
-          :icon="['fas', 'chevron-right']"
-          v-else-if="!isEmpty"
-        />
-      </button>
+      </div>
       <span class="mr-2"
         ><FontAwesomeIcon
           :icon="['fas', 'folder']"
@@ -61,7 +54,7 @@ function toggleExpanded() {
         ></FontAwesomeIcon
       ></span>
       <span>{{ folderName }}</span>
-    </div>
+    </button>
 
     <div class="ml-6 flex flex-col" v-if="isExpanded">
       <Folder
