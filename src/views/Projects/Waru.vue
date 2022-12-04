@@ -1,24 +1,61 @@
 <script setup lang="ts">
 // http://kmdiogo.people.ysu.edu/Waru/
 import ProjectPageLayout from "@/components/shared/ProjectPageLayout.vue";
-import ViewProjectLink from "@/components/shared/ViewProjectLink.vue";
+import WaruPreview from "@/assets/projects/waru.png";
+import CSharpLogo from "@/assets/ext-logos/csharp-logo.png";
+import UnityLogo from "@/assets/ext-logos/unity-logo.png";
+import { TechnologyItemProps } from "@/components/shared/ProjectTechnologyItem.vue";
+import { IconLinkProps } from "@/components/shared/IconLink.vue";
+
+const technologies: TechnologyItemProps[] = [
+  {
+    name: "Unity",
+    description: "Video Game Engine",
+    imgSrc: UnityLogo,
+  },
+  {
+    name: "C#",
+    description: "Coding for Unity",
+    imgSrc: CSharpLogo,
+  },
+];
+
+const links: IconLinkProps[] = [
+  {
+    href: "http://kmdiogo.people.ysu.edu/Waru/",
+    icon: ["fa", "gamepad"],
+  },
+  {
+    href: "https://github.com/kmdiogo/Waru",
+    icon: ["fab", "git-alt"],
+  },
+];
 </script>
 
 <template>
   <ProjectPageLayout
     title="Waru"
-    :technologies="['C#', 'Unity']"
+    :technologies="technologies"
+    :links="links"
     description="An Epic Ninja Sidescroller"
-    github-link="https://github.com/kmdiogo/Waru"
   >
-    <h4>
+    <p class="m-0">
       A fun parkour-based sidescroller that includes abilities, enemies, and
-      some puzzle solving.
-    </h4>
+      some puzzle solving. I collaborated on this project with a fellow
+      university student where I was primarily responsible for implementing the
+      core game mechanics and AI.
+    </p>
 
-    <div class="flex justify-center">
-      <ViewProjectLink href="http://kmdiogo.people.ysu.edu/Waru/" />
-    </div>
+    <p class="mt-4">
+      Other core features such as animations, level-design, and story were
+      worked on in collaboration with my teammate.
+    </p>
+
+    <img
+      alt="preview of Waru the video game"
+      :src="WaruPreview"
+      class="rounded border border-darcula-500"
+    />
   </ProjectPageLayout>
 </template>
 

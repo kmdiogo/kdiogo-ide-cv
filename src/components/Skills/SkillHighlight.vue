@@ -12,7 +12,7 @@ const props = defineProps<SkillHighlightProps>();
   <div class="flex flex-col items-center leading-tight text-center">
     <img
       :src="props.imgSrc"
-      class="h-36 rounded-lg"
+      class="h-28 rounded-lg"
       alt="Logo for this skill."
     />
     <span class="font-bold text-2xl mt-2">{{ props.name }}</span>

@@ -1,7 +1,7 @@
 import Trivialize from "@/views/Projects/Trivialize.vue";
 //import LAG from "@/views/Projects/LAG.vue"
 import Waru from "@/views/Projects/Waru.vue";
-import Ext2EC from "@/views/Projects/Ext2EC.vue";
+import VDIFuse from "@/views/Projects/VDIFuse.vue";
 import GeneticFB from "@/views/Projects/GeneticFB.vue";
 import { RouteRecordRaw } from "vue-router";
 
@@ -37,11 +37,11 @@ const projectRoutes: Array<RouteRecordRaw> = [
     },
   },
   {
-    path: "/IntegrityChecker",
-    component: Ext2EC,
-    name: "Ext2EC.cc",
+    path: "/VDIFuse",
+    component: VDIFuse,
+    name: "VDIFuse.cpp",
     meta: {
-      label: "Ext2EC.cc",
+      label: "VDIFuse.cpp",
       icon: "fas file-code",
       iconColor: "lightblue",
     },

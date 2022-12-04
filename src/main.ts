@@ -14,6 +14,7 @@ import {
   faLinkedin,
   faGithubSquare,
   faGithub,
+  faGitAlt,
 } from "@fortawesome/free-brands-svg-icons";
 import {
   faFileCode,
@@ -29,6 +30,7 @@ import {
   faBars,
   faTimes,
   faFilePdf,
+  faGamepad,
 } from "@fortawesome/free-solid-svg-icons";
 
 // Non-js
@@ -52,7 +54,9 @@ library.add(
   faLongArrowAltDown,
   faBars,
   faTimes,
-  faFilePdf
+  faFilePdf,
+  faGitAlt,
+  faGamepad
 );
 
 const app = createApp(App);
