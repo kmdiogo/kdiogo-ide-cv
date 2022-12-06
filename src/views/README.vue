@@ -4,7 +4,7 @@
     <hr />
     <p>
       Hi, thanks for taking the time to look at my online portfolio! The page is
-      based on a typical dark-themed IDE (mostly JetBrains products) and is
+      based on a typical dark-themed IDE (mainly JetBrains products) and is
       meant to showcase my skills and experience as a Software Developer in a
       fun way!
     </p>

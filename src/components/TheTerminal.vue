@@ -26,9 +26,13 @@ const shell = reactive<ShellState>({
 });
 const formattedLine = computed(() => shell.line.replace(/\s+/g, " ").trim());
 
-const commandDescription = {
-
-}
+const commandDescriptions = {
+  ls: "list out the contents of the current directory",
+  cd: "change the current directory to specified path",
+  clear: "clear out the contents of the terminal",
+  open: "opens the specified file. This redirects to the web page associated with the file.",
+  history: "list the history of commands ran for this terminal session",
+};
 
 const terminalBackend = new TrieBasedTerminalBackend(tree, {
   ls: (args) => {
@@ -95,10 +99,13 @@ const terminalBackend = new TrieBasedTerminalBackend(tree, {
     );
   },
   help: () => {
-    printTerminalResult([
-        "ls - does stuff"
-    ])
-  }
+    const helpStr = Object.entries(commandDescriptions).map(
+      ([cmdName, desc]) => {
+        return `${cmdName} - ${desc}`;
+      }
+    );
+    printTerminalResult(["Available commands:", ...helpStr]);
+  },
 });
 
 const generateTerminalBase = (cwd: string) =>

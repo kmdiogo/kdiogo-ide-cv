@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import ProjectPageLayout from "@/components/shared/ProjectPageLayout.vue";
-import ViewProjectLink from "@/components/shared/ViewProjectLink.vue";
 import { TechnologyItemProps } from "@/components/shared/ProjectTechnologyItem.vue";
 import { IconLinkProps } from "@/components/shared/IconLink.vue";
 import UnityLogo from "@/assets/ext-logos/unity-logo.png";
@@ -46,10 +45,10 @@ const links: IconLinkProps[] = [
       presentation video for it made primarily for entertainment purposes.
     </h4>
 
-    <div class="w-100 flex flex-col items-center">
+    <div class="w-100 h-80 lg:h-96 flex flex-col items-center">
       <iframe
-        width="560"
-        height="315"
+        width="100%"
+        height="100%"
         src="https://www.youtube.com/embed/qEXliTFBhHs"
         allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
         allowfullscreen

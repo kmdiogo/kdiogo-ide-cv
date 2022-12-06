@@ -54,8 +54,8 @@ const projectRoutes: Array<RouteRecordRaw> = [
     meta: {
       label: "SpongeBeats.cs",
       icon: "fas file-code",
-      iconColor: "mediumpurple"
-    }
+      iconColor: "mediumpurple",
+    },
   },
   {
     path: "/Waru",
