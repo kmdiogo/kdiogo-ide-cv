@@ -1,23 +1,52 @@
 <script setup lang="ts">
 import ProjectPageLayout from "@/components/shared/ProjectPageLayout.vue";
-import ViewProjectLink from "@/components/shared/ViewProjectLink.vue";
+import VueLogo from "@/assets/logo.png"
+import SpotifyLogo from "@/assets/ext-logos/spotify-logo.png"
+import BootstrapLogo from "@/assets/ext-logos/bootstrap-logo.png"
+import { TechnologyItemProps } from "@/components/shared/ProjectTechnologyItem.vue"
+import { IconLinkProps } from "@/components/shared/IconLink.vue";
+
+const technologies: TechnologyItemProps[] = [
+  {
+    name: "Vue.js",
+    imgSrc: VueLogo,
+    description: "Front-end SPA"
+  },
+  {
+    name: "Bootstrap",
+    imgSrc: BootstrapLogo,
+    description: "CSS with BootstrapVue for Vue components"
+  },
+  {
+    name: "Spotify API",
+    imgSrc: SpotifyLogo,
+    description: "Getting user playlists and playing music (via Playback SDK)"
+  },
+]
+
+const links: IconLinkProps[] = [
+  {
+    href: "https://kmdiogo.github.io/Trivialize",
+    icon: ["fa", "gamepad"]
+  },
+  {
+    href: "https://github.com/kmdiogo/Trivialize",
+    icon: ["fab", "git-alt"]
+  }
+]
 </script>
 
 <template>
   <ProjectPageLayout
     title="Trivialize!"
-    :technologies="['Vue.js', 'Spotify API']"
+    :technologies="technologies"
+    :links="links"
     description="The Spotify Trivia Game"
-    github-link="https://github.com/kmdiogo/Trivialize"
   >
     <h4>
       A fun, purely client-side Single Page Application that turns any Spotify
       playlist into a Trivia game.
     </h4>
-
-    <div class="flex justify-center">
-      <ViewProjectLink href="https://kmdiogo.github.io/Trivialize" />
-    </div>
   </ProjectPageLayout>
 </template>
 
