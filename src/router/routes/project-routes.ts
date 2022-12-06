@@ -3,6 +3,7 @@ import Trivialize from "@/views/Projects/Trivialize.vue";
 import Waru from "@/views/Projects/Waru.vue";
 import VDIFuse from "@/views/Projects/VDIFuse.vue";
 import GeneticFB from "@/views/Projects/GeneticFB.vue";
+import SpongeBeats from "@/views/Projects/SpongeBeats.vue";
 import { RouteRecordRaw } from "vue-router";
 
 const projectRoutes: Array<RouteRecordRaw> = [
@@ -45,6 +46,16 @@ const projectRoutes: Array<RouteRecordRaw> = [
       icon: "fas file-code",
       iconColor: "lightblue",
     },
+  },
+  {
+    path: "/SpongeBeats",
+    component: SpongeBeats,
+    name: "SpongeBeats.cs",
+    meta: {
+      label: "SpongeBeats.cs",
+      icon: "fas file-code",
+      iconColor: "mediumpurple"
+    }
   },
   {
     path: "/Waru",

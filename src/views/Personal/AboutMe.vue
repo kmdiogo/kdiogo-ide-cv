@@ -4,20 +4,19 @@ import PersonalPageLayout from "@/components/shared/PersonalPageLayout.vue";
 
 <template>
   <PersonalPageLayout title="About Me">
-    <h2 class="text-4xl font-bold">Kenny Diogo</h2>
-    <h3 class="text-2xl font-bold">
+    <h2 class="text-3xl">Kenny Diogo</h2>
+    <h3 class="text-xl">
       An avid coder with a passion for solving problems and automation
     </h3>
-    <div class="text-xl">
+    <div class="text-lg">
       <p>
         I am a <span class="font-bold">full-stack developer</span> with industry
         experience working with
-        <span class="font-bold">web development</span> technologies. The type of
-        work I do includes web <span class="font-bold">front-ends</span>, web
+        <span class="font-bold">web development</span> technologies. The types of
+        work I do include web <span class="font-bold">front-ends</span>, web
         server <span class="font-bold">back-ends</span>,
-        <span class="font-bold">CI/CD</span> automation, and
-        <span class="font-bold">micro-service</span> orchestration with
-        <span class="font-bold">containerization</span>.
+        <span class="font-bold">CI/CD</span> pipeline automation, and deployment of
+        <span class="font-bold">containerized micro-services</span> into <span class="font-bold">Kubernetes</span> environments
       </p>
       <p>
         I graduated from Youngstown State University (YSU) with a degree in
@@ -25,19 +24,14 @@ import PersonalPageLayout from "@/components/shared/PersonalPageLayout.vue";
         Mathematics.
       </p>
       <p>
-        Ever since beginning my studies at YSU, I have developed an extreme
-        passion for Computer Science and programming. I am always eager to learn
-        new skills/technologies and have worked on other topics (outside of a
-        professional environment) that include:
+        Ever since beginning my studies at YSU, I have developed a
+        passion for Computer Science and programming. Though I primarily specialize
+        in Web Development, I'm always interested in learning more about a wide variety of
+        other technologies. I frequently find myself applying concepts from these other technologies
+        into my everyday work. Whether it's design patterns from OS-level architecture making its way
+        into my applications or Graph Theory knowledge informing how I design data models, a healthy breadth of technical
+        knowledge (even if at a surface-level) always seems to find a way to help in some way.
       </p>
-      <ul>
-        <li>Compilers (mostly the front-end)</li>
-        <li>Game Development</li>
-        <li>Neural Networks</li>
-        <li>Mathematical Modeling and Computational Proofs</li>
-        <li>Databases</li>
-        <li>File System Drivers (EXT2)</li>
-      </ul>
     </div>
   </PersonalPageLayout>
 </template>

@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 </script>
 
 <template>
-  <div class="flex">
+  <nav class="flex">
     <div class="md:hidden mr-1 text-xl flex items-center">
       <Dropdown>
         <template v-slot:dropdown-closed>
@@ -20,7 +20,7 @@ import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
       </Dropdown>
     </div>
 
-    <div class="flex flex-grow py-1 px-2">
+    <div class="flex flex-grow py-1 px-2 md:justify-start justify-end gap-4">
       <div class="flex text-2xl gap-1">
         <a
           class="hover:animate-pendulum text-linkedin flex items-center"
@@ -37,11 +37,11 @@ import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
       </div>
 
       <div
-        class="flex items-center ml-auto gap-2 text-xl text-white font-fancy"
+        class="flex items-center ml-0 md:ml-auto gap-2 text-xl text-white font-fancy"
       >
         <span class="font-bold">Kenny Diogo</span>
         <img class="w-16" src="../assets/logos/dilogo-light-white.png" />
       </div>
     </div>
-  </div>
+  </nav>
 </template>

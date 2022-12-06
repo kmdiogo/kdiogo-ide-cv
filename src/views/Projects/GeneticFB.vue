@@ -1,12 +1,37 @@
 <script setup lang="ts">
 import ProjectPageLayout from "@/components/shared/ProjectPageLayout.vue";
 import ViewProjectLink from "@/components/shared/ViewProjectLink.vue";
+import { TechnologyItemProps } from "@/components/shared/ProjectTechnologyItem.vue";
+import { IconLinkProps } from "@/components/shared/IconLink.vue";
+import UnityLogo from "@/assets/ext-logos/unity-logo.png";
+import CSharpLogo from "@/assets/ext-logos/csharp-logo.png";
+
+const technologies: TechnologyItemProps[] = [
+  {
+    name: "Unity",
+    description: "Video Game Engine",
+    imgSrc: UnityLogo,
+  },
+  {
+    name: "C#",
+    description: "Coding for Unity + Neural Network implementation",
+    imgSrc: CSharpLogo,
+  },
+];
+
+const links: IconLinkProps[] = [
+  {
+    href: "https://github.com/kmdiogo/Genetic-Learning-Flappy-Bird",
+    icon: ["fab", "git-alt"],
+  },
+];
 </script>
 
 <template>
   <ProjectPageLayout
     title="Genetic Flappy Bird"
-    :technologies="['Unity', 'C#']"
+    :technologies="technologies"
+    :links="links"
     description="Training a model to play Flappy Bird through the power of genetic learning"
     github-link="https://github.com/kmdiogo/Genetic-Learning-Flappy-Bird"
   >
@@ -30,10 +55,6 @@ import ViewProjectLink from "@/components/shared/ViewProjectLink.vue";
         allowfullscreen
       >
       </iframe>
-      <ViewProjectLink
-        class="mt-6"
-        href="https://kmdiogo.github.io/Genetic-Learning-Flappy-Bird/"
-      />
     </div>
   </ProjectPageLayout>
 </template>

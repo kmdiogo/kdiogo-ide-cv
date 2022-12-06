@@ -26,6 +26,10 @@ const shell = reactive<ShellState>({
 });
 const formattedLine = computed(() => shell.line.replace(/\s+/g, " ").trim());
 
+const commandDescription = {
+
+}
+
 const terminalBackend = new TrieBasedTerminalBackend(tree, {
   ls: (args) => {
     const dir = args.length === 0 ? undefined : args[0];
@@ -90,7 +94,11 @@ const terminalBackend = new TrieBasedTerminalBackend(tree, {
       shell.cmdHistory.map((cmd, i) => `${i + 1}&nbsp;&nbsp;${cmd}`)
     );
   },
-  help: () => [],
+  help: () => {
+    printTerminalResult([
+        "ls - does stuff"
+    ])
+  }
 });
 
 const generateTerminalBase = (cwd: string) =>
