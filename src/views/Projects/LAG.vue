@@ -1,21 +1,18 @@
 <script lang="ts" setup>
-import * as Module from "@/assets/wasm/LAG/LAG.js"
-import "@/assets/wasm/LAG/wasm_output.js"
+import LAG_WASM from "../../../lag_wasm/lag.mjs";
 
-console.log(Module)
-function handleClick() {
-  mod.ccall("generateFiles", null)
-  console.log("done")
+async function handleClick() {
+  const module = await LAG_WASM();
+  module.ccall("generateFiles", null);
+  console.log("done");
 }
 // onMounted(async () => {
 //
 // })
-
 </script>
 <template>
   <div><button @click="handleClick">Click Me</button></div>
 </template>
-
 
 <!--<script lang="ts">-->
 <!--import { stringToBytes } from "@/utils";-->
