@@ -8,7 +8,9 @@
     "test": "jest src",
     "eslint": "eslint src/**/*.{js,ts,vue}",
     "format": "prettier --write src",
-    "format-check": "prettier --check src"
+    "format-check": "prettier --check src",
+    "prebuild-lag": "docker compose build --no-cache",
+    "build-lag": "docker compose run --rm lag_builder"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.2.1",
