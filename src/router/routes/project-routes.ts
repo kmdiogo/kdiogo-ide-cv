@@ -1,5 +1,5 @@
 import Trivialize from "@/views/Projects/Trivialize.vue";
-//import LAG from "@/views/Projects/LAG.vue"
+import LAG from "@/views/Projects/LAG.vue"
 import Waru from "@/views/Projects/Waru.vue";
 import VDIFuse from "@/views/Projects/VDIFuse.vue";
 import GeneticFB from "@/views/Projects/GeneticFB.vue";
@@ -7,16 +7,16 @@ import SpongeBeats from "@/views/Projects/SpongeBeats.vue";
 import { RouteRecordRaw } from "vue-router";
 
 const projectRoutes: Array<RouteRecordRaw> = [
-  // {
-  //     path: '/LAG',
-  //     component: LAG,
-  //     name: 'LAG.cpp',
-  //     meta: {
-  //         label: 'LAG.cpp',
-  //         icon: 'fas file-code',
-  //         iconColor: 'lightblue',
-  //     }
-  // },
+  {
+      path: '/LAG',
+      component: LAG,
+      name: 'LAG.cpp',
+      meta: {
+          label: 'LAG.cpp',
+          icon: 'fas file-code',
+          iconColor: 'lightblue',
+      }
+  },
   {
     path: "/GeneticFB",
     component: GeneticFB,
