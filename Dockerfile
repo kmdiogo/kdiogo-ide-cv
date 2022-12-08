@@ -11,10 +11,11 @@ WORKDIR /lag_source/lag_wasm/
 
 WORKDIR /lag_source
 
-RUN emcc main.cpp utils/utils.cpp TokenReturner/TokenReturner.cpp Parser/Parser.cpp \
+RUN em++ main.cpp utils/utils.cpp TokenReturner/TokenReturner.cpp Parser/Parser.cpp \
           ParseTreeNode/ParseTreeNode.cpp NFAGenerator/NFAGenerator.cpp NFANode/NFANode.cpp \
           DFAGenerator/DFAGenerator.cpp FileGenerator/FileGenerator.cpp \
-          -s MODULARIZE=1 -s EXPORT_ES6=1 -s EXPORT_NAME=LAG_WASM -s EXPORTED_FUNCTIONS="['_run']" -o lag_wasm/lag.mjs
+          -s MODULARIZE=1 -s EXPORT_ES6=1 -s EXPORT_NAME=LAG_WASM -s EXPORTED_FUNCTIONS="['_run']" \
+          -s EXPORTED_RUNTIME_METHODS=ccall -s EXTRA_EXPORTED_RUNTIME_METHODS="['FS']" -o lag_wasm/lag.mjs
 
 FROM alpine:latest
 
