@@ -3,12 +3,11 @@ import LAG_WASM from "../../../lag_wasm/lag.mjs";
 
 async function handleClick() {
   const module = await LAG_WASM();
-  module.ccall("generateFiles", null);
+  console.log(typeof module)
+  module.callMain()
   console.log("done");
 }
-// onMounted(async () => {
-//
-// })
+
 </script>
 <template>
   <div><button @click="handleClick">Click Me</button></div>
