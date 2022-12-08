@@ -31,6 +31,8 @@ import {
   faTimes,
   faFilePdf,
   faGamepad,
+  faPlay,
+  faFileArrowDown,
 } from "@fortawesome/free-solid-svg-icons";
 
 // Non-js
@@ -56,7 +58,9 @@ library.add(
   faTimes,
   faFilePdf,
   faGitAlt,
-  faGamepad
+  faGamepad,
+  faPlay,
+  faFileArrowDown
 );
 
 const app = createApp(App);
