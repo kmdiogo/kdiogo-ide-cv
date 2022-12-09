@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import {RouteLocationNormalized, useRoute} from "vue-router";
+import { RouteLocationNormalized, useRoute } from "vue-router";
 import { useTabHistoryStore } from "@/stores/tab-history";
 import { computed, ref, PropType } from "vue";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";

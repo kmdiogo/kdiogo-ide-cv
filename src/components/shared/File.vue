@@ -1,20 +1,20 @@
 <script lang="ts" setup>
 import { computed } from "vue";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
-import {RouteLocationRaw, useRoute} from "vue-router";
+import { RouteLocationRaw, useRoute } from "vue-router";
 
 interface ToRoute {
   name: string;
 }
 
 type FileProps = {
-  fileName: string
-  iconColor?: string
-  icon?: string | string[]
-  to: RouteLocationRaw
-}
+  fileName: string;
+  iconColor?: string;
+  icon?: string | string[];
+  to: RouteLocationRaw;
+};
 
-const props = defineProps<FileProps>()
+const props = defineProps<FileProps>();
 
 const route = useRoute();
 

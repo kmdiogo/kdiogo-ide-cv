@@ -2,21 +2,21 @@
 import { ref, computed } from "vue";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import File from "@/components/shared/File.vue";
-import {RouteRecordRaw} from "vue-router";
-import {FileTreeNode} from "@/constants/FileTree";
+import { RouteRecordRaw } from "vue-router";
+import { FileTreeNode } from "@/constants/FileTree";
 
 export type FolderProps = {
-  folderName: string
-  isInitiallyOpen?: boolean
-  fileRoutes: RouteRecordRaw[]
-  directories: FileTreeNode[]
-}
+  folderName: string;
+  isInitiallyOpen?: boolean;
+  fileRoutes: RouteRecordRaw[];
+  directories: FileTreeNode[];
+};
 
 const props = withDefaults(defineProps<FolderProps>(), {
   isInitiallyOpen: false,
   fileRoutes: () => [],
-  directories: () => []
-})
+  directories: () => [],
+});
 
 const isExpanded = ref(props.isInitiallyOpen);
 const isEmpty = computed(
