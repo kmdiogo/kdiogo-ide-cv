@@ -1,32 +1,48 @@
-name: Deploy Application
+name: CI/CD
 
 on:
+  pull_request:
+    branches:
+      - master
   push:
     branches:
       - master
 
 jobs:
-  deploy:
+  ci:
     runs-on: ubuntu-latest
     permissions:
       contents: write
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-      - name: Setup Node v16.x
-        uses: actions/setup-node@v3
-        with:
-          node-version: 16.x
-      - name: Install npm Dependencies
-        run: npm ci
+      - name: Setup Machine
+        uses: ./.github/actions/setup-machine
+
       - name: Prettier
         run: npm run format-check
+
       - name: Eslint
         run: npm run eslint
+
+      - name: Verify Build LAG WASM
+        run: npm run build-lag
+
+  cd:
+    needs:
+      - ci
+    if: success() && github.ref == 'refs/heads/master'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Setup Machine
+        uses: ./.github/actions/setup-machine
+
       - name: Build LAG WASM
         run: npm run build-lag
+
       - name: Build Vue.js App
         run: npm run build
+
       - name: Deploy to Github Pages
         uses: peaceiris/actions-gh-pages@v3
         if: ${{ github.ref == 'refs/heads/master' }}
