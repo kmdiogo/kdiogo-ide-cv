@@ -14,8 +14,18 @@ jobs:
     permissions:
       contents: write
     steps:
-      - name: Setup Machine
-        uses: ./.github/actions/setup-machine
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup Node v16.x
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16.x
+          cache: npm
+
+      - name: Install npm Dependencies
+        run: npm ci
+        shell: bash
 
       - name: Prettier
         run: npm run format-check
@@ -34,8 +44,18 @@ jobs:
     permissions:
       contents: write
     steps:
-      - name: Setup Machine
-        uses: ./.github/actions/setup-machine
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup Node v16.x
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16.x
+          cache: npm
+
+      - name: Install npm Dependencies
+        run: npm ci
+        shell: bash
 
       - name: Build LAG WASM
         run: npm run build-lag
