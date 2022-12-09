@@ -2,29 +2,21 @@
 import { ref, computed } from "vue";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import File from "@/components/shared/File.vue";
+import {RouteRecordRaw} from "vue-router";
+import {FileTreeNode} from "@/constants/FileTree";
 
-const props = defineProps({
-  folderName: {
-    type: String,
-    required: true,
-  },
-  isInitiallyOpen: {
-    type: Boolean,
-    default: false,
-  },
-  fileRoutes: {
-    type: Array,
-    default: () => {
-      return [];
-    },
-  },
-  directories: {
-    type: Array,
-    default: () => {
-      return [];
-    },
-  },
-});
+export type FolderProps = {
+  folderName: string
+  isInitiallyOpen?: boolean
+  fileRoutes: RouteRecordRaw[]
+  directories: FileTreeNode[]
+}
+
+const props = withDefaults(defineProps<FolderProps>(), {
+  isInitiallyOpen: false,
+  fileRoutes: () => [],
+  directories: () => []
+})
 
 const isExpanded = ref(props.isInitiallyOpen);
 const isEmpty = computed(
@@ -66,10 +58,10 @@ function toggleExpanded() {
       />
       <File
         v-for="route in fileRoutes"
-        :file-name="route.meta.label"
+        :file-name="route.meta?.label || ''"
         :to="{ name: route.name }"
-        :icon="route.meta.icon"
-        :icon-color="route.meta.iconColor"
+        :icon="route.meta?.icon"
+        :icon-color="route.meta?.iconColor"
         :key="route.name"
       />
       <slot></slot>

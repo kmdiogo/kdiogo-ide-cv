@@ -5,18 +5,18 @@ import PageTabs from "@/components/PageTabs.vue";
 import TheNavigator from "@/components/TheNavigator.vue";
 import TheTerminal from "@/components/TheTerminal.vue";
 import TheFooter from "@/components/TheFooter.vue";
-import emitter, { PubsubEvent } from "@/services/pubsub";
+import emitter from "@/services/pubsub";
 import { throttle } from "lodash";
 import { useLayoutStore } from "@/stores/layout";
 
 const layoutStore = useLayoutStore();
 
 function handleMouseUp() {
-  emitter.emit(PubsubEvent.MOUSE_UP);
+  emitter.emit("MOUSE_UP");
 }
 
 const handleMouseMove = throttle((e: MouseEvent) => {
-  emitter.emit(PubsubEvent.MOUSE_MOVE, e);
+  emitter.emit("MOUSE_MOVE", e);
 }, 15);
 </script>
 

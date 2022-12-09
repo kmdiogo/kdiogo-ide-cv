@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { ref, reactive, onMounted, onUnmounted } from "vue";
-import emitter, { PubsubEvent } from "@/services/pubsub";
+import emitter from "@/services/pubsub";
 
 const props = defineProps({
   initialSize: {
@@ -26,7 +26,7 @@ function handleGlobalMouseup() {
   isResizing.value = false;
   // NOTE: this could potentially be buggy with multiple instances of this component
   //       unless we can guarantee no two containers can be resized at the same time.
-  emitter.emit(PubsubEvent.CONTAINER_RESIZE_STOP);
+  emitter.emit("CONTAINER_RESIZE_STOP");
 }
 
 function handleGlobalMouseMove(e?: MouseEvent) {
@@ -46,17 +46,17 @@ function handleGlobalMouseMove(e?: MouseEvent) {
 function handleMouseDown(e?: MouseEvent) {
   e?.preventDefault();
   isResizing.value = true;
-  emitter.emit(PubsubEvent.CONTAINER_RESIZE_START);
+  emitter.emit("CONTAINER_RESIZE_START");
 }
 
 onMounted(() => {
-  emitter.on(PubsubEvent.MOUSE_UP, handleGlobalMouseup);
-  emitter.on(PubsubEvent.MOUSE_MOVE, handleGlobalMouseMove);
+  emitter.on("MOUSE_UP", handleGlobalMouseup);
+  emitter.on("MOUSE_MOVE", handleGlobalMouseMove);
 });
 
 onUnmounted(() => {
-  emitter.off(PubsubEvent.MOUSE_UP, handleGlobalMouseup);
-  emitter.off(PubsubEvent.MOUSE_MOVE, handleGlobalMouseMove);
+  emitter.off("MOUSE_UP", handleGlobalMouseup);
+  emitter.off("MOUSE_MOVE", handleGlobalMouseMove);
 });
 </script>
 

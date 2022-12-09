@@ -1,3 +1,13 @@
+<script lang="ts" setup>
+import { commandDescriptions } from "@/components/TheTerminal.vue";
+
+const commandText = Object.entries(commandDescriptions).map(([cmd, desc]) => {
+  return `${cmd} - ${desc}`;
+});
+</script>
+
+<style scoped></style>
+
 <template>
   <div class="p-2">
     <h1 class="text-4xl font-bold">Kenny's Portfolio</h1>
@@ -15,31 +25,19 @@
       under the dropdown tab if on mobile) to access the different pages.
     </p>
 
-    <h2 class="text-3xl font-bold">Features</h2>
+    <h2 class="text-3xl font-bold">Command Line Interface</h2>
+
     <p>
-      Feel free to explore the page, there are some interesting features I've
-      included to make the showcase as interactive as possible:
+      You may have already noticed, but there is a button at the bottom of the
+      screen for a terminal. This is a functioning (but rather minimal) command
+      line interface that allows you to navigate through my portfolio!
+    </p>
+    <p>
+      Currently, the terminal only supports {{ commandText.length }} commands:
     </p>
     <ul>
-      <li>
-        <h3 class="text-2xl font-bold">Command Line Interface</h3>
-
-        <p>
-          You may have already noticed, but there is a button at the bottom of
-          the screen for a terminal. This is a functioning (but rather minimal)
-          command line interface that allows you to navigate through my
-          portfolio!
-        </p>
-        <p>Currently, the terminal only supports 3 commands:</p>
-        <ul>
-          <li>
-            cd - like most CLIs, this changes the working directory to the
-            specified directory
-          </li>
-          <li>ls - lists out contents of current working directory</li>
-          <li>open - loads the specified page by the given filename</li>
-          <li>clear - clears the terminal</li>
-        </ul>
+      <li v-for="item in commandText" :key="item">
+        {{ item }}
       </li>
     </ul>
 
@@ -54,13 +52,3 @@
     </p>
   </div>
 </template>
-
-<script lang="ts">
-import { defineComponent } from "vue";
-
-export default defineComponent({
-  name: "README",
-});
-</script>
-
-<style scoped></style>

@@ -1,11 +1,12 @@
 import mitt from "mitt";
 
-const emitter = mitt();
-
-export const enum PubsubEvent {
-  MOUSE_UP = "mouseup",
-  MOUSE_MOVE = "mousemove",
-  CONTAINER_RESIZE_START = "container_resize_start",
-  CONTAINER_RESIZE_STOP = "container_resize_stop",
+type Events = {
+  MOUSE_UP?: MouseEvent
+  MOUSE_MOVE?: MouseEvent
+  CONTAINER_RESIZE_START: undefined
+  CONTAINER_RESIZE_STOP: undefined
 }
+
+const emitter = mitt<Events>();
+
 export default emitter;

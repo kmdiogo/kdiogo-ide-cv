@@ -1,13 +1,12 @@
 <script lang="ts" setup>
-import { useRoute } from "vue-router";
+import {RouteLocationNormalized, useRoute} from "vue-router";
 import { useTabHistoryStore } from "@/stores/tab-history";
 import { computed, ref, PropType } from "vue";
-import { RouteRecordRaw } from "vue-router";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
 const props = defineProps({
   route: {
-    type: Object as PropType<RouteRecordRaw>,
+    type: Object as PropType<RouteLocationNormalized>,
     required: true,
   },
 });
@@ -22,7 +21,7 @@ const routeActive = computed(() => {
 
 function normalizeIcon() {
   if (!props.route.meta) {
-    return;
+    return "";
   }
   if (typeof props.route.meta.icon === "string")
     return props.route.meta.icon.split(" ");
@@ -45,7 +44,7 @@ function normalizeIcon() {
           :style="{ color: route.meta?.iconColor }"
         />
       </div>
-      {{ route.meta.label }}
+      {{ route.meta?.label }}
     </router-link>
     <button
       class="hover:text-darcula-300 flex items-center ml-2"
