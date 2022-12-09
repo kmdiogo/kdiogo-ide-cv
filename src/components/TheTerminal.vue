@@ -188,8 +188,8 @@ function processAutoComplete() {
 }
 
 function handleEsc(e: KeyboardEvent) {
-  const target = e.target as HTMLElement
-  target.blur()
+  const target = e.target as HTMLElement;
+  target.blur();
 }
 </script>
 
