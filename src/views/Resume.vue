@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { ref, onMounted, onUnmounted } from "vue";
-import emitter, { PubsubEvent } from "@/services/pubsub";
+import emitter from "@/services/pubsub";
 
 const containerResizing = ref(false);
 
@@ -13,13 +13,13 @@ function handleContainerResizeStop() {
 }
 
 onMounted(() => {
-  emitter.on(PubsubEvent.CONTAINER_RESIZE_START, handleContainerResizeStart);
-  emitter.on(PubsubEvent.CONTAINER_RESIZE_STOP, handleContainerResizeStop);
+  emitter.on("CONTAINER_RESIZE_START", handleContainerResizeStart);
+  emitter.on("CONTAINER_RESIZE_STOP", handleContainerResizeStop);
 });
 
 onUnmounted(() => {
-  emitter.off(PubsubEvent.CONTAINER_RESIZE_START, handleContainerResizeStart);
-  emitter.off(PubsubEvent.CONTAINER_RESIZE_STOP, handleContainerResizeStop);
+  emitter.off("CONTAINER_RESIZE_START", handleContainerResizeStart);
+  emitter.off("CONTAINER_RESIZE_STOP", handleContainerResizeStop);
 });
 </script>
 

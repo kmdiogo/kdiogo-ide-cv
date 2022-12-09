@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import { RouteLocationNormalized } from "vue-router";
+import {RouteLocationNormalized, RouteRecordRaw} from "vue-router";
 import router from "../router";
 
 interface TabHistoryState {

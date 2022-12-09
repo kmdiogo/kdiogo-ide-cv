@@ -1,3 +1,13 @@
+<script lang="ts">
+export const commandDescriptions = {
+  ls: "list out the contents of the current directory",
+  cd: "change the current directory to specified path",
+  clear: "clear out the contents of the terminal",
+  open: "opens the specified file. This redirects to the web page associated with the file.",
+  history: "list the history of commands ran for this terminal session",
+};
+</script>
+
 <script lang="ts" setup>
 import { reactive, computed } from "vue";
 import { useRouter } from "vue-router";
@@ -25,14 +35,6 @@ const shell = reactive<ShellState>({
   history: [],
 });
 const formattedLine = computed(() => shell.line.replace(/\s+/g, " ").trim());
-
-const commandDescriptions = {
-  ls: "list out the contents of the current directory",
-  cd: "change the current directory to specified path",
-  clear: "clear out the contents of the terminal",
-  open: "opens the specified file. This redirects to the web page associated with the file.",
-  history: "list the history of commands ran for this terminal session",
-};
 
 const terminalBackend = new TrieBasedTerminalBackend(tree, {
   ls: (args) => {
@@ -184,6 +186,11 @@ function processAutoComplete() {
   }
   scrollBottom();
 }
+
+function handleEsc(e: KeyboardEvent) {
+  const target = e.target as HTMLElement
+  target.blur()
+}
 </script>
 
 <template>
@@ -204,11 +211,7 @@ function processAutoComplete() {
           @keydown.prevent.tab="processAutoComplete"
           ref="cmdLine"
           @keyup.enter="processCommand"
-          @keyup.esc="
-            (e) => {
-              e.target.blur();
-            }
-          "
+          @keyup.esc="handleEsc"
           @keyup.up.prevent="() => fillCommandHistory('up')"
           @keyup.down.prevent="() => fillCommandHistory('down')"
         />
