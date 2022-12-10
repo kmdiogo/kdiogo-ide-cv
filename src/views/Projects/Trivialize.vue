@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import ProjectPageLayout from "@/components/shared/ProjectPageLayout.vue";
+import ProjectPageLayout from "@/components/layout/ProjectPageLayout.vue";
 import VueLogo from "@/assets/logo.png";
 import SpotifyLogo from "@/assets/ext-logos/spotify-logo.png";
 import BootstrapLogo from "@/assets/ext-logos/bootstrap-logo.png";
-import { TechnologyItemProps } from "@/components/shared/ProjectTechnologyItem.vue";
+import { TechnologyItemProps } from "@/components/layout/ProjectTechnologyItem.vue";
 import { IconLinkProps } from "@/components/shared/IconLink.vue";
 
 const technologies: TechnologyItemProps[] = [

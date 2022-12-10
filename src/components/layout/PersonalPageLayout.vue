@@ -1,3 +1,14 @@
+<script lang="ts" setup>
+type PersonalPageLayoutProps = {
+  bgImg?: string
+  title: string
+}
+
+withDefaults(defineProps<PersonalPageLayoutProps>(), {
+  bgImg: ""
+})
+</script>
+
 <template>
   <div class="p-5 relative">
     <img
@@ -11,23 +22,3 @@
     </div>
   </div>
 </template>
-
-<script lang="ts">
-import { defineComponent } from "vue";
-
-export default defineComponent({
-  name: "PersonalPageLayout",
-  props: {
-    bgImg: {
-      type: String,
-      default: "",
-    },
-    title: {
-      type: String,
-      required: true,
-    },
-  },
-});
-</script>
-
-<style scoped></style>

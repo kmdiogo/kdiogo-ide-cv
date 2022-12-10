@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import Dropdown from "@/components/utils/Dropdown.vue";
-import TheNavigator from "@/components/TheNavigator.vue";
+import Dropdown from "@/components/shared/Dropdown.vue";
+import TheNavigator from "@/components/navigation/TheNavigator.vue";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 </script>
 

@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { ref, computed } from "vue";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
-import File from "@/components/shared/File.vue";
+import File from "@/components/navigation/File.vue";
 import { RouteRecordRaw } from "vue-router";
 import { FileTreeNode } from "@/constants/FileTree";
 

@@ -1,11 +1,11 @@
 <script setup lang="ts">
 // http://kmdiogo.people.ysu.edu/Waru/
-import ProjectPageLayout from "@/components/shared/ProjectPageLayout.vue";
+import ProjectPageLayout from "@/components/layout/ProjectPageLayout.vue";
 import CSharpLogo from "@/assets/ext-logos/csharp-logo.png";
 import UnityLogo from "@/assets/ext-logos/unity-logo.png";
 import BlenderLogo from "@/assets/ext-logos/blender-logo.png";
 import SpongebeatsPreview from "@/assets/projects/spongebeats.png";
-import { TechnologyItemProps } from "@/components/shared/ProjectTechnologyItem.vue";
+import { TechnologyItemProps } from "@/components/layout/ProjectTechnologyItem.vue";
 import { IconLinkProps } from "@/components/shared/IconLink.vue";
 
 const technologies: TechnologyItemProps[] = [

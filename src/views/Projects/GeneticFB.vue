@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import ProjectPageLayout from "@/components/shared/ProjectPageLayout.vue";
-import { TechnologyItemProps } from "@/components/shared/ProjectTechnologyItem.vue";
+import ProjectPageLayout from "@/components/layout/ProjectPageLayout.vue";
+import { TechnologyItemProps } from "@/components/layout/ProjectTechnologyItem.vue";
 import { IconLinkProps } from "@/components/shared/IconLink.vue";
 import UnityLogo from "@/assets/ext-logos/unity-logo.png";
 import CSharpLogo from "@/assets/ext-logos/csharp-logo.png";
