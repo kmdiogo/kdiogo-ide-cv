@@ -1,70 +1,19 @@
-// Vue/Components
 import { createApp } from "vue";
 import App from "./App.vue";
 import router from "./router";
 import { createPinia } from "pinia";
-
-// Other
 import { library } from "@fortawesome/fontawesome-svg-core";
-import {
-  faWindowClose,
-  faTimesCircle as farTimesCircle,
-} from "@fortawesome/free-regular-svg-icons";
-import {
-  faLinkedin,
-  faGithubSquare,
-  faGithub,
-  faGitAlt,
-} from "@fortawesome/free-brands-svg-icons";
-import {
-  faFileCode,
-  faFileAlt,
-  faChevronDown,
-  faFolder,
-  faChevronRight,
-  faTerminal,
-  faBoxOpen,
-  faTimesCircle,
-  faQuestion,
-  faLongArrowAltDown,
-  faBars,
-  faTimes,
-  faFilePdf,
-  faGamepad,
-  faPlay,
-  faFileArrowDown,
-} from "@fortawesome/free-solid-svg-icons";
+import * as requiredIcons from "@/icons";
 
-// Non-js
 import "./styles/index.pcss";
 
-library.add(
-  faWindowClose,
-  faFileCode,
-  faFileAlt,
-  faChevronDown,
-  faFolder,
-  faChevronRight,
-  faTerminal,
-  faLinkedin,
-  faGithubSquare,
-  faBoxOpen,
-  faTimesCircle,
-  farTimesCircle,
-  faQuestion,
-  faGithub,
-  faLongArrowAltDown,
-  faBars,
-  faTimes,
-  faFilePdf,
-  faGitAlt,
-  faGamepad,
-  faPlay,
-  faFileArrowDown
-);
+// Add all icons defined in the icons module into the font-awesome Vue library
+library.add(...Object.values(requiredIcons));
 
 const app = createApp(App);
+
 app.use(router);
+
 app.use(createPinia());
 
 // Custom directives

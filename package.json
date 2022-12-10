@@ -10,7 +10,8 @@
     "format": "prettier --write src",
     "format-check": "prettier --check src",
     "prebuild-lag": "docker compose build --no-cache",
-    "build-lag": "docker compose run --rm lag_builder"
+    "build-lag": "docker compose run --rm lag_builder",
+    "hadolint": "docker run --rm -i hadolint/hadolint:2.12.1-beta < Dockerfile"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.2.1",

@@ -8,13 +8,13 @@ interface TyperProps {
   keepCaret?: boolean;
 }
 
-type TypingState = "idle" | "typing" | "done"
+type TypingState = "idle" | "typing" | "done";
 
 const props = withDefaults(defineProps<TyperProps>(), {
   typeSpeed: 75,
   preTypeDelay: 0,
-  keepCaret: false
-})
+  keepCaret: false,
+});
 
 const letters = ref<string[]>([]);
 const state = ref<TypingState>("idle");
