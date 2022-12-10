@@ -33,6 +33,9 @@ jobs:
       - name: Eslint
         run: npm run eslint
 
+      - name: Hadolint
+        run: npm run hadolint
+
       - name: Verify Build LAG WASM
         run: npm run build-lag
 

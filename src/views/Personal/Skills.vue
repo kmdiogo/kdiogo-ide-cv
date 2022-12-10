@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import PersonalPageLayout from "@/components/shared/PersonalPageLayout.vue";
+import PersonalPageLayout from "@/components/layout/PersonalPageLayout.vue";
 import VueLogo from "@/assets/logo.png";
 import PythonLogo from "@/assets/ext-logos/python-logo.png";
 import ReactLogo from "@/assets/ext-logos/react-logo.png";

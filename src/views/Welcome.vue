@@ -1,9 +1,9 @@
+<script lang="ts" setup>
+import Typer from "@/components/shared/Typer.vue";
+</script>
+
 <template>
   <div class="flex flex-col justify-center items-center gap-4">
-    <!--<video autoplay muted loop class="media-bg coding-bg" style="width: 100%; height: 100%;">
-            <source src="" type="video/mp4">
-        </video>-->
-
     <img
       class="w-72 md:w-96"
       src="../assets/logos/dilogo-light-color.png"
@@ -21,15 +21,3 @@
     />
   </div>
 </template>
-
-<script lang="ts">
-import { defineComponent } from "vue";
-import Typer from "@/components/utils/Typer.vue";
-
-export default defineComponent({
-  name: "Welcome",
-  components: { Typer },
-});
-</script>
-
-<style scoped></style>
