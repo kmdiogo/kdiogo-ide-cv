@@ -1,8 +1,8 @@
 <script lang="ts" setup>
 import TheToolbar from "@/components/TheToolbar.vue";
-import ResizableContainer from "@/components/utils/ResizableContainer.vue";
+import ResizableContainer from "@/components/shared/ResizableContainer.vue";
 import PageTabs from "@/components/PageTabs.vue";
-import TheNavigator from "@/components/TheNavigator.vue";
+import TheNavigator from "@/components/navigation/TheNavigator.vue";
 import TheTerminal from "@/components/TheTerminal.vue";
 import TheFooter from "@/components/TheFooter.vue";
 import emitter from "@/services/pubsub";

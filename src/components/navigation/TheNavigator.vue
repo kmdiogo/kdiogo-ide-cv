@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import Folder from "@/components/shared/Folder.vue";
+import Folder from "@/components/navigation/Folder.vue";
 import { tree } from "@/constants/FileTree";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 </script>

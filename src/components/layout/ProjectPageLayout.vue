@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import ProjectTechnologyItem from "@/components/shared/ProjectTechnologyItem.vue";
-import { TechnologyItemProps } from "@/components/shared/ProjectTechnologyItem.vue";
+import ProjectTechnologyItem from "@/components/layout/ProjectTechnologyItem.vue";
+import { TechnologyItemProps } from "@/components/layout/ProjectTechnologyItem.vue";
 import IconLink, { IconLinkProps } from "@/components/shared/IconLink.vue";
 
 export type ProjectPageLayoutProps = {

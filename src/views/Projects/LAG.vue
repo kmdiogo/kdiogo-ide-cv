@@ -2,7 +2,7 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore: need to figure out to get typing with emscripten output
 import LAG_WASM from "../../../lag_wasm/lag.mjs";
-import ProjectPageLayout from "@/components/shared/ProjectPageLayout.vue";
+import ProjectPageLayout from "@/components/layout/ProjectPageLayout.vue";
 import { ref } from "vue";
 import EmscriptenLogo from "@/assets/ext-logos/emscripten-logo.png";
 import WASMLogo from "@/assets/ext-logos/wasm-logo.png";
