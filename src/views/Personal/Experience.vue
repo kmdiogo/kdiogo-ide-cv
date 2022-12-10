@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-import PersonalPageLayout from "@/components/shared/PersonalPageLayout.vue";
-import VerticalTimeline from "@/components/shared/VerticalTimeline.vue";
-import { TimelineEntryProps } from "@/components/shared/VerticalTimeline.vue";
+import PersonalPageLayout from "@/components/layout/PersonalPageLayout.vue";
+import VerticalTimeline from "@/components/Experience/VerticalTimeline.vue";
+import { TimelineEntryProps } from "@/components/Experience/VerticalTimeline.vue";
 
 const timelineData: TimelineEntryProps[] = [
   {

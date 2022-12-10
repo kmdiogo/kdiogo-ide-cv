@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import PersonalPageLayout from "@/components/shared/PersonalPageLayout.vue";
+import PersonalPageLayout from "@/components/layout/PersonalPageLayout.vue";
 </script>
 
 <template>

@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import PageTab from "./shared/PageTab.vue";
+import PageTab from "./navigation/PageTab.vue";
 import { useTabHistoryStore } from "@/stores/tab-history";
 
 const tabHistoryStore = useTabHistoryStore();

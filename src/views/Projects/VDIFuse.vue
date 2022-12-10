@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import ProjectPageLayout from "@/components/shared/ProjectPageLayout.vue";
+import ProjectPageLayout from "@/components/layout/ProjectPageLayout.vue";
 import CppLogo from "@/assets/ext-logos/cpp-logo.png";
 import CLogo from "@/assets/ext-logos/c-logo.png";
-import { TechnologyItemProps } from "@/components/shared/ProjectTechnologyItem.vue";
+import { TechnologyItemProps } from "@/components/layout/ProjectTechnologyItem.vue";
 import { IconLinkProps } from "@/components/shared/IconLink.vue";
 
 const technologies: TechnologyItemProps[] = [
