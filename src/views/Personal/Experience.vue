@@ -5,8 +5,17 @@ import { TimelineEntryProps } from "@/components/Experience/VerticalTimeline.vue
 
 const timelineData: TimelineEntryProps[] = [
   {
+    id: "microsoft",
+    date: "06/2024 - Present",
+    company: "Microsoft",
+    jobTitle: "Software Engineer II",
+    description:
+      "Develop zero-touch deployment automation mechanisms to deploy entire cloud stacks across multiple regions.",
+    skills: ["Azure", "Powershell", "C#", "DevOps"],
+  },
+  {
     id: "exp",
-    date: "06/2020 - Present",
+    date: "06/2020 - 06/2024",
     company: "Expedition Technology",
     jobTitle: "Software Engineer",
     description:
@@ -89,6 +98,12 @@ const timelineData: TimelineEntryProps[] = [
 <template>
   <PersonalPageLayout title="Experience">
     <VerticalTimeline :timeline-data="timelineData" class="mt-6">
+      <template v-slot:microsoft-icon
+        ><img
+          class="w-14"
+          alt="Expedition Technology Logo"
+          src="../../assets/logos/microsoft.png"
+      /></template>
       <template v-slot:exp-icon
         ><img
           class="bg-white"
