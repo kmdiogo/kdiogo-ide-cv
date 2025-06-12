@@ -10,7 +10,7 @@ defineProps<TechnologyItemProps>();
 
 <template>
   <div class="bg-darcula-600 flex px-2 py-1 gap-2 rounded items-center">
-    <div class="w-12 h-12 p-2 flex-grow-0 flex-shrink-0">
+    <div class="w-12 h-12 p-2 grow-0 shrink-0">
       <img class="w-full h-full" :src="imgSrc" />
     </div>
     <div class="flex flex-col">

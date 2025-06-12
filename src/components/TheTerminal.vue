@@ -206,7 +206,7 @@ function handleEsc(e: KeyboardEvent) {
       <div class="flex">
         <span v-html="generateTerminalBase(shell.cwdName)" />
         <input
-          class="flex-grow bg-transparent text-white border-none outline-none"
+          class="grow bg-transparent text-white border-none outline-none"
           v-model="shell.line"
           @keydown.prevent.tab="processAutoComplete"
           ref="cmdLine"

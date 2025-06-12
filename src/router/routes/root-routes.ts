@@ -22,6 +22,7 @@ const rootRoutes: Array<RouteRecordRaw> = [
       label: "Resume.pdf",
       icon: "fas file-pdf",
       iconColor: "#ff0000",
+      noPadding: true
     },
   },
   {

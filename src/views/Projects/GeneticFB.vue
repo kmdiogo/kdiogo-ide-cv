@@ -45,7 +45,7 @@ const links: IconLinkProps[] = [
       presentation video for it made primarily for entertainment purposes.
     </h4>
 
-    <div class="w-100 h-80 lg:h-96 flex flex-col items-center">
+    <div class="h-80 lg:h-96 flex flex-col items-center">
       <iframe
         width="100%"
         height="100%"

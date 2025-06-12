@@ -33,7 +33,7 @@ const routeActive = computed(() => {
 
 <template>
   <div class="flex">
-    <div class="mr-4 w-1 flex-shrink-0" />
+    <div class="mr-4 w-1 shrink-0" />
     <router-link
       class="hover:text-darcula-300 whitespace-nowrap"
       :to="to"

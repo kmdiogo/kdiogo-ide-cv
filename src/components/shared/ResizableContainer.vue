@@ -62,7 +62,7 @@ onUnmounted(() => {
 
 <template>
   <div class="flex" :style="containerStyle">
-    <div class="flex-grow overflow-auto">
+    <div class="grow overflow-auto">
       <slot></slot>
     </div>
     <span

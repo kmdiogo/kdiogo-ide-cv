@@ -31,7 +31,7 @@ function normalizeIcon() {
 
 <template>
   <div
-    class="p-3 py-1 flex transition-colors flex-shrink-0"
+    class="p-3 py-1 flex transition-colors shrink-0"
     :class="{
       'bg-green-900 hover:bg-forest-green-800': routeActive,
       'bg-darcula-500 hover:bg-darcula-600': !routeActive,

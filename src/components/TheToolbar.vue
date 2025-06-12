@@ -20,7 +20,7 @@ import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
       </Dropdown>
     </div>
 
-    <div class="flex flex-grow py-1 px-2 md:justify-start justify-end gap-4">
+    <div class="flex grow py-1 px-2 md:justify-start justify-end gap-4">
       <div class="flex text-2xl gap-1">
         <a
           class="hover:animate-pendulum text-linkedin flex items-center"

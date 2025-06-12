@@ -30,8 +30,8 @@ defineProps({
 </script>
 
 <template>
-  <div class="w-100 flex box-border relative">
-    <div class="relative flex-grow-0 flex-shrink-0 mr-5 md:mx-10 order-2">
+  <div class="flex box-border relative">
+    <div class="relative grow-0 shrink-0 mr-5 md:mx-10 order-2">
       <div
         class="h-16 w-16 rounded-full flex justify-center items-center border-2 border-darcula-300 z-10 overflow-hidden relative bg-darcula-700"
       >
@@ -90,13 +90,15 @@ defineProps({
   </div>
 </template>
 
-<style scoped lang="postcss">
+<style scoped>
+@reference "../../styles/index.css";
+
 .arrow-right {
   width: 0;
   height: 0;
   border-top: 10px solid transparent;
   border-bottom: 10px solid transparent;
-  border-left: 10px solid theme("colors.darcula.600");
+  border-left: 10px solid var(--color-darcula-600);
   @apply -right-2 absolute top-2;
 }
 
@@ -105,7 +107,7 @@ defineProps({
   height: 0;
   border-top: 10px solid transparent;
   border-bottom: 10px solid transparent;
-  border-right: 10px solid theme("colors.darcula.600");
+  border-right: 10px solid var(--color-darcula-600);
   @apply -left-2 absolute top-2;
 }
 </style>
