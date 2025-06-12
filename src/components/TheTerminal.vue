@@ -196,7 +196,7 @@ function handleEsc(e: KeyboardEvent) {
 <template>
   <div
     class="text-white p-3 pr-0 bg-darcula-500"
-    style="font-family: &quot;Ubuntu Mono&quot;, monospace"
+    :style="{ 'font-family': 'Ubuntu Mono, monospace' }"
   >
     <div
       class="flex flex-col h-full overflow-auto bg-darcula-700 box-border p-4"
