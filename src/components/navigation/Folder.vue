@@ -20,7 +20,7 @@ const props = withDefaults(defineProps<FolderProps>(), {
 
 const isExpanded = ref(props.isInitiallyOpen);
 const isEmpty = computed(
-  () => props.directories.length === 0 && props.fileRoutes.length === 0
+  () => props.directories.length === 0 && props.fileRoutes.length === 0,
 );
 
 function toggleExpanded() {

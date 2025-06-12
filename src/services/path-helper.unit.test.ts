@@ -45,6 +45,6 @@ describe("path-helper", () => {
     (path, cwd, expected) => {
       const pathHelper = new PathHelper(TEST_FILE_TABLE);
       expect(pathHelper.resolve(path, cwd)).toEqual(expected);
-    }
+    },
   );
 });

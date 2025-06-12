@@ -18,7 +18,7 @@ class whitespace [\\n\\t\\f\\v\\r\\ ]
 token Ident /[alpha]([alpha]|[digit])* /
 
 ignore /[whitespace]+/
-`.trim()
+`.trim(),
 );
 
 const headerFile = ref<string | null>(null);
@@ -52,7 +52,7 @@ async function runLAG() {
     "run",
     null,
     ["string", "string", "string"],
-    ["input.txt", "LexicalAnalyzer", ""]
+    ["input.txt", "LexicalAnalyzer", ""],
   );
 
   // Read in generated virtual files

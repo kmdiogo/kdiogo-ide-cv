@@ -46,14 +46,15 @@ const route = useRoute();
         <PageTabs
           class="flex items-center border-b border-gray-800 bg-darcula-500 shrink-0"
         />
-        <router-view class="grow overflow-auto h-0" :class="{'p-5': !route.meta.noPadding }" />
+        <router-view
+          class="grow overflow-auto h-0"
+          :class="{ 'p-5': !route.meta.noPadding }"
+        />
       </main>
     </div>
 
     <TheTerminal class="shrink-0 h-1/5" v-if="layoutStore.terminalOpen" />
 
-    <TheFooter
-      class="shrink-0 bg-darcula-500 border-gray-800 border h-16"
-    />
+    <TheFooter class="shrink-0 bg-darcula-500 border-gray-800 border h-16" />
   </div>
 </template>

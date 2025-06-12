@@ -1,89 +1,88 @@
-@import 'tailwindcss';
+@import "tailwindcss";
 @config '../../tailwind.config.js';
 
 @theme {
-    --color-darcula-50: #F5F5F6;
-    --color-darcula-100: #ECECEC;
-    --color-darcula-200: #DCDCDC; /* Adjusted to the uncommented value */
-    --color-darcula-300: #B1B2B3;
-    --color-darcula-400: #77797A;
-    --color-darcula-500: #3C3F41;
-    --color-darcula-600: #36393B;
-    --color-darcula-700: #242627;
-    --color-darcula-800: #1B1C1D;
-    --color-darcula-900: #121314;
+  --color-darcula-50: #f5f5f6;
+  --color-darcula-100: #ececec;
+  --color-darcula-200: #dcdcdc; /* Adjusted to the uncommented value */
+  --color-darcula-300: #b1b2b3;
+  --color-darcula-400: #77797a;
+  --color-darcula-500: #3c3f41;
+  --color-darcula-600: #36393b;
+  --color-darcula-700: #242627;
+  --color-darcula-800: #1b1c1d;
+  --color-darcula-900: #121314;
 
-    --color-forest-green-100: #E9F3E9;
-    --color-forest-green-200: #C8E2C8;
-    --color-forest-green-300: #A7D1A7;
-    --color-forest-green-400: #64AE64;
-    --color-forest-green-500: #228B22;
-    --color-forest-green-600: #1F7D1F;
-    --color-forest-green-700: #145314;
-    --color-forest-green-800: #0F3F0F;
-    --color-forest-green-900: #0A2A0A;
-
+  --color-forest-green-100: #e9f3e9;
+  --color-forest-green-200: #c8e2c8;
+  --color-forest-green-300: #a7d1a7;
+  --color-forest-green-400: #64ae64;
+  --color-forest-green-500: #228b22;
+  --color-forest-green-600: #1f7d1f;
+  --color-forest-green-700: #145314;
+  --color-forest-green-800: #0f3f0f;
+  --color-forest-green-900: #0a2a0a;
 }
 
 @layer base {
-    button {
-        cursor: pointer;
-    }
+  button {
+    cursor: pointer;
+  }
 
-    ul,
-    ol {
-        display: block;
-        list-style: disc outside none;
-        margin: 1em 0;
-        padding: 0 0 0 40px;
-    }
-    ol {
-        list-style-type: decimal;
-    }
+  ul,
+  ol {
+    display: block;
+    list-style: disc outside none;
+    margin: 1em 0;
+    padding: 0 0 0 40px;
+  }
+  ol {
+    list-style-type: decimal;
+  }
 
-    ul ul,
-    ol ul {
-        list-style-type: circle;
-        margin-left: 15px;
-    }
-    ol ol,
-    ul ol {
-        list-style-type: lower-latin;
-        margin-left: 15px;
-    }
+  ul ul,
+  ol ul {
+    list-style-type: circle;
+    margin-left: 15px;
+  }
+  ol ol,
+  ul ol {
+    list-style-type: lower-latin;
+    margin-left: 15px;
+  }
 
-    p {
-        @apply my-4;
-    }
+  p {
+    @apply my-4;
+  }
 
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6 {
-        @apply my-2;
-    }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply my-2;
+  }
 
-    /* Scrollbar stuff */
-    /* width */
-    ::-webkit-scrollbar {
-        width: 10px;
-    }
+  /* Scrollbar stuff */
+  /* width */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
 
-    /* Track */
-    ::-webkit-scrollbar-track {
+  /* Track */
+  ::-webkit-scrollbar-track {
     //background: #f1f1f1;
-        @apply bg-darcula-700;
-    }
+    @apply bg-darcula-700;
+  }
 
-    /* Handle */
-    ::-webkit-scrollbar-thumb {
-        @apply bg-darcula-400;
-    }
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    @apply bg-darcula-400;
+  }
 
-    /* Handle on hover */
-    ::-webkit-scrollbar-thumb:hover {
-        @apply bg-darcula-300;
-    }
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-darcula-300;
+  }
 }

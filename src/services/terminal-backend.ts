@@ -32,13 +32,13 @@ export function convertToTable(tree: FileTreeNode): FileTreeTable {
     const absPath = parent ? pathb.join(parent, node.label) : nodeParent;
 
     const children = node.directories.map((node) =>
-      pathb.join(absPath, node.label)
+      pathb.join(absPath, node.label),
     );
     // Add files as table entries
     for (const file of node.files) {
       if (!file.meta) {
         throw Error(
-          `Route record for path ${file.path} does not have the proper meta configured for use with the terminal. Please add this in via Vue router.`
+          `Route record for path ${file.path} does not have the proper meta configured for use with the terminal. Please add this in via Vue router.`,
         );
       }
       const fileAbsPath = pathb.join(absPath, file.meta.label);
@@ -192,7 +192,7 @@ export class TrieBasedTerminalBackend implements TerminalBackend {
     const normalizedUserTypedPath = this.pathHelper.normalize(userTypedPath);
     const absUserTypedPath = this.pathHelper.resolve(
       normalizedUserTypedPath,
-      this.cwd
+      this.cwd,
     );
     const parsedUserTypedPath = pathb.parse(absUserTypedPath);
 

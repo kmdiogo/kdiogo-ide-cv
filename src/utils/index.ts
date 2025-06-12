@@ -3,7 +3,7 @@ import { Trie } from "./data-structures";
 export function isOrderedSubstring(
   s1: string,
   s2: string,
-  case_sensitive = false
+  case_sensitive = false,
 ) {
   if (s1.length > s2.length) return false;
   for (let i = 0; i < s1.length; i++) {
