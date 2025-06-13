@@ -4,10 +4,10 @@ import projectRoutes from "@/router/routes/project-routes";
 import { RouteRecordRaw } from "vue-router";
 
 export type FileTreeNode = {
-  label: string
-  directories: FileTreeNode[]
-  files: RouteRecordRaw[]
-}
+  label: string;
+  directories: FileTreeNode[];
+  files: RouteRecordRaw[];
+};
 
 export const tree: FileTreeNode = {
   label: "/",

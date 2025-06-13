@@ -2,7 +2,7 @@
 import Folder from "@/components/navigation/Folder.vue";
 import { tree } from "@/constants/FileTree";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
-import { faBoxOpen } from "@fortawesome/free-solid-svg-icons"
+import { faBoxOpen } from "@fortawesome/free-solid-svg-icons";
 </script>
 
 <template>

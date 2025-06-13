@@ -20,7 +20,6 @@ const closeIcon = ref(farTimesCircle);
 const routeActive = computed(() => {
   return currentRoute.matched.some(({ path }) => path === props.route.path);
 });
-
 </script>
 
 <template>

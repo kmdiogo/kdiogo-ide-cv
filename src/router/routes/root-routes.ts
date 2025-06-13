@@ -2,7 +2,11 @@ import Welcome from "@/views/Welcome.vue";
 import README from "@/views/README.vue";
 import { RouteRecordRaw } from "vue-router";
 import Resume from "@/views/Resume.vue";
-import { faFileAlt, faFileCode, faFilePdf } from "@fortawesome/free-solid-svg-icons";
+import {
+  faFileAlt,
+  faFileCode,
+  faFilePdf,
+} from "@fortawesome/free-solid-svg-icons";
 
 const rootRoutes: Array<RouteRecordRaw> = [
   {

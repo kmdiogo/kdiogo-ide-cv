@@ -5,8 +5,8 @@ import { RouteLocationRaw, useRoute } from "vue-router";
 import type { IconDefinition } from "@fortawesome/fontawesome-common-types";
 
 type ToRoute = {
-  name: string
-}
+  name: string;
+};
 
 type FileProps = {
   fileName: string;
