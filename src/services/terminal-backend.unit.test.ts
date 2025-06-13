@@ -4,6 +4,7 @@ import {
   FileTreeTable,
 } from "./terminal-backend";
 import { FileTreeNode } from "@/constants/FileTree";
+import { faSquare } from "@fortawesome/free-regular-svg-icons";
 
 export const TEST_FILE_TREE: FileTreeNode = {
   label: "/",
@@ -20,7 +21,7 @@ export const TEST_FILE_TREE: FileTreeNode = {
               redirect: "",
               meta: {
                 label: "paris.jpg",
-                icon: "test-icon",
+                icon: faSquare,
                 iconColor: "green",
               },
             },
@@ -33,7 +34,7 @@ export const TEST_FILE_TREE: FileTreeNode = {
           redirect: "",
           meta: {
             label: "wallpaper.jpg",
-            icon: "test-icon",
+            icon: faSquare,
             iconColor: "green",
           },
         },
@@ -93,7 +94,7 @@ describe("convert tree to file table", () => {
         parent: "/my_photos",
         metadata: {
           label: "paris.jpg",
-          icon: "test-icon",
+          icon: faSquare,
           iconColor: "green",
           routePath: "",
         },
@@ -104,7 +105,7 @@ describe("convert tree to file table", () => {
         parent: "/",
         metadata: {
           label: "wallpaper.jpg",
-          icon: "test-icon",
+          icon: faSquare,
           iconColor: "green",
           routePath: "",
         },

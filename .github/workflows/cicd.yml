@@ -33,6 +33,9 @@ jobs:
       - name: Eslint
         run: npm run eslint
 
+      - name: Type Check
+        run: vue-tsc --noEmit
+
       - name: Hadolint
         run: npm run hadolint
 
