@@ -4,6 +4,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
+    "type-check": "vue-tsc --noEmit",
     "serve": "vite preview",
     "test": "vitest src",
     "eslint": "eslint src/**/*.{js,ts,vue}",
