@@ -3,11 +3,11 @@ import personalRoutes from "@/router/routes/personal-routes";
 import projectRoutes from "@/router/routes/project-routes";
 import { RouteRecordRaw } from "vue-router";
 
-export interface FileTreeNode {
+export type FileTreeNode = {
   label: string;
   directories: FileTreeNode[];
   files: RouteRecordRaw[];
-}
+};
 
 export const tree: FileTreeNode = {
   label: "/",

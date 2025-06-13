@@ -5,6 +5,7 @@ import VDIFuse from "@/views/Projects/VDIFuse.vue";
 import GeneticFB from "@/views/Projects/GeneticFB.vue";
 import SpongeBeats from "@/views/Projects/SpongeBeats.vue";
 import { RouteRecordRaw } from "vue-router";
+import { faFileCode } from "@fortawesome/free-solid-svg-icons";
 
 const projectRoutes: Array<RouteRecordRaw> = [
   {
@@ -13,7 +14,7 @@ const projectRoutes: Array<RouteRecordRaw> = [
     name: "LAG.cpp",
     meta: {
       label: "LAG.cpp",
-      icon: "fas file-code",
+      icon: faFileCode,
       iconColor: "lightblue",
     },
   },
@@ -23,7 +24,7 @@ const projectRoutes: Array<RouteRecordRaw> = [
     name: "GeneticFB.cs",
     meta: {
       label: "GeneticFB.cs",
-      icon: "fas file-code",
+      icon: faFileCode,
       iconColor: "mediumpurple",
     },
   },
@@ -33,7 +34,7 @@ const projectRoutes: Array<RouteRecordRaw> = [
     name: "Trivialize.html",
     meta: {
       label: "Trivialize.html",
-      icon: "fas file-code",
+      icon: faFileCode,
       iconColor: "darkorange",
     },
   },
@@ -43,7 +44,7 @@ const projectRoutes: Array<RouteRecordRaw> = [
     name: "VDIFuse.cpp",
     meta: {
       label: "VDIFuse.cpp",
-      icon: "fas file-code",
+      icon: faFileCode,
       iconColor: "lightblue",
     },
   },
@@ -53,7 +54,7 @@ const projectRoutes: Array<RouteRecordRaw> = [
     name: "SpongeBeats.cs",
     meta: {
       label: "SpongeBeats.cs",
-      icon: "fas file-code",
+      icon: faFileCode,
       iconColor: "mediumpurple",
     },
   },
@@ -63,7 +64,7 @@ const projectRoutes: Array<RouteRecordRaw> = [
     name: "Waru.cs",
     meta: {
       label: "Waru.cs",
-      icon: "fas file-code",
+      icon: faFileCode,
       iconColor: "mediumpurple",
     },
   },

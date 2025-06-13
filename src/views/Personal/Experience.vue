@@ -10,7 +10,7 @@ const timelineData: TimelineEntryProps[] = [
     company: "Microsoft",
     jobTitle: "Software Engineer II",
     description:
-      "Develop zero-touch deployment automation mechanisms to deploy entire cloud stacks across multiple regions.",
+      "Develop zero-touch deployment automation mechanisms to deploy entire application stacks across multiple cloud environments. Lead codebase refactoring efforts to make various services more cloud-agnostic and configuration driven.",
     skills: ["Azure", "Powershell", "C#", "DevOps"],
   },
   {

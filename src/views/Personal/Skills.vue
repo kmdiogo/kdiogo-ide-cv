@@ -12,15 +12,18 @@ import BootstrapLogo from "@/assets/ext-logos/bootstrap-logo.png";
 import CypressLogo from "@/assets/ext-logos/cypress-logo.png";
 import TailwindLogo from "@/assets/ext-logos/tailwind-logo.png";
 import ReactQueryLogo from "@/assets/ext-logos/react-query-logo.svg";
-import AWSLogo from "@/assets/ext-logos/aws-logo.png";
+import AWSLogo from "@/assets/ext-logos/aws-logo.webp";
 import SkillBox from "@/components/Skills/SkillBox.vue";
 import PytestLogo from "@/assets/ext-logos/pytest-logo.png";
+import AzureLogo from "@/assets/ext-logos/azure-logo.png";
+import CSharpLogo from "@/assets/ext-logos/csharp-logo.png";
+import ADOLogo from "@/assets/ext-logos/ado-logo.png";
 
 const backendSkills = [
   { name: "Python", details: "v3.6+, Web Services", imgSrc: PythonLogo },
   { name: "Pytest", details: "Python Unit Testing", imgSrc: PytestLogo },
   { name: "PostgreSQL", details: "+PostGIS", imgSrc: PostgresLogo },
-  { name: "AWS", details: "S3, SQS, SNS, RDS", imgSrc: AWSLogo },
+  { name: "C#", details: ".NET 8.0+", imgSrc: CSharpLogo },
 ];
 
 const frontendSkills = [
@@ -69,6 +72,13 @@ const infrastructureSkills = [
     imgSrc: KubernetesLogo,
   },
   { name: "Jenkins", details: "CI/CD", imgSrc: JenkinsLogo },
+  { name: "Azure DevOps", details: "CI/CD", imgSrc: ADOLogo },
+  {
+    name: "Azure",
+    details: "Bicep + various other services",
+    imgSrc: AzureLogo,
+  },
+  { name: "AWS", details: "S3, SQS, SNS, RDS", imgSrc: AWSLogo },
 ];
 </script>
 

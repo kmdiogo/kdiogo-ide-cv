@@ -3,6 +3,8 @@ import { RouteLocationNormalized, useRoute } from "vue-router";
 import { useTabHistoryStore } from "@/stores/tab-history";
 import { computed, ref, PropType } from "vue";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+import { faTimesCircle as farTimesCircle } from "@fortawesome/free-regular-svg-icons";
+import { faTimesCircle as fasTimesCircle } from "@fortawesome/free-solid-svg-icons";
 
 const props = defineProps({
   route: {
@@ -13,20 +15,11 @@ const props = defineProps({
 
 const tabHistoryStore = useTabHistoryStore();
 const currentRoute = useRoute();
-const closeIcon = ref(["far", "times-circle"]);
+const closeIcon = ref(farTimesCircle);
 
 const routeActive = computed(() => {
   return currentRoute.matched.some(({ path }) => path === props.route.path);
 });
-
-function normalizeIcon() {
-  if (!props.route.meta) {
-    return "";
-  }
-  if (typeof props.route.meta.icon === "string")
-    return props.route.meta.icon.split(" ");
-  return props.route.meta.icon;
-}
 </script>
 
 <template>
@@ -40,7 +33,7 @@ function normalizeIcon() {
     <router-link :to="route.path" class="flex">
       <div class="w-4">
         <FontAwesomeIcon
-          :icon="normalizeIcon()"
+          :icon="props.route.meta?.icon"
           :style="{ color: route.meta?.iconColor }"
         />
       </div>
@@ -48,8 +41,8 @@ function normalizeIcon() {
     </router-link>
     <button
       class="hover:text-darcula-300 flex items-center ml-2"
-      @mouseleave="closeIcon = ['far', 'times-circle']"
-      @mouseover="closeIcon = ['fas', 'times-circle']"
+      @mouseleave="closeIcon = farTimesCircle"
+      @mouseover="closeIcon = fasTimesCircle"
       @click="tabHistoryStore.removeTabFromHistory(route)"
     >
       <FontAwesomeIcon :icon="closeIcon" size="sm" />

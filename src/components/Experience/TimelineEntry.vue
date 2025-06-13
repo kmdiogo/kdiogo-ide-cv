@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { PropType } from "vue";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+import { faQuestion } from "@fortawesome/free-solid-svg-icons";
 
 defineProps({
   company: {
@@ -36,7 +37,7 @@ defineProps({
         class="h-16 w-16 rounded-full flex justify-center items-center border-2 border-darcula-300 z-10 overflow-hidden relative bg-darcula-700"
       >
         <slot name="icon">
-          <FontAwesomeIcon :icon="['fas', 'question']" />
+          <FontAwesomeIcon :icon="faQuestion" />
         </slot>
       </div>
 

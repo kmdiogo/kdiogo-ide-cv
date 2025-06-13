@@ -1,10 +1,10 @@
 @import "tailwindcss";
-@config '../../tailwind.config.js';
 
 @theme {
+  /* Colors */
   --color-darcula-50: #f5f5f6;
   --color-darcula-100: #ececec;
-  --color-darcula-200: #dcdcdc; /* Adjusted to the uncommented value */
+  --color-darcula-200: #dcdcdc;
   --color-darcula-300: #b1b2b3;
   --color-darcula-400: #77797a;
   --color-darcula-500: #3c3f41;
@@ -22,6 +22,33 @@
   --color-forest-green-700: #145314;
   --color-forest-green-800: #0f3f0f;
   --color-forest-green-900: #0a2a0a;
+
+  --color-linkedin: #0077b5;
+
+  /* Fonts */
+  --font-fancy: Righteous, cursive;
+  --font-body: Courier, monospace;
+
+  /* Animation */
+  --animate-pendulum: 0.75s pendulum ease-in-out infinite;
+  @keyframes pendulum {
+    50% {
+      transform: translateY(-3px);
+    }
+    100% {
+      transform: translateY(0px);
+    }
+  }
+
+  --animate-idle-blink: 1s idle-blink step-start 0s infinite;
+  @keyframes idle-blink {
+    50% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
 }
 
 @layer base {

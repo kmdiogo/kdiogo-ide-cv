@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import { computed } from "vue";
+import { IconDefinition } from "@fortawesome/free-regular-svg-icons";
 export type IconLinkProps = {
-  icon: string | string[];
+  icon: IconDefinition;
   href: string;
 };
 

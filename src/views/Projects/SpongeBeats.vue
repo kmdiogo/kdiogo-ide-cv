@@ -7,6 +7,8 @@ import BlenderLogo from "@/assets/ext-logos/blender-logo.png";
 import SpongebeatsPreview from "@/assets/projects/spongebeats.png";
 import { TechnologyItemProps } from "@/components/layout/ProjectTechnologyItem.vue";
 import { IconLinkProps } from "@/components/shared/IconLink.vue";
+import { faGamepad } from "@fortawesome/free-solid-svg-icons";
+import { faGitAlt } from "@fortawesome/free-brands-svg-icons";
 
 const technologies: TechnologyItemProps[] = [
   {
@@ -29,11 +31,11 @@ const technologies: TechnologyItemProps[] = [
 const links: IconLinkProps[] = [
   {
     href: "http://kmdiogo.people.ysu.edu/SpongeBeats/",
-    icon: ["fa", "gamepad"],
+    icon: faGamepad,
   },
   {
     href: "https://github.com/kmdiogo/SpongeBeats",
-    icon: ["fab", "git-alt"],
+    icon: faGitAlt,
   },
 ];
 </script>

@@ -2,26 +2,22 @@
 import { computed } from "vue";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import { RouteLocationRaw, useRoute } from "vue-router";
+import type { IconDefinition } from "@fortawesome/fontawesome-common-types";
 
-interface ToRoute {
+type ToRoute = {
   name: string;
-}
+};
 
 type FileProps = {
   fileName: string;
   iconColor?: string;
-  icon?: string | string[];
+  icon?: IconDefinition;
   to: RouteLocationRaw;
 };
 
 const props = defineProps<FileProps>();
 
 const route = useRoute();
-
-function normalizeIcon() {
-  if (typeof props.icon == "string") return props.icon.split(" ");
-  return props.icon;
-}
 
 const routeActive = computed(() => {
   if (typeof props.to == "string") {
@@ -41,7 +37,7 @@ const routeActive = computed(() => {
     >
       <span class="mr-2">
         <FontAwesomeIcon
-          :icon="normalizeIcon() || []"
+          :icon="props.icon || []"
           :style="{ color: iconColor }"
         />
       </span>
