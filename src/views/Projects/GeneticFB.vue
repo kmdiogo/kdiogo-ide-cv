@@ -4,6 +4,7 @@ import { TechnologyItemProps } from "@/components/layout/ProjectTechnologyItem.v
 import { IconLinkProps } from "@/components/shared/IconLink.vue";
 import UnityLogo from "@/assets/ext-logos/unity-logo.png";
 import CSharpLogo from "@/assets/ext-logos/csharp-logo.png";
+import { faGitAlt } from "@fortawesome/free-brands-svg-icons";
 
 const technologies: TechnologyItemProps[] = [
   {
@@ -21,7 +22,7 @@ const technologies: TechnologyItemProps[] = [
 const links: IconLinkProps[] = [
   {
     href: "https://github.com/kmdiogo/Genetic-Learning-Flappy-Bird",
-    icon: ["fab", "git-alt"],
+    icon: faGitAlt,
   },
 ];
 </script>

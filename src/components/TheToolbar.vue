@@ -2,6 +2,8 @@
 import Dropdown from "@/components/shared/Dropdown.vue";
 import TheNavigator from "@/components/navigation/TheNavigator.vue";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+import { faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
+import { faGithubSquare, faLinkedin } from "@fortawesome/free-brands-svg-icons";
 </script>
 
 <template>
@@ -9,10 +11,10 @@ import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
     <div class="md:hidden mr-1 text-xl flex items-center">
       <Dropdown>
         <template v-slot:dropdown-closed>
-          <FontAwesomeIcon :icon="['fa', 'bars']" class="w-4 px-2" />
+          <FontAwesomeIcon :icon="faBars" class="w-4 px-2" />
         </template>
         <template v-slot:dropdown-open>
-          <FontAwesomeIcon :icon="['fa', 'times']" class="w-4 px-2" />
+          <FontAwesomeIcon :icon="faTimes" class="w-4 px-2" />
         </template>
         <template v-slot:dropdown-content>
           <TheNavigator class="z-50" />
@@ -26,13 +28,13 @@ import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
           class="hover:animate-pendulum text-linkedin flex items-center"
           href="https://www.linkedin.com/in/kennethdiogo/"
         >
-          <FontAwesomeIcon :icon="['fab', 'linkedin']" />
+          <FontAwesomeIcon :icon="faLinkedin" />
         </a>
         <a
           class="hover:animate-pendulum flex items-center"
           href="https://github.com/kmdiogo"
         >
-          <FontAwesomeIcon :icon="['fab', 'github-square']" />
+          <FontAwesomeIcon :icon="faGithubSquare" />
         </a>
       </div>
 

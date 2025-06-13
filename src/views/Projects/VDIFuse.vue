@@ -4,6 +4,7 @@ import CppLogo from "@/assets/ext-logos/cpp-logo.png";
 import CLogo from "@/assets/ext-logos/c-logo.png";
 import { TechnologyItemProps } from "@/components/layout/ProjectTechnologyItem.vue";
 import { IconLinkProps } from "@/components/shared/IconLink.vue";
+import { faGitAlt } from "@fortawesome/free-brands-svg-icons";
 
 const technologies: TechnologyItemProps[] = [
   {
@@ -21,7 +22,7 @@ const technologies: TechnologyItemProps[] = [
 const links: IconLinkProps[] = [
   {
     href: "https://github.com/kmdiogo/vdi-fuse-cpp",
-    icon: ["fab", "git-alt"],
+    icon: faGitAlt,
   },
 ];
 </script>

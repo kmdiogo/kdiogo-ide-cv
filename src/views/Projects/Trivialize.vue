@@ -5,6 +5,8 @@ import SpotifyLogo from "@/assets/ext-logos/spotify-logo.png";
 import BootstrapLogo from "@/assets/ext-logos/bootstrap-logo.png";
 import { TechnologyItemProps } from "@/components/layout/ProjectTechnologyItem.vue";
 import { IconLinkProps } from "@/components/shared/IconLink.vue";
+import { faGamepad } from "@fortawesome/free-solid-svg-icons";
+import { faGitAlt } from "@fortawesome/free-brands-svg-icons";
 
 const technologies: TechnologyItemProps[] = [
   {
@@ -27,11 +29,11 @@ const technologies: TechnologyItemProps[] = [
 const links: IconLinkProps[] = [
   {
     href: "https://kmdiogo.github.io/Trivialize",
-    icon: ["fa", "gamepad"],
+    icon: faGamepad,
   },
   {
     href: "https://github.com/kmdiogo/Trivialize",
-    icon: ["fab", "git-alt"],
+    icon: faGitAlt,
   },
 ];
 </script>

@@ -2,6 +2,7 @@ import AboutMe from "@/views/Personal/AboutMe.vue";
 import Experience from "@/views/Personal/Experience.vue";
 import Skills from "@/views/Personal/Skills.vue";
 import { RouteRecordRaw } from "vue-router";
+import { faFileCode } from "@fortawesome/free-solid-svg-icons";
 
 const personalRoutes: Array<RouteRecordRaw> = [
   {
@@ -10,7 +11,7 @@ const personalRoutes: Array<RouteRecordRaw> = [
     name: "AboutMe.html",
     meta: {
       label: "about-me.html",
-      icon: "fas file-code",
+      icon: faFileCode,
       iconColor: "darkorange",
     },
   },
@@ -20,7 +21,7 @@ const personalRoutes: Array<RouteRecordRaw> = [
     name: "Skills.html",
     meta: {
       label: "skills.html",
-      icon: "fas file-code",
+      icon: faFileCode,
       iconColor: "darkorange",
     },
   },
@@ -30,7 +31,7 @@ const personalRoutes: Array<RouteRecordRaw> = [
     name: "Experience.html",
     meta: {
       label: "experience.html",
-      icon: "fas file-code",
+      icon: faFileCode,
       iconColor: "darkorange",
     },
   },

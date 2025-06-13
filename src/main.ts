@@ -2,13 +2,8 @@ import { createApp } from "vue";
 import App from "./App.vue";
 import router from "./router";
 import { createPinia } from "pinia";
-import { library } from "@fortawesome/fontawesome-svg-core";
-import * as requiredIcons from "@/icons";
 
 import "./styles/index.css";
-
-// Add all icons defined in the icons module into the font-awesome Vue library
-library.add(...Object.values(requiredIcons));
 
 const app = createApp(App);
 

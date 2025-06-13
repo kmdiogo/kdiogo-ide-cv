@@ -8,6 +8,8 @@ import EmscriptenLogo from "@/assets/ext-logos/emscripten-logo.png";
 import WASMLogo from "@/assets/ext-logos/wasm-logo.png";
 import CppLogo from "@/assets/ext-logos/cpp-logo.png";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+import { faFileArrowDown, faPlay } from "@fortawesome/free-solid-svg-icons";
+import { faGitAlt } from "@fortawesome/free-brands-svg-icons";
 
 const inputText = ref(
   `
@@ -106,7 +108,7 @@ const technologies = [
 const links = [
   {
     href: "https://github.com/kmdiogo/LAG/tree/wasm",
-    icon: ["fab", "git-alt"],
+    icon: faGitAlt,
   },
 ];
 </script>
@@ -172,7 +174,7 @@ const links = [
           class="p-3 w-full bg-forest-green-500 rounded hover:text-white hover:bg-forest-green-600 transition-colors duration-100"
           @click="runLAG"
         >
-          <FontAwesomeIcon :icon="['fas', 'play']" size="lg" />
+          <FontAwesomeIcon :icon="faPlay" size="lg" />
         </button>
 
         <h3 class="font-bold text-lg mt-6">Output:</h3>
@@ -198,7 +200,7 @@ const links = [
                 download="LexicalAnalyzer.h"
                 v-if="headerFile"
               >
-                <FontAwesomeIcon :icon="['fas', 'file-arrow-down']" />
+                <FontAwesomeIcon :icon="faFileArrowDown" />
                 LexicalAnalyzer.h
               </a>
               <a
@@ -207,7 +209,7 @@ const links = [
                 download="LexicalAnalyzer.cpp"
                 v-if="bodyFile"
               >
-                <FontAwesomeIcon :icon="['fas', 'file-arrow-down']" />
+                <FontAwesomeIcon :icon="faFileArrowDown" />
                 LexicalAnaylzer.cpp
               </a>
             </div>

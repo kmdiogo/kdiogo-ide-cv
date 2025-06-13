@@ -6,6 +6,8 @@ import CSharpLogo from "@/assets/ext-logos/csharp-logo.png";
 import UnityLogo from "@/assets/ext-logos/unity-logo.png";
 import { TechnologyItemProps } from "@/components/layout/ProjectTechnologyItem.vue";
 import { IconLinkProps } from "@/components/shared/IconLink.vue";
+import { faGamepad } from "@fortawesome/free-solid-svg-icons";
+import { faGitAlt } from "@fortawesome/free-brands-svg-icons";
 
 const technologies: TechnologyItemProps[] = [
   {
@@ -23,11 +25,11 @@ const technologies: TechnologyItemProps[] = [
 const links: IconLinkProps[] = [
   {
     href: "http://kmdiogo.people.ysu.edu/Waru/",
-    icon: ["fa", "gamepad"],
+    icon: faGamepad,
   },
   {
     href: "https://github.com/kmdiogo/Waru",
-    icon: ["fab", "git-alt"],
+    icon: faGitAlt,
   },
 ];
 </script>

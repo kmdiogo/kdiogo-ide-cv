@@ -2,6 +2,7 @@
 import Folder from "@/components/navigation/Folder.vue";
 import { tree } from "@/constants/FileTree";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+import { faBoxOpen } from "@fortawesome/free-solid-svg-icons"
 </script>
 
 <template>
@@ -9,7 +10,7 @@ import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
     <div>
       <span
         ><FontAwesomeIcon
-          :icon="['fas', 'box-open']"
+          :icon="faBoxOpen"
           style="color: #ad8762"
         ></FontAwesomeIcon>
         Kenny's Portfolio</span

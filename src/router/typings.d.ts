@@ -1,4 +1,5 @@
 import "vue-router";
+import type { IconDefinition } from "@fortawesome/free-regular-svg-icons";
 
 declare module "vue-router" {
   /**
@@ -7,7 +8,7 @@ declare module "vue-router" {
    */
   interface RouteMeta {
     label: string;
-    icon: string | string[];
+    icon: IconDefinition;
     iconColor?: string;
   }
 }

@@ -2,8 +2,9 @@
 import { ref, computed } from "vue";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import File from "@/components/navigation/File.vue";
-import { RouteRecordRaw } from "vue-router";
-import { FileTreeNode } from "@/constants/FileTree";
+import type { RouteRecordRaw } from "vue-router";
+import type { FileTreeNode } from "@/constants/FileTree";
+import { faChevronDown, faFolder } from "@fortawesome/free-solid-svg-icons";
 
 export type FolderProps = {
   folderName: string;
@@ -34,14 +35,14 @@ function toggleExpanded() {
       <div class="mr-4 w-1" @click="() => undefined">
         <FontAwesomeIcon
           class="w-3"
-          :icon="['fas', 'chevron-down']"
+          :icon="faChevronDown"
           :transform="isExpanded ? '' : 'rotate-270'"
           v-if="!isEmpty"
         />
       </div>
       <span class="mr-2"
         ><FontAwesomeIcon
-          :icon="['fas', 'folder']"
+          :icon="faFolder"
           style="color: slategray"
         ></FontAwesomeIcon
       ></span>

@@ -2,6 +2,7 @@ import Welcome from "@/views/Welcome.vue";
 import README from "@/views/README.vue";
 import { RouteRecordRaw } from "vue-router";
 import Resume from "@/views/Resume.vue";
+import { faFileAlt, faFileCode, faFilePdf } from "@fortawesome/free-solid-svg-icons";
 
 const rootRoutes: Array<RouteRecordRaw> = [
   {
@@ -10,7 +11,7 @@ const rootRoutes: Array<RouteRecordRaw> = [
     name: "Welcome.html",
     meta: {
       label: "Welcome.html",
-      icon: "fas file-code",
+      icon: faFileCode,
       iconColor: "darkorange",
     },
   },
@@ -20,7 +21,7 @@ const rootRoutes: Array<RouteRecordRaw> = [
     name: "Resume.pdf",
     meta: {
       label: "Resume.pdf",
-      icon: "fas file-pdf",
+      icon: faFilePdf,
       iconColor: "#ff0000",
       noPadding: true,
     },
@@ -31,7 +32,7 @@ const rootRoutes: Array<RouteRecordRaw> = [
     name: "README.md",
     meta: {
       label: "README.md",
-      icon: "fas file-alt",
+      icon: faFileAlt,
     },
   },
 ];
