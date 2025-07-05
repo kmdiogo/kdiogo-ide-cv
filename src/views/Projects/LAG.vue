@@ -1,13 +1,21 @@
 <script lang="ts" setup>
-import initLAGRust, { DriverLanguage, generate_lexer_program } from "lag_rust";
+import initLAGRust, {
+  DriverLanguage,
+  generate_lexer_program,
+  LexerProgram,
+} from "lag_rust";
 import wasmURL from "lag_rust/lag_rust_lib_bg.wasm?url";
 import ProjectPageLayout from "@/components/layout/ProjectPageLayout.vue";
-import { ref, watch } from "vue";
+import { computed, nextTick, ref, watch } from "vue";
 import WASMFerris from "@/assets/ext-logos/wasm-ferris.png";
 import WASMLogo from "@/assets/ext-logos/wasm-logo.png";
 import RustLogo from "@/assets/ext-logos/rust-logo.png";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
-import { faFileArrowDown, faPlay } from "@fortawesome/free-solid-svg-icons";
+import {
+  faFileArrowDown,
+  faPlay,
+  faVialCircleCheck,
+} from "@fortawesome/free-solid-svg-icons";
 import { faGitAlt, faNpm } from "@fortawesome/free-brands-svg-icons";
 
 const inputText = ref(
@@ -21,11 +29,15 @@ token Ident /[alpha]([alpha]|[digit])* /
 ignore /[whitespace]+/
 `.trim(),
 );
+const testInputText = ref("var1 var2 ");
+const driverLanguage = ref(DriverLanguage.Javascript);
 
 type GeneratedLexerOutput = {
   dfaFileUrl: string;
   driverFileUrl: string;
   driverFilename: string;
+  generatedProgram: LexerProgram;
+  language: DriverLanguage;
 };
 
 const generatedLexerOutput = ref<GeneratedLexerOutput | null>(null);
@@ -46,34 +58,47 @@ const outputText = ref("");
 const outputElement = ref<HTMLTextAreaElement | null>(null);
 
 const terminalFont = '"Lucida Console", Monaco, monospace';
+const languageMIMEMapping = new Map([
+  [DriverLanguage.Python, "text/python"],
+  [DriverLanguage.Javascript, "text/javascript"],
+]);
+const testingFeatureEnabled = computed(() => {
+  if (!generatedLexerOutput.value) return false;
+  return generatedLexerOutput.value.language === DriverLanguage.Javascript;
+});
 
 function writeToTerminal(text: string) {
   if (!outputElement.value) {
     return;
   }
   outputText.value += text + "\n";
-  outputElement.value.scrollTop = outputElement.value.scrollHeight;
+  nextTick(() => {
+    if (outputElement.value !== null) {
+      outputElement.value.scrollTop = outputElement.value.scrollHeight;
+    }
+  });
 }
 
 async function runLAG() {
   writeToTerminal("Loading WASM module...");
   await initLAGRust({ module_or_path: wasmURL });
   // Write user input to input.txt virtual file
-  // let data = stringToBytes(this.inputText);
-  writeToTerminal("Generating lexer program...");
+  writeToTerminal(
+    `Generating lexer program in ${DriverLanguage[driverLanguage.value]}...`,
+  );
   const generatedProgram = generate_lexer_program(
     inputText.value,
     "UserInput",
-    DriverLanguage.Python,
+    driverLanguage.value,
   );
   writeToTerminal("...Success!");
 
   // Write text to a blob for file download
   let dfaFileBlob = new Blob([generatedProgram.serialized_dfa_jsonstr], {
-    type: "text/plain",
+    type: "application/json",
   });
   let driverFileBlob = new Blob([generatedProgram.driver_file_contents], {
-    type: "text/plain",
+    type: languageMIMEMapping.get(driverLanguage.value),
   });
 
   // Expose the generated files as a downloadable link
@@ -81,10 +106,44 @@ async function runLAG() {
     dfaFileUrl: window.URL.createObjectURL(dfaFileBlob),
     driverFileUrl: window.URL.createObjectURL(driverFileBlob),
     driverFilename: generatedProgram.driver_filename,
+    language: driverLanguage.value,
+    generatedProgram,
   };
-  writeToTerminal(
-    "Your files are available for download on the right!😏👉(or below on mobile)\n",
+  writeToTerminal("Your files are available for download below!😏\n");
+}
+
+// Dynamically import the generated javascript module and run the lexer through user input
+async function executeGeneratedLexer() {
+  if (!generatedLexerOutput.value) {
+    return;
+  }
+  function* inputGenerator() {
+    for (const c of testInputText.value) {
+      yield c;
+    }
+  }
+
+  // Ignore vite analyzer here since the module is inherently dynamically generated from user input and impossible
+  // to know ahead of time
+  const { Lexer } = await import(
+    /* @vite-ignore */ generatedLexerOutput.value.driverFileUrl
   );
+  const dfaJson = JSON.parse(
+    generatedLexerOutput.value.generatedProgram.serialized_dfa_jsonstr,
+  );
+  const lexer = new Lexer(dfaJson);
+  const gen = inputGenerator();
+  // Run lexer on input
+  // Capping at 1000 just in case the generated Lexer has an infinite loop
+  writeToTerminal(`--- Starting test run at ${new Date().toTimeString()} ---`);
+  for (let i = 0; i < 1000; i++) {
+    const token = lexer.getToken(gen);
+    writeToTerminal(`(${String(token.token)} ${token.lexeme})`);
+    if (String(token.token) === "Symbol(EOI)") {
+      break;
+    }
+  }
+  writeToTerminal("\n");
 }
 
 const technologies = [
@@ -187,26 +246,42 @@ const links = [
             rows="12"
           />
         </div>
-        <button
-          class="p-3 w-full bg-forest-green-500 rounded hover:text-white hover:bg-forest-green-600 transition-colors duration-100"
-          @click="runLAG"
-        >
-          <FontAwesomeIcon :icon="faPlay" size="lg" />
-        </button>
+        <div class="flex flex-col lg:flex-row lg:gap-2">
+          <select
+            v-model="driverLanguage"
+            class="bg-darcula-500 rounded px-3 min-h-12"
+          >
+            <option
+              v-for="lang in Object.keys(DriverLanguage).filter((key) =>
+                isNaN(Number(key)),
+              )"
+              :key="lang"
+              :value="DriverLanguage[lang as keyof typeof DriverLanguage]"
+            >
+              {{ lang }}
+            </option>
+          </select>
+          <button
+            class="py-2 px-10 bg-forest-green-500 rounded hover:text-white hover:bg-forest-green-600 transition-colors duration-100"
+            @click="runLAG"
+          >
+            <FontAwesomeIcon :icon="faPlay" size="lg" />
+          </button>
+        </div>
 
         <h3 class="font-bold text-lg mt-6">Output:</h3>
         <div class="grid grid-cols-12">
           <textarea
             ref="outputElement"
             v-model="outputText"
-            class="w-full bg-black text-white outline-none border border-darcula-300 lg:col-span-8 col-span-12"
+            class="w-full bg-black text-white outline-none border border-darcula-300 col-span-12"
             disabled
             rows="12"
             :style="{ 'font-family': terminalFont }"
           />
 
           <div
-            class="lg:col-span-4 col-span-12 border border-darcula-300 p-4 flex flex-col"
+            class="lg:col-span-3 col-span-12 border border-darcula-300 p-4 flex flex-col"
           >
             <span>File output</span>
             <hr class="mt-1 mb-3" />
@@ -231,6 +306,31 @@ const links = [
               </a>
             </div>
           </div>
+
+          <span
+            class="border border-darcula-300 lg:col-span-9 col-span-12 p-3 overflow-auto flex flex-col gap-2"
+          >
+            <div class="flex flex-col lg:flex-row gap-2">
+              <span v-if="testingFeatureEnabled">
+                Try out your new lexer with some sample input!
+              </span>
+              <span v-else>
+                Testing feature not available for non-javascript languages
+              </span>
+              <button
+                class="px-4 py-1 bg-forest-green-500 rounded hover:text-white hover:bg-forest-green-600 transition-colors duration-100 disabled:opacity-50 disabled:cursor-not-allowed"
+                :disabled="!testingFeatureEnabled"
+                @click="executeGeneratedLexer"
+              >
+                <FontAwesomeIcon :icon="faVialCircleCheck" />
+              </button>
+            </div>
+            <textarea
+              v-model="testInputText"
+              class="bg-gray-50 text-black h-full disabled:opacity-50"
+              :disabled="!testingFeatureEnabled"
+            />
+          </span>
         </div>
       </div>
     </template>
