@@ -6,8 +6,6 @@ const commandText = Object.entries(commandDescriptions).map(([cmd, desc]) => {
 });
 </script>
 
-<style scoped></style>
-
 <template>
   <div class="p-2">
     <h1 class="text-4xl font-bold">Kenny's Portfolio</h1>
@@ -52,3 +50,5 @@ const commandText = Object.entries(commandDescriptions).map(([cmd, desc]) => {
     </p>
   </div>
 </template>
+
+<style scoped></style>

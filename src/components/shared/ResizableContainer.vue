@@ -63,13 +63,13 @@ onUnmounted(() => {
 <template>
   <div class="flex" :style="containerStyle">
     <div class="grow overflow-auto">
-      <slot></slot>
+      <slot />
     </div>
     <span
       class="bg-darcula-300 h-full cursor-e-resize"
       :style="{ width: '7px' }"
-      @mousedown="handleMouseDown"
       draggable="false"
+      @mousedown="handleMouseDown"
     />
   </div>
 </template>

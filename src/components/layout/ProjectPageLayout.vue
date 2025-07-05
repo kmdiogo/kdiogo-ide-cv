@@ -6,8 +6,8 @@ import IconLink, { IconLinkProps } from "@/components/shared/IconLink.vue";
 export type ProjectPageLayoutProps = {
   title: string;
   description: string;
-  technologies: TechnologyItemProps[];
-  links: IconLinkProps[];
+  technologies?: TechnologyItemProps[];
+  links?: IconLinkProps[];
 };
 
 const props = withDefaults(defineProps<ProjectPageLayoutProps>(), {
@@ -23,10 +23,12 @@ const props = withDefaults(defineProps<ProjectPageLayoutProps>(), {
         <h1 class="text-forest-green-500 m-0 text-4xl">
           {{ props.title }}
         </h1>
-        <h2 class="text-xl">{{ props.description }}</h2>
+        <h2 class="text-xl">
+          {{ props.description }}
+        </h2>
         <hr class="w-full" />
         <div class="mt-6">
-          <slot></slot>
+          <slot />
         </div>
       </div>
 
@@ -36,12 +38,12 @@ const props = withDefaults(defineProps<ProjectPageLayoutProps>(), {
         <div>
           <span class="font-bold">Links</span>
           <div class="flex flex-col gap-1">
-            <span class="text-sm text-darcula-300" v-if="links.length === 0"
+            <span v-if="links.length === 0" class="text-sm text-darcula-300"
               >No links to show</span
             >
             <IconLink
-              v-else
               v-for="link in links"
+              v-else
               :key="link.href"
               :icon="link.icon"
               :href="link.href"
@@ -64,7 +66,7 @@ const props = withDefaults(defineProps<ProjectPageLayoutProps>(), {
       </div>
     </div>
     <div class="col-span-12">
-      <slot name="extra-content"></slot>
+      <slot name="extra-content" />
     </div>
   </div>
 </template>

@@ -9,8 +9,8 @@ const tabHistoryStore = useTabHistoryStore();
   <div class="overflow-auto flex items-center">
     <PageTab
       v-for="(route, key) in tabHistoryStore.pageTabHistory"
-      :route="route"
       :key="key"
+      :route="route"
     />
   </div>
 </template>

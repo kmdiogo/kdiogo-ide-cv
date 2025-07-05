@@ -199,17 +199,17 @@ function handleEsc(e: KeyboardEvent) {
     :style="{ 'font-family': 'Ubuntu Mono, monospace' }"
   >
     <div
-      class="flex flex-col h-full overflow-auto bg-darcula-700 box-border p-4"
       id="inner-terminal"
+      class="flex flex-col h-full overflow-auto bg-darcula-700 box-border p-4"
     >
-      <span v-for="(entry, i) in shell.history" v-html="entry" :key="i"></span>
+      <span v-for="(entry, i) in shell.history" :key="i" v-html="entry" />
       <div class="flex">
         <span v-html="generateTerminalBase(shell.cwdName)" />
         <input
-          class="grow bg-transparent text-white border-none outline-none"
-          v-model="shell.line"
-          @keydown.prevent.tab="processAutoComplete"
           ref="cmdLine"
+          v-model="shell.line"
+          class="grow bg-transparent text-white border-none outline-none"
+          @keydown.prevent.tab="processAutoComplete"
           @keyup.enter="processCommand"
           @keyup.esc="handleEsc"
           @keyup.up.prevent="() => fillCommandHistory('up')"

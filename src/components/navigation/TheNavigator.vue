@@ -9,11 +9,8 @@ import { faBoxOpen } from "@fortawesome/free-solid-svg-icons";
   <div class="h-full flex flex-col">
     <div>
       <span
-        ><FontAwesomeIcon
-          :icon="faBoxOpen"
-          style="color: #ad8762"
-        ></FontAwesomeIcon>
-        Kenny's Portfolio</span
+        ><FontAwesomeIcon :icon="faBoxOpen" style="color: #ad8762" /> Kenny's
+        Portfolio</span
       >
       <hr class="my-1" />
     </div>
@@ -23,7 +20,7 @@ import { faBoxOpen } from "@fortawesome/free-solid-svg-icons";
       :directories="tree.directories"
       :file-routes="tree.files"
       :is-initially-open="true"
-    ></Folder>
+    />
   </div>
 </template>
 

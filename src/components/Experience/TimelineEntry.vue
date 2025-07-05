@@ -1,32 +1,19 @@
 <script lang="ts" setup>
-import { PropType } from "vue";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import { faQuestion } from "@fortawesome/free-solid-svg-icons";
 
-defineProps({
-  company: {
-    type: String,
-    required: true,
-  },
-  jobTitle: {
-    type: String,
-    required: true,
-  },
-  description: {
-    type: String,
-  },
-  date: {
-    type: String,
-    required: true,
-  },
-  direction: {
-    type: String as PropType<"left" | "right">,
-    default: "left",
-  },
-  skills: {
-    type: Array as PropType<string[]>,
-    default: () => [],
-  },
+type TimelineEntryProps = {
+  company: string;
+  jobTitle: string;
+  description?: string;
+  date: string;
+  direction?: "left" | "right";
+  skills?: string[];
+};
+withDefaults(defineProps<TimelineEntryProps>(), {
+  skills: () => [],
+  direction: "left",
+  description: "",
 });
 </script>
 
@@ -45,7 +32,7 @@ defineProps({
       <div
         class="w-1 bg-darcula-200 rounded absolute left-0 right-0 ml-auto mr-auto -top-6"
         style="height: 135%"
-      ></div>
+      />
     </div>
 
     <div
@@ -62,19 +49,19 @@ defineProps({
         <span>
           {{ description }}
         </span>
-        <div class="mt-4 flex gap-2 flex-wrap" v-if="skills.length > 0">
+        <div v-if="skills.length > 0" class="mt-4 flex gap-2 flex-wrap">
           <span
-            class="rounded-lg p-1 px-2 text-sm bg-darcula-300 text-darcula-900 font-semibold"
             v-for="skill in skills"
             :key="skill"
+            class="rounded-lg p-1 px-2 text-sm bg-darcula-300 text-darcula-900 font-semibold"
           >
             {{ skill }}
           </span>
         </div>
       </div>
       <span class="arrow-left block md:hidden" />
-      <span class="arrow-right hidden md:block" v-if="direction === 'left'" />
-      <span class="arrow-left hidden md:block" v-else />
+      <span v-if="direction === 'left'" class="arrow-right hidden md:block" />
+      <span v-else class="arrow-left hidden md:block" />
     </div>
 
     <div

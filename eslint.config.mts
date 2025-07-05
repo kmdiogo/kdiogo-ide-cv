@@ -8,6 +8,7 @@ import { fileURLToPath } from "node:url";
 import js from "@eslint/js";
 import { FlatCompat } from "@eslint/eslintrc";
 import pluginVue from 'eslint-plugin-vue'
+import eslintConfigPrettier from 'eslint-config-prettier/flat'
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -47,5 +48,6 @@ export default defineConfig([
     rules: {
         "vue/multi-word-component-names": "off",
     },
-  }
+  },
+  eslintConfigPrettier
 ]);

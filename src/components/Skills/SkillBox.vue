@@ -2,10 +2,10 @@
 import SkillHighlight from "@/components/Skills/SkillHighlight.vue";
 import { SkillHighlightProps } from "@/components/Skills/SkillHighlight.vue";
 
-interface SkillBoxProps {
+type SkillBoxProps = {
   title: string;
-  skills: SkillHighlightProps[];
-}
+  skills?: SkillHighlightProps[];
+};
 
 withDefaults(defineProps<SkillBoxProps>(), {
   skills: () => [],
@@ -14,7 +14,9 @@ withDefaults(defineProps<SkillBoxProps>(), {
 
 <template>
   <div class="bg-darcula-600 rounded-lg py-3 px-2">
-    <h2 class="font-bold text-4xl text-center mb-3">{{ title }}</h2>
+    <h2 class="font-bold text-4xl text-center mb-3">
+      {{ title }}
+    </h2>
     <div
       class="grid grid-cols-1 lg:grid-cols-3 xl:grid-cols-4 justify-center gap-6"
     >

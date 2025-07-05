@@ -8,10 +8,12 @@ withDefaults(defineProps<PersonalPageLayoutProps>(), {});
 
 <template>
   <div class="p-5 relative">
-    <h1 class="text-forest-green-500 text-5xl">{{ title }}</h1>
+    <h1 class="text-forest-green-500 text-5xl">
+      {{ title }}
+    </h1>
     <hr />
     <div class="py-3">
-      <slot></slot>
+      <slot />
     </div>
   </div>
 </template>
