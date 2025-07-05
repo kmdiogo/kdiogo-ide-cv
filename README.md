@@ -19,10 +19,6 @@ The deployed site can be viewed at [kmdiogo.github.io](https://kmdiogo.github.io
 # Install dependencies
 npm install
 
-# Build required WebAssembly (WASM) modules
-# This is required to run locally at least once before the dev server can work
-npm run build-lag
-
 # Linting/Formatting
 npm run eslint
 npm run format

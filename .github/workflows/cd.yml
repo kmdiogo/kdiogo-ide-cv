@@ -1,0 +1,36 @@
+name: CD
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  cd:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup Node v23.x
+        uses: actions/setup-node@v3
+        with:
+          node-version: 23.x
+          cache: npm
+
+      - name: Install npm Dependencies
+        run: npm ci
+        shell: bash
+
+      - name: Build Vue.js App
+        run: npm run build
+
+      - name: Deploy to Github Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          personal_token: ${{ secrets.PERSONAL_TOKEN }}
+          external_repository: kmdiogo/kmdiogo.github.io
+          publish_branch: master
+          publish_dir: ./dist

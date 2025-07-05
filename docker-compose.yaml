@@ -1,7 +1,0 @@
-version: "3.9"
-
-services:
-  lag_builder:
-    build: .
-    volumes:
-      - ./lag_wasm:/output

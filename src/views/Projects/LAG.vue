@@ -1,15 +1,14 @@
 <script lang="ts" setup>
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore: need to figure out to get typing with emscripten output
-import LAG_WASM from "../../../lag_wasm/lag.mjs";
+import initLAGRust, { DriverLanguage, generate_lexer_program } from "lag_rust";
+import wasmURL from "lag_rust/lag_rust_lib_bg.wasm?url";
 import ProjectPageLayout from "@/components/layout/ProjectPageLayout.vue";
-import { ref } from "vue";
-import EmscriptenLogo from "@/assets/ext-logos/emscripten-logo.png";
+import { ref, watch } from "vue";
+import WASMFerris from "@/assets/ext-logos/wasm-ferris.png";
 import WASMLogo from "@/assets/ext-logos/wasm-logo.png";
-import CppLogo from "@/assets/ext-logos/cpp-logo.png";
+import RustLogo from "@/assets/ext-logos/rust-logo.png";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import { faFileArrowDown, faPlay } from "@fortawesome/free-solid-svg-icons";
-import { faGitAlt } from "@fortawesome/free-brands-svg-icons";
+import { faGitAlt, faNpm } from "@fortawesome/free-brands-svg-icons";
 
 const inputText = ref(
   `
@@ -23,75 +22,76 @@ ignore /[whitespace]+/
 `.trim(),
 );
 
-const headerFile = ref<string | null>(null);
-const bodyFile = ref<string | null>(null);
+type GeneratedLexerOutput = {
+  dfaFileUrl: string;
+  driverFileUrl: string;
+  driverFilename: string;
+};
+
+const generatedLexerOutput = ref<GeneratedLexerOutput | null>(null);
+watch(generatedLexerOutput, (_, oldLexerOutput) => {
+  if (!oldLexerOutput) {
+    return;
+  }
+  // If replacing a previously generated file,
+  // manually revoke the object URL to avoid memory leaks.
+  for (const oldFileUrl of [
+    oldLexerOutput.dfaFileUrl,
+    oldLexerOutput.driverFileUrl,
+  ]) {
+    window.URL.revokeObjectURL(oldFileUrl);
+  }
+});
 const outputText = ref("");
+const outputElement = ref<HTMLTextAreaElement | null>(null);
 
 const terminalFont = '"Lucida Console", Monaco, monospace';
 
-async function runLAG() {
-  const module = await LAG_WASM({
-    print: (function () {
-      const element = document.getElementById("lag-output");
-      if (!element) {
-        throw new Error("Couldn't find the lag-output element!");
-      }
-      return function (text: string) {
-        outputText.value += text + "\n";
-        element.scrollTop = element.scrollHeight;
-      };
-    })(),
-  });
+function writeToTerminal(text: string) {
+  if (!outputElement.value) {
+    return;
+  }
+  outputText.value += text + "\n";
+  outputElement.value.scrollTop = outputElement.value.scrollHeight;
+}
 
+async function runLAG() {
+  writeToTerminal("Loading WASM module...");
+  await initLAGRust({ module_or_path: wasmURL });
   // Write user input to input.txt virtual file
   // let data = stringToBytes(this.inputText);
-  module.FS.writeFile("input.txt", inputText.value);
-  module.FS.writeFile("LexicalAnalyzer.h", "");
-  module.FS.writeFile("LexicalAnalyzer.cpp", "");
-
-  // Call C++ function
-  module.ccall(
-    "run",
-    null,
-    ["string", "string", "string"],
-    ["input.txt", "LexicalAnalyzer", ""],
+  writeToTerminal("Generating lexer program...");
+  const generatedProgram = generate_lexer_program(
+    inputText.value,
+    "UserInput",
+    DriverLanguage.Python,
   );
-
-  // Read in generated virtual files
-  let headerFileText = module.FS.readFile("LexicalAnalyzer.h", {
-    encoding: "utf8",
-    flags: "r",
-  });
-  let bodyFileText = module.FS.readFile("LexicalAnalyzer.cpp", {
-    encoding: "utf8",
-    flags: "r",
-  });
+  writeToTerminal("...Success!");
 
   // Write text to a blob for file download
-  let headerFileBlobData = new Blob([headerFileText], {
+  let dfaFileBlob = new Blob([generatedProgram.serialized_dfa_jsonstr], {
     type: "text/plain",
   });
-  let bodyFileBlobData = new Blob([bodyFileText], { type: "text/plain" });
-
-  // If replacing a previously generated file,
-  // manually revoke the object URL to avoid memory leaks.
-  if (typeof headerFile.value === "string") {
-    window.URL.revokeObjectURL(headerFile.value);
-  }
-  if (typeof bodyFile.value === "string") {
-    window.URL.revokeObjectURL(bodyFile.value);
-  }
+  let driverFileBlob = new Blob([generatedProgram.driver_file_contents], {
+    type: "text/plain",
+  });
 
   // Expose the generated files as a downloadable link
-  headerFile.value = window.URL.createObjectURL(headerFileBlobData);
-  bodyFile.value = window.URL.createObjectURL(bodyFileBlobData);
+  generatedLexerOutput.value = {
+    dfaFileUrl: window.URL.createObjectURL(dfaFileBlob),
+    driverFileUrl: window.URL.createObjectURL(driverFileBlob),
+    driverFilename: generatedProgram.driver_filename,
+  };
+  writeToTerminal(
+    "Your files are available for download on the right!😏👉(or below on mobile)\n",
+  );
 }
 
 const technologies = [
   {
-    name: "C++",
+    name: "Rust (Blazingly Fast btw)",
     description: "Source code",
-    imgSrc: CppLogo,
+    imgSrc: RustLogo,
   },
   {
     name: "Web Assembly",
@@ -99,16 +99,24 @@ const technologies = [
     imgSrc: WASMLogo,
   },
   {
-    name: "Emscripten",
-    description: "Compile c/c++ to WASM and JS",
-    imgSrc: EmscriptenLogo,
+    name: "wasm-pack",
+    description: "Compile Rust to WASM and JS Module",
+    imgSrc: WASMFerris,
   },
 ];
 
 const links = [
   {
+    href: "https://github.com/kmdiogo/lag-rust",
+    icon: faGitAlt,
+  },
+  {
     href: "https://github.com/kmdiogo/LAG/tree/wasm",
     icon: faGitAlt,
+  },
+  {
+    href: "https://www.npmjs.com/package/lag_rust",
+    icon: faNpm,
   },
 ];
 </script>
@@ -122,24 +130,32 @@ const links = [
   >
     <div class="text-page d-flex flex-column">
       <h4>
-        Welcome to my Lexical Analyzer Generator! The original program is
-        written in C++. This is a slightly modified version that is compiled
-        using
-        <a href="https://emscripten.org/index.html">Emscripten</a> and is ran in
-        your browser with <a href="https://webassembly.org/">WebAssembly!</a>
+        Welcome to my Lexical Analyzer Generator! This program is both a WASM
+        library and Rust CLI program written in Rust. The WASM module was
+        compiled using
+        <a
+          class="font-bold underline"
+          href="https://rustwasm.github.io/wasm-pack/"
+          >wasm-pack</a
+        >
+        and is ran in currently running in your browser with
+        <a class="font-bold underline" href="https://webassembly.org/"
+          >WebAssembly!</a
+        >
       </h4>
 
       <h3 class="m-0 font-bold text-lg">What it does</h3>
       <p class="mt-0">
-        Given a list of tokens, this program will generate a C++ Lexical
-        Analyzer class. The DFA that drives the Lexical Analyzer is generated by
-        first creating an NFA using
-        <a href="https://en.wikipedia.org/wiki/Thompson%27s_construction"
-          >Thompson's Construction Algorithm</a
-        >
-        then converting that NFA to a DFA using
-        <a href="https://en.wikipedia.org/wiki/Powerset_construction"
-          >Powerset Construction</a
+        Given a list of tokens, this program will generate a Lexical Analyzer
+        class in either JavaScript or Python (your choice, but Javascript is
+        more fun because you can run it here and now). The Deterministic Finite
+        Automata (DFA) that drives the Lexical Analyzer is generated (without
+        any regex libraries) directly from your provided regexes to a DFA using
+        the Direct DFA construction algorithm described in the
+        <a
+          class="font-bold underline"
+          href="https://en.wikipedia.org/wiki/Compilers:_Principles,_Techniques,_and_Tools"
+          >Compilers Dragon Book</a
         >
       </p>
 
@@ -154,21 +170,22 @@ const links = [
         </p>
 
         <p>
-          Once your tokens are defined, click the run button. Two download links
-          will appear below the input box. One is a header file and the other is
-          a cpp file for the Lexical Analyzer class.
+          Once your tokens are defined, click the run button below. Two download
+          links will appear below the input box. One is a driver file in the
+          language you chose and the other is a JSON serialized representation
+          of the DFA
         </p>
       </div>
     </div>
-    <template v-slot:extra-content>
+    <template #extra-content>
       <div class="flex flex-col mt-2">
         <h3 class="font-bold text-lg">Input:</h3>
         <div>
           <textarea
-            class="w-full text-black bg-gray-50 p-1 text-sm leading-tight"
             v-model="inputText"
+            class="w-full text-black bg-gray-50 p-1 text-sm leading-tight"
             rows="12"
-          ></textarea>
+          />
         </div>
         <button
           class="p-3 w-full bg-forest-green-500 rounded hover:text-white hover:bg-forest-green-600 transition-colors duration-100"
@@ -180,13 +197,13 @@ const links = [
         <h3 class="font-bold text-lg mt-6">Output:</h3>
         <div class="grid grid-cols-12">
           <textarea
+            ref="outputElement"
+            v-model="outputText"
             class="w-full bg-black text-white outline-none border border-darcula-300 lg:col-span-8 col-span-12"
             disabled
             rows="12"
             :style="{ 'font-family': terminalFont }"
-            v-model="outputText"
-            id="lag-output"
-          ></textarea>
+          />
 
           <div
             class="lg:col-span-4 col-span-12 border border-darcula-300 p-4 flex flex-col"
@@ -195,22 +212,22 @@ const links = [
             <hr class="mt-1 mb-3" />
             <div class="flex flex-col gap-2">
               <a
+                v-if="generatedLexerOutput"
                 class="hover:text-white"
-                :href="headerFile"
-                download="LexicalAnalyzer.h"
-                v-if="headerFile"
+                :href="generatedLexerOutput.driverFileUrl"
+                :download="generatedLexerOutput.driverFilename"
               >
                 <FontAwesomeIcon :icon="faFileArrowDown" />
-                LexicalAnalyzer.h
+                {{ generatedLexerOutput.driverFilename }}
               </a>
               <a
+                v-if="generatedLexerOutput"
                 class="hover:text-white"
-                :href="bodyFile"
-                download="LexicalAnalyzer.cpp"
-                v-if="bodyFile"
+                :href="generatedLexerOutput.dfaFileUrl"
+                download="states.json"
               >
                 <FontAwesomeIcon :icon="faFileArrowDown" />
-                LexicalAnaylzer.cpp
+                states.json
               </a>
             </div>
           </div>
