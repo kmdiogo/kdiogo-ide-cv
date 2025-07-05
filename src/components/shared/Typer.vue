@@ -45,7 +45,7 @@ if (props.text.length > 0) {
 
 <template>
   <div>
-    <span v-for="(letter, i) in letters" :key="i">{{ letter }}</span>
+    <span v-for="(letter, pos) in letters" :key="pos">{{ letter }}</span>
     <span
       class="bg-white animate-idle-blink inline-block typer-caret"
       :class="{ invisible: !caretVisible }"

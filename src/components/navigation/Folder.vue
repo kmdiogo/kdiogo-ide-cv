@@ -9,8 +9,8 @@ import { faChevronDown, faFolder } from "@fortawesome/free-solid-svg-icons";
 export type FolderProps = {
   folderName: string;
   isInitiallyOpen?: boolean;
-  fileRoutes: RouteRecordRaw[];
-  directories: FileTreeNode[];
+  fileRoutes?: RouteRecordRaw[];
+  directories?: FileTreeNode[];
 };
 
 const props = withDefaults(defineProps<FolderProps>(), {
@@ -34,38 +34,35 @@ function toggleExpanded() {
     <button class="flex hover:text-darcula-300" @click="toggleExpanded">
       <div class="mr-4 w-1" @click="() => undefined">
         <FontAwesomeIcon
+          v-if="!isEmpty"
           class="w-3"
           :icon="faChevronDown"
           :transform="isExpanded ? '' : 'rotate-270'"
-          v-if="!isEmpty"
         />
       </div>
       <span class="mr-2"
-        ><FontAwesomeIcon
-          :icon="faFolder"
-          style="color: slategray"
-        ></FontAwesomeIcon
-      ></span>
+        ><FontAwesomeIcon :icon="faFolder" style="color: slategray"
+      /></span>
       <span>{{ folderName }}</span>
     </button>
 
-    <div class="ml-6 flex flex-col" v-if="isExpanded">
+    <div v-if="isExpanded" class="ml-6 flex flex-col">
       <Folder
         v-for="dir in directories"
+        :key="dir.label"
         :directories="dir.directories"
         :folder-name="dir.label"
         :file-routes="dir.files"
-        :key="dir.label"
       />
       <File
         v-for="route in fileRoutes"
+        :key="route.name"
         :file-name="route.meta?.label || ''"
         :to="{ name: route.name }"
         :icon="route.meta?.icon"
         :icon-color="route.meta?.iconColor"
-        :key="route.name"
       />
-      <slot></slot>
+      <slot />
     </div>
   </div>
 </template>

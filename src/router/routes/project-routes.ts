@@ -11,11 +11,11 @@ const projectRoutes: Array<RouteRecordRaw> = [
   {
     path: "/LAG",
     component: LAG,
-    name: "LAG.cpp",
+    name: "LAG.rs",
     meta: {
-      label: "LAG.cpp",
+      label: "LAG.rs",
       icon: faFileCode,
-      iconColor: "lightblue",
+      iconColor: "brown",
     },
   },
   {

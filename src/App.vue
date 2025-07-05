@@ -53,7 +53,7 @@ const route = useRoute();
       </main>
     </div>
 
-    <TheTerminal class="shrink-0 h-1/5" v-if="layoutStore.terminalOpen" />
+    <TheTerminal v-if="layoutStore.terminalOpen" class="shrink-0 h-1/5" />
 
     <TheFooter class="shrink-0 bg-darcula-500 border-gray-800 border h-16" />
   </div>

@@ -10,13 +10,13 @@ import { faGithubSquare, faLinkedin } from "@fortawesome/free-brands-svg-icons";
   <nav class="flex">
     <div class="md:hidden mr-1 text-xl flex items-center">
       <Dropdown>
-        <template v-slot:dropdown-closed>
+        <template #dropdown-closed>
           <FontAwesomeIcon :icon="faBars" class="w-4 px-2" />
         </template>
-        <template v-slot:dropdown-open>
+        <template #dropdown-open>
           <FontAwesomeIcon :icon="faTimes" class="w-4 px-2" />
         </template>
-        <template v-slot:dropdown-content>
+        <template #dropdown-content>
           <TheNavigator class="z-50" />
         </template>
       </Dropdown>

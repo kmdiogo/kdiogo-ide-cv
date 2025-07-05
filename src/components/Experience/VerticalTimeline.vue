@@ -31,8 +31,8 @@ defineProps({
       :description="entry.description"
       :direction="i % 2 === 0 ? 'left' : 'right'"
     >
-      <template v-slot:icon>
-        <slot :name="`${entry.id}-icon`"></slot>
+      <template #icon>
+        <slot :name="`${entry.id}-icon`" />
       </template>
     </TimelineEntry>
   </div>

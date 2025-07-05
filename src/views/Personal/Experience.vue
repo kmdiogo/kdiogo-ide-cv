@@ -98,31 +98,35 @@ const timelineData: TimelineEntryProps[] = [
 <template>
   <PersonalPageLayout title="Experience">
     <VerticalTimeline :timeline-data="timelineData" class="mt-6">
-      <template v-slot:microsoft-icon
-        ><img
+      <template #microsoft-icon>
+        <img
           class="w-14"
           alt="Expedition Technology Logo"
           src="../../assets/logos/microsoft.png"
-      /></template>
-      <template v-slot:exp-icon
-        ><img
+        />
+      </template>
+      <template #exp-icon>
+        <img
           class="bg-white"
           alt="Expedition Technology Logo"
           src="../../assets/logos/exp-logo.png"
-      /></template>
-      <template v-slot:ysu-ra-icon
-        ><img
+        />
+      </template>
+      <template #ysu-ra-icon>
+        <img
           class="w-14"
           alt="Youngstown State University Logo"
           src="../../assets/logos/ysu-logo.png"
-      /></template>
-      <template v-slot:jpm-icon
-        ><img
+        />
+      </template>
+      <template #jpm-icon>
+        <img
           class="w-10"
           alt="J.P. Morgan Chase & Co. Logo"
           src="../../assets/logos/jpm-logo.png"
-      /></template>
-      <template v-slot:itc-icon>
+        />
+      </template>
+      <template #itc-icon>
         <div class="bg-white h-full flex justify-center items-center">
           <img
             src="../../assets/logos/itc-logo.png"
@@ -130,18 +134,20 @@ const timelineData: TimelineEntryProps[] = [
           />
         </div>
       </template>
-      <template v-slot:ysu-tutor-icon
-        ><img
+      <template #ysu-tutor-icon>
+        <img
           class="w-14"
           src="../../assets/logos/ysu-logo.png"
           alt="Youngstown State University Logo"
-      /></template>
-      <template v-slot:ohc-icon
-        ><img
+        />
+      </template>
+      <template #ohc-icon>
+        <img
           class="w-14"
           src="../../assets/logos/ohc-logo.png"
           alt="Oak Hill Collaborative Logo"
-      /></template>
+        />
+      </template>
     </VerticalTimeline>
   </PersonalPageLayout>
 </template>
