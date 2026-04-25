@@ -1,73 +1,73 @@
-import Trivialize from "@/views/Projects/Trivialize.vue";
-import LAG from "@/views/Projects/LAG.vue";
-import Waru from "@/views/Projects/Waru.vue";
-import VDIFuse from "@/views/Projects/VDIFuse.vue";
-import GeneticFB from "@/views/Projects/GeneticFB.vue";
-import SpongeBeats from "@/views/Projects/SpongeBeats.vue";
-import { RouteRecordRaw } from "vue-router";
-import { faFileCode } from "@fortawesome/free-solid-svg-icons";
+import Trivialize from '@/views/Projects/Trivialize.vue'
+import LAG from '@/views/Projects/LAG.vue'
+import Waru from '@/views/Projects/Waru.vue'
+import VDIFuse from '@/views/Projects/VDIFuse.vue'
+import GeneticFB from '@/views/Projects/GeneticFB.vue'
+import SpongeBeats from '@/views/Projects/SpongeBeats.vue'
+import type { RouteRecordRaw } from 'vue-router'
+import { faFileCode } from '@fortawesome/free-solid-svg-icons'
 
 const projectRoutes: Array<RouteRecordRaw> = [
   {
-    path: "/LAG",
+    path: '/LAG',
     component: LAG,
-    name: "LAG.rs",
+    name: 'LAG.rs',
     meta: {
-      label: "LAG.rs",
+      label: 'LAG.rs',
       icon: faFileCode,
-      iconColor: "brown",
+      iconColor: 'brown',
     },
   },
   {
-    path: "/GeneticFB",
+    path: '/GeneticFB',
     component: GeneticFB,
-    name: "GeneticFB.cs",
+    name: 'GeneticFB.cs',
     meta: {
-      label: "GeneticFB.cs",
+      label: 'GeneticFB.cs',
       icon: faFileCode,
-      iconColor: "mediumpurple",
+      iconColor: 'mediumpurple',
     },
   },
   {
-    path: "/Trivialize",
+    path: '/Trivialize',
     component: Trivialize,
-    name: "Trivialize.html",
+    name: 'Trivialize.html',
     meta: {
-      label: "Trivialize.html",
+      label: 'Trivialize.html',
       icon: faFileCode,
-      iconColor: "darkorange",
+      iconColor: 'darkorange',
     },
   },
   {
-    path: "/VDIFuse",
+    path: '/VDIFuse',
     component: VDIFuse,
-    name: "VDIFuse.cpp",
+    name: 'VDIFuse.cpp',
     meta: {
-      label: "VDIFuse.cpp",
+      label: 'VDIFuse.cpp',
       icon: faFileCode,
-      iconColor: "lightblue",
+      iconColor: 'lightblue',
     },
   },
   {
-    path: "/SpongeBeats",
+    path: '/SpongeBeats',
     component: SpongeBeats,
-    name: "SpongeBeats.cs",
+    name: 'SpongeBeats.cs',
     meta: {
-      label: "SpongeBeats.cs",
+      label: 'SpongeBeats.cs',
       icon: faFileCode,
-      iconColor: "mediumpurple",
+      iconColor: 'mediumpurple',
     },
   },
   {
-    path: "/Waru",
+    path: '/Waru',
     component: Waru,
-    name: "Waru.cs",
+    name: 'Waru.cs',
     meta: {
-      label: "Waru.cs",
+      label: 'Waru.cs',
       icon: faFileCode,
-      iconColor: "mediumpurple",
+      iconColor: 'mediumpurple',
     },
   },
-];
+]
 
-export default projectRoutes;
+export default projectRoutes

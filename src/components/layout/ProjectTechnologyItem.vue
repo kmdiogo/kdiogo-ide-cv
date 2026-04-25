@@ -1,21 +1,21 @@
-<script lang="ts" setup>
+<script lang="ts" setup vapor>
 export type TechnologyItemProps = {
-  name: string;
-  description: string;
-  imgSrc: string;
-};
+  name: string
+  description: string
+  imgSrc: string
+}
 
-defineProps<TechnologyItemProps>();
+defineProps<TechnologyItemProps>()
 </script>
 
 <template>
-  <div class="bg-darcula-600 flex px-2 py-1 gap-2 rounded items-center">
-    <div class="w-12 h-12 p-2 grow-0 shrink-0">
-      <img class="w-full h-full" :src="imgSrc" />
+  <div class="bg-darcula-600 flex items-center gap-2 rounded px-2 py-1">
+    <div class="h-12 w-12 shrink-0 grow-0 p-2">
+      <img class="h-full w-full" :src="imgSrc" />
     </div>
     <div class="flex flex-col">
       <span class="text-sm">{{ name }}</span>
-      <span class="text-xs text-darcula-300">{{ description }}</span>
+      <span class="text-darcula-300 text-xs">{{ description }}</span>
     </div>
   </div>
 </template>

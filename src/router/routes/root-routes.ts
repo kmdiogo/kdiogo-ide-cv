@@ -1,44 +1,40 @@
-import Welcome from "@/views/Welcome.vue";
-import README from "@/views/README.vue";
-import { RouteRecordRaw } from "vue-router";
-import Resume from "@/views/Resume.vue";
-import {
-  faFileAlt,
-  faFileCode,
-  faFilePdf,
-} from "@fortawesome/free-solid-svg-icons";
+import Welcome from '@/views/Welcome.vue'
+import README from '@/views/README.vue'
+import type { RouteRecordRaw } from 'vue-router'
+import Resume from '@/views/Resume.vue'
+import { faFileAlt, faFileCode, faFilePdf } from '@fortawesome/free-solid-svg-icons'
 
 const rootRoutes: Array<RouteRecordRaw> = [
   {
-    path: "/",
+    path: '/',
     component: Welcome,
-    name: "Welcome.html",
+    name: 'Welcome.html',
     meta: {
-      label: "Welcome.html",
+      label: 'Welcome.html',
       icon: faFileCode,
-      iconColor: "darkorange",
+      iconColor: 'darkorange',
     },
   },
   {
-    path: "/Resume",
+    path: '/Resume',
     component: Resume,
-    name: "Resume.pdf",
+    name: 'Resume.pdf',
     meta: {
-      label: "Resume.pdf",
+      label: 'Resume.pdf',
       icon: faFilePdf,
-      iconColor: "#ff0000",
+      iconColor: '#ff0000',
       noPadding: true,
     },
   },
   {
-    path: "/README",
+    path: '/README',
     component: README,
-    name: "README.md",
+    name: 'README.md',
     meta: {
-      label: "README.md",
+      label: 'README.md',
       icon: faFileAlt,
     },
   },
-];
+]
 
-export default rootRoutes;
+export default rootRoutes

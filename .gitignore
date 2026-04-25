@@ -6,5 +6,5 @@ dist
 dist-ssr
 *.local
 
-# WASM build output
-lag_wasm
+# Rollup build visualizer files
+stats*.html

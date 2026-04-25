@@ -1,13 +1,13 @@
-<script lang="ts" setup>
+<script lang="ts" setup vapor>
 type PersonalPageLayoutProps = {
-  title: string;
-};
+  title: string
+}
 
-withDefaults(defineProps<PersonalPageLayoutProps>(), {});
+withDefaults(defineProps<PersonalPageLayoutProps>(), {})
 </script>
 
 <template>
-  <div class="p-5 relative">
+  <div class="relative p-5">
     <h1 class="text-forest-green-500 text-5xl">
       {{ title }}
     </h1>

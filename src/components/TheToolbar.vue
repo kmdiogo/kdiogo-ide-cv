@@ -1,14 +1,14 @@
-<script setup lang="ts">
-import Dropdown from "@/components/shared/Dropdown.vue";
-import TheNavigator from "@/components/navigation/TheNavigator.vue";
-import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
-import { faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
-import { faGithubSquare, faLinkedin } from "@fortawesome/free-brands-svg-icons";
+<script setup lang="ts" vapor>
+import Dropdown from '@/components/shared/Dropdown.vue'
+import TheNavigator from '@/components/navigation/TheNavigator.vue'
+import FontAwesomeIcon from '@/components/ui/FontAwesomeIcon.vue'
+import { faBars, faTimes } from '@fortawesome/free-solid-svg-icons'
+import { faGithubSquare, faLinkedin } from '@fortawesome/free-brands-svg-icons'
 </script>
 
 <template>
   <nav class="flex">
-    <div class="md:hidden mr-1 text-xl flex items-center">
+    <div class="mr-1 flex items-center text-xl md:hidden">
       <Dropdown>
         <template #dropdown-closed>
           <FontAwesomeIcon :icon="faBars" class="w-4 px-2" />
@@ -22,25 +22,20 @@ import { faGithubSquare, faLinkedin } from "@fortawesome/free-brands-svg-icons";
       </Dropdown>
     </div>
 
-    <div class="flex grow py-1 px-2 md:justify-start justify-end gap-4">
-      <div class="flex text-2xl gap-1">
+    <div class="flex grow justify-end gap-4 px-2 py-1 md:justify-start">
+      <div class="flex gap-1 text-2xl">
         <a
           class="hover:animate-pendulum text-linkedin flex items-center"
           href="https://www.linkedin.com/in/kennethdiogo/"
         >
           <FontAwesomeIcon :icon="faLinkedin" />
         </a>
-        <a
-          class="hover:animate-pendulum flex items-center"
-          href="https://github.com/kmdiogo"
-        >
+        <a class="hover:animate-pendulum flex items-center" href="https://github.com/kmdiogo">
           <FontAwesomeIcon :icon="faGithubSquare" />
         </a>
       </div>
 
-      <div
-        class="flex items-center ml-0 md:ml-auto gap-2 text-xl text-white font-fancy"
-      >
+      <div class="font-fancy ml-0 flex items-center gap-2 text-xl text-white md:ml-auto">
         <span class="font-bold">Kenny Diogo</span>
         <img class="w-16" src="../assets/logos/dilogo-light-white.png" />
       </div>

@@ -1,24 +1,24 @@
-<script lang="ts" setup>
-import ProjectTechnologyItem from "@/components/layout/ProjectTechnologyItem.vue";
-import { TechnologyItemProps } from "@/components/layout/ProjectTechnologyItem.vue";
-import IconLink, { IconLinkProps } from "@/components/shared/IconLink.vue";
+<script lang="ts" setup vapor>
+import ProjectTechnologyItem from '@/components/layout/ProjectTechnologyItem.vue'
+import type { TechnologyItemProps } from '@/components/layout/ProjectTechnologyItem.vue'
+import IconLink, { type IconLinkProps } from '@/components/shared/IconLink.vue'
 
 export type ProjectPageLayoutProps = {
-  title: string;
-  description: string;
-  technologies?: TechnologyItemProps[];
-  links?: IconLinkProps[];
-};
+  title: string
+  description: string
+  technologies?: TechnologyItemProps[]
+  links?: IconLinkProps[]
+}
 
 const props = withDefaults(defineProps<ProjectPageLayoutProps>(), {
   links: () => [],
   technologies: () => [],
-});
+})
 </script>
 
 <template>
   <div class="flex flex-col">
-    <div class="grid gap-4 grid-cols-12 grow">
+    <div class="grid grow grid-cols-12 gap-4">
       <div class="col-span-12 lg:col-span-8">
         <h1 class="text-forest-green-500 m-0 text-4xl">
           {{ props.title }}
@@ -33,14 +33,12 @@ const props = withDefaults(defineProps<ProjectPageLayoutProps>(), {
       </div>
 
       <div
-        class="col-span-12 lg:col-span-4 border-2 border-darcula-500 rounded p-3 flex flex-col gap-6"
+        class="border-darcula-500 col-span-12 flex flex-col gap-6 rounded border-2 p-3 lg:col-span-4"
       >
         <div>
           <span class="font-bold">Links</span>
           <div class="flex flex-col gap-1">
-            <span v-if="links.length === 0" class="text-sm text-darcula-300"
-              >No links to show</span
-            >
+            <span v-if="links.length === 0" class="text-darcula-300 text-sm">No links to show</span>
             <IconLink
               v-for="link in links"
               v-else

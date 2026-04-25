@@ -1,27 +1,36 @@
-<script lang="ts" setup>
-import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
-import { faQuestion } from "@fortawesome/free-solid-svg-icons";
+<script lang="ts">
+export type SkillType = 'Frontend' | 'Backend' | 'Infrastructure' | 'Other'
+
+export type Skill = {
+  name: string
+  type: SkillType
+}
+</script>
+
+<script lang="ts" setup vapor>
+import FontAwesomeIcon from '@/components/ui/FontAwesomeIcon.vue'
+import { faQuestion } from '@fortawesome/free-solid-svg-icons'
 
 type TimelineEntryProps = {
-  company: string;
-  jobTitle: string;
-  description?: string;
-  date: string;
-  direction?: "left" | "right";
-  skills?: string[];
-};
+  company: string
+  jobTitle: string
+  description?: string
+  date: string
+  direction?: 'left' | 'right'
+  skills?: Skill[]
+}
 withDefaults(defineProps<TimelineEntryProps>(), {
   skills: () => [],
-  direction: "left",
-  description: "",
-});
+  direction: 'left',
+  description: '',
+})
 </script>
 
 <template>
-  <div class="flex box-border relative">
-    <div class="relative grow-0 shrink-0 mr-5 md:mx-10 order-2">
+  <div class="relative box-border flex">
+    <div class="relative order-2 mr-5 shrink-0 grow-0 md:mx-10">
       <div
-        class="h-16 w-16 rounded-full flex justify-center items-center border-2 border-darcula-300 z-10 overflow-hidden relative bg-darcula-700"
+        class="border-darcula-300 bg-darcula-700 relative z-10 flex h-16 w-16 items-center justify-center overflow-hidden rounded-full border-2"
       >
         <slot name="icon">
           <FontAwesomeIcon :icon="faQuestion" />
@@ -30,32 +39,38 @@ withDefaults(defineProps<TimelineEntryProps>(), {
 
       <!-- White bar -->
       <div
-        class="w-1 bg-darcula-200 rounded absolute left-0 right-0 ml-auto mr-auto -top-6"
+        class="bg-darcula-200 absolute -top-6 right-0 left-0 mr-auto ml-auto w-1 rounded"
         style="height: 135%"
       />
     </div>
 
     <div
-      class="relative top-2 flex-1 order-3"
+      class="relative top-2 order-3 flex-1"
       :class="{
         'md:order-1': direction === 'left',
         'md:order-3': direction === 'right',
       }"
     >
-      <div class="bg-darcula-600 rounded p-4 w-full flex flex-col">
+      <div class="bg-darcula-600 flex w-full flex-col rounded p-4">
         <span class="text-2xl font-semibold">{{ jobTitle }}</span>
-        <span class="text-xl mb-0 md:mb-4">{{ company }}</span>
-        <span class="mb-4 text-sm block md:hidden">{{ date }}</span>
+        <span class="mb-0 text-xl md:mb-4">{{ company }}</span>
+        <span class="mb-4 block text-sm md:hidden">{{ date }}</span>
         <span>
           {{ description }}
         </span>
-        <div v-if="skills.length > 0" class="mt-4 flex gap-2 flex-wrap">
+        <div v-if="skills.length > 0" class="mt-4 flex flex-wrap gap-2">
           <span
             v-for="skill in skills"
-            :key="skill"
-            class="rounded-lg p-1 px-2 text-sm bg-darcula-300 text-darcula-900 font-semibold"
+            :key="skill.name"
+            class="rounded-lg border p-1 px-2 text-sm font-semibold"
+            :class="{
+              'border-green-500 bg-green-500/25': skill.type === 'Frontend',
+              'border-purple-500 bg-purple-500/25': skill.type === 'Infrastructure',
+              'border-blue-500 bg-blue-500/25': skill.type === 'Backend',
+              'bg-darcula-400/25 border-darcula-400': skill.type === 'Other',
+            }"
           >
-            {{ skill }}
+            {{ skill.name }}
           </span>
         </div>
       </div>
@@ -65,13 +80,13 @@ withDefaults(defineProps<TimelineEntryProps>(), {
     </div>
 
     <div
-      class="flex-1 hidden md:block relative"
+      class="relative hidden flex-1 md:block"
       :class="{
         'order-3': direction === 'left',
         'order-1 text-right': direction === 'right',
       }"
     >
-      <div class="top-4 absolute w-full font-semibold text-lg">
+      <div class="absolute top-4 w-full text-lg font-semibold">
         {{ date }}
       </div>
     </div>
@@ -87,7 +102,7 @@ withDefaults(defineProps<TimelineEntryProps>(), {
   border-top: 10px solid transparent;
   border-bottom: 10px solid transparent;
   border-left: 10px solid var(--color-darcula-600);
-  @apply -right-2 absolute top-2;
+  @apply absolute top-2 -right-2;
 }
 
 .arrow-left {
@@ -96,6 +111,6 @@ withDefaults(defineProps<TimelineEntryProps>(), {
   border-top: 10px solid transparent;
   border-bottom: 10px solid transparent;
   border-right: 10px solid var(--color-darcula-600);
-  @apply -left-2 absolute top-2;
+  @apply absolute top-2 -left-2;
 }
 </style>

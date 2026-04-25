@@ -1,22 +1,26 @@
-<script lang="ts" setup>
-import TimelineEntry from "./TimelineEntry.vue";
-import { PropType } from "vue";
+<script lang="ts">
+import type { Skill } from './TimelineEntry.vue'
 
-export interface TimelineEntryProps {
-  id: string;
-  company: string;
-  jobTitle: string;
-  description?: string;
-  skills: string[];
-  date: string;
+export type TimelineEntryProps = {
+  id: string
+  date: string
+  company: string
+  jobTitle: string
+  description: string
+  skills: Skill[]
 }
+</script>
+
+<script lang="ts" setup vapor>
+import TimelineEntry from './TimelineEntry.vue'
+import type { PropType } from 'vue'
 
 defineProps({
   timelineData: {
     type: Array as PropType<TimelineEntryProps[]>,
     required: true,
   },
-});
+})
 </script>
 
 <template>

@@ -1,45 +1,45 @@
-<script lang="ts" setup>
-import { ref, computed } from "vue";
+<script lang="ts" setup vapor>
+import { ref, computed } from 'vue'
 
 interface TyperProps {
-  text: string;
-  typeSpeed?: number;
-  preTypeDelay?: number;
-  keepCaret?: boolean;
+  text: string
+  typeSpeed?: number
+  preTypeDelay?: number
+  keepCaret?: boolean
 }
 
-type TypingState = "idle" | "typing" | "done";
+type TypingState = 'idle' | 'typing' | 'done'
 
 const props = withDefaults(defineProps<TyperProps>(), {
   typeSpeed: 75,
   preTypeDelay: 0,
   keepCaret: false,
-});
+})
 
-const letters = ref<string[]>([]);
-const state = ref<TypingState>("idle");
-const i = ref(0);
+const letters = ref<string[]>([])
+const state = ref<TypingState>('idle')
+const i = ref(0)
 
 const caretVisible = computed(() => {
   if (props.keepCaret) {
-    return state.value !== "idle";
+    return state.value !== 'idle'
   } else {
-    return state.value === "typing";
+    return state.value === 'typing'
   }
-});
+})
 
 if (props.text.length > 0) {
   setTimeout(() => {
-    state.value = "typing";
+    state.value = 'typing'
     const interval = setInterval(() => {
-      letters.value.push(props.text[i.value]);
-      i.value += 1;
+      letters.value.push(props.text[i.value])
+      i.value += 1
       if (i.value >= props.text.length) {
-        state.value = "done";
-        clearInterval(interval);
+        state.value = 'done'
+        clearInterval(interval)
       }
-    }, props.typeSpeed);
-  }, props.preTypeDelay);
+    }, props.typeSpeed)
+  }, props.preTypeDelay)
 }
 </script>
 
@@ -47,7 +47,7 @@ if (props.text.length > 0) {
   <div>
     <span v-for="(letter, pos) in letters" :key="pos">{{ letter }}</span>
     <span
-      class="bg-white animate-idle-blink inline-block typer-caret"
+      class="animate-idle-blink typer-caret inline-block bg-white"
       :class="{ invisible: !caretVisible }"
     />
   </div>
@@ -59,6 +59,6 @@ if (props.text.length > 0) {
 }
 .typer-caret::before {
   box-sizing: inherit;
-  content: "\200B";
+  content: '\200B';
 }
 </style>
