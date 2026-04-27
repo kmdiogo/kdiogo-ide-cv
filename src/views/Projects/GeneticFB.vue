@@ -1,30 +1,30 @@
-<script setup lang="ts">
-import ProjectPageLayout from "@/components/layout/ProjectPageLayout.vue";
-import { TechnologyItemProps } from "@/components/layout/ProjectTechnologyItem.vue";
-import { IconLinkProps } from "@/components/shared/IconLink.vue";
-import UnityLogo from "@/assets/ext-logos/unity-logo.png";
-import CSharpLogo from "@/assets/ext-logos/csharp-logo.png";
-import { faGitAlt } from "@fortawesome/free-brands-svg-icons";
+<script setup lang="ts" vapor>
+import ProjectPageLayout from '@/components/layout/ProjectPageLayout.vue'
+import type { TechnologyItemProps } from '@/components/layout/ProjectTechnologyItem.vue'
+import type { IconLinkProps } from '@/components/shared/IconLink.vue'
+import UnityLogo from '@/assets/ext-logos/unity-logo.svg'
+import CSharpLogo from '@/assets/ext-logos/csharp-logo.svg'
+import { faGitAlt } from '@fortawesome/free-brands-svg-icons'
 
 const technologies: TechnologyItemProps[] = [
   {
-    name: "Unity",
-    description: "Video Game Engine",
+    name: 'Unity',
+    description: 'Video Game Engine',
     imgSrc: UnityLogo,
   },
   {
-    name: "C#",
-    description: "Coding for Unity + Neural Network implementation",
+    name: 'C#',
+    description: 'Coding for Unity + Neural Network implementation',
     imgSrc: CSharpLogo,
   },
-];
+]
 
 const links: IconLinkProps[] = [
   {
-    href: "https://github.com/kmdiogo/Genetic-Learning-Flappy-Bird",
+    href: 'https://github.com/kmdiogo/Genetic-Learning-Flappy-Bird',
     icon: faGitAlt,
   },
-];
+]
 </script>
 
 <template>
@@ -36,17 +36,15 @@ const links: IconLinkProps[] = [
     github-link="https://github.com/kmdiogo/Genetic-Learning-Flappy-Bird"
   >
     <h4>
-      This was done as a final project for my AI in Game Design class. I got the
-      original idea for this project from
-      <a
-        class="font-bold underline"
-        href="https://www.youtube.com/watch?v=aeWmdojEJf0"
+      This was done as a final project for my AI in Game Design class. I got the original idea for
+      this project from
+      <a class="font-bold underline" href="https://www.youtube.com/watch?v=aeWmdojEJf0"
         >Srdjan Susnic</a
-      >. The project was implemented in Unity using C#. Below is the
-      presentation video for it made primarily for entertainment purposes.
+      >. The project was implemented in Unity using C#. Below is the presentation video for it made
+      primarily for entertainment purposes.
     </h4>
 
-    <div class="h-80 lg:h-96 flex flex-col items-center">
+    <div class="flex h-80 flex-col items-center lg:h-96">
       <iframe
         width="100%"
         height="100%"

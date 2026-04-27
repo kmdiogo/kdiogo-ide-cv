@@ -1,17 +1,14 @@
-<script lang="ts" setup>
-import Folder from "@/components/navigation/Folder.vue";
-import { tree } from "@/constants/FileTree";
-import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
-import { faBoxOpen } from "@fortawesome/free-solid-svg-icons";
+<script lang="ts" setup vapor>
+import Folder from '@/components/navigation/Folder.vue'
+import { tree } from '@/constants/FileTree'
+import FontAwesomeIcon from '@/components/ui/FontAwesomeIcon.vue'
+import { faBoxOpen } from '@fortawesome/free-solid-svg-icons'
 </script>
 
 <template>
-  <div class="h-full flex flex-col">
+  <div class="flex h-full flex-col">
     <div>
-      <span
-        ><FontAwesomeIcon :icon="faBoxOpen" style="color: #ad8762" /> Kenny's
-        Portfolio</span
-      >
+      <span><FontAwesomeIcon :icon="faBoxOpen" style="color: #ad8762" /> Kenny's Portfolio</span>
       <hr class="my-1" />
     </div>
 

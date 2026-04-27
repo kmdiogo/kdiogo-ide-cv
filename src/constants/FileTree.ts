@@ -1,27 +1,27 @@
-import rootRoutes from "@/router/routes/root-routes";
-import personalRoutes from "@/router/routes/personal-routes";
-import projectRoutes from "@/router/routes/project-routes";
-import { RouteRecordRaw } from "vue-router";
+import rootRoutes from '@/router/routes/root-routes'
+import personalRoutes from '@/router/routes/personal-routes'
+import projectRoutes from '@/router/routes/project-routes'
+import type { RouteRecordRaw } from 'vue-router'
 
 export type FileTreeNode = {
-  label: string;
-  directories: FileTreeNode[];
-  files: RouteRecordRaw[];
-};
+  label: string
+  directories: FileTreeNode[]
+  files: RouteRecordRaw[]
+}
 
 export const tree: FileTreeNode = {
-  label: "/",
+  label: '/',
   directories: [
     {
-      label: "projects",
+      label: 'projects',
       directories: [],
       files: projectRoutes,
     },
     {
-      label: "kenny",
+      label: 'kenny',
       directories: [],
       files: personalRoutes,
     },
   ],
   files: rootRoutes,
-};
+}

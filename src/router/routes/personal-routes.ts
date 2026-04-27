@@ -1,40 +1,40 @@
-import AboutMe from "@/views/Personal/AboutMe.vue";
-import Experience from "@/views/Personal/Experience.vue";
-import Skills from "@/views/Personal/Skills.vue";
-import { RouteRecordRaw } from "vue-router";
-import { faFileCode } from "@fortawesome/free-solid-svg-icons";
+import AboutMe from '@/views/Personal/AboutMe.vue'
+import Experience from '@/views/Personal/Experience.vue'
+import Skills from '@/views/Personal/Skills.vue'
+import type { RouteRecordRaw } from 'vue-router'
+import { faFileCode } from '@fortawesome/free-solid-svg-icons'
 
 const personalRoutes: Array<RouteRecordRaw> = [
   {
-    path: "/AboutMe",
+    path: '/AboutMe',
     component: AboutMe,
-    name: "AboutMe.html",
+    name: 'AboutMe.html',
     meta: {
-      label: "about-me.html",
+      label: 'about-me.html',
       icon: faFileCode,
-      iconColor: "darkorange",
+      iconColor: 'darkorange',
     },
   },
   {
-    path: "/Skills",
+    path: '/Skills',
     component: Skills,
-    name: "Skills.html",
+    name: 'Skills.html',
     meta: {
-      label: "skills.html",
+      label: 'skills.html',
       icon: faFileCode,
-      iconColor: "darkorange",
+      iconColor: 'darkorange',
     },
   },
   {
-    path: "/Experience",
+    path: '/Experience',
     component: Experience,
-    name: "Experience.html",
+    name: 'Experience.html',
     meta: {
-      label: "experience.html",
+      label: 'experience.html',
       icon: faFileCode,
-      iconColor: "darkorange",
+      iconColor: 'darkorange',
     },
   },
-];
+]
 
-export default personalRoutes;
+export default personalRoutes

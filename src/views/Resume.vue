@@ -1,26 +1,26 @@
-<script lang="ts" setup>
-import { ref, onMounted, onUnmounted } from "vue";
-import emitter from "@/services/pubsub";
+<script lang="ts" setup vapor>
+import { ref, onMounted, onUnmounted } from 'vue'
+import emitter from '@/services/pubsub'
 
-const containerResizing = ref(false);
+const containerResizing = ref(false)
 
 function handleContainerResizeStart() {
-  containerResizing.value = true;
+  containerResizing.value = true
 }
 
 function handleContainerResizeStop() {
-  containerResizing.value = false;
+  containerResizing.value = false
 }
 
 onMounted(() => {
-  emitter.on("CONTAINER_RESIZE_START", handleContainerResizeStart);
-  emitter.on("CONTAINER_RESIZE_STOP", handleContainerResizeStop);
-});
+  emitter.on('CONTAINER_RESIZE_START', handleContainerResizeStart)
+  emitter.on('CONTAINER_RESIZE_STOP', handleContainerResizeStop)
+})
 
 onUnmounted(() => {
-  emitter.off("CONTAINER_RESIZE_START", handleContainerResizeStart);
-  emitter.off("CONTAINER_RESIZE_STOP", handleContainerResizeStop);
-});
+  emitter.off('CONTAINER_RESIZE_START', handleContainerResizeStart)
+  emitter.off('CONTAINER_RESIZE_STOP', handleContainerResizeStop)
+})
 </script>
 
 <template>

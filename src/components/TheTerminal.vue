@@ -1,206 +1,197 @@
 <script lang="ts">
 export const commandDescriptions = {
-  ls: "list out the contents of the current directory",
-  cd: "change the current directory to specified path",
-  clear: "clear out the contents of the terminal",
-  open: "opens the specified file. This redirects to the web page associated with the file.",
-  history: "list the history of commands ran for this terminal session",
-};
+  ls: 'list out the contents of the current directory',
+  cd: 'change the current directory to specified path',
+  clear: 'clear out the contents of the terminal',
+  open: 'opens the specified file. This redirects to the web page associated with the file.',
+  history: 'list the history of commands ran for this terminal session',
+}
 </script>
 
-<script lang="ts" setup>
-import { reactive, computed } from "vue";
-import { useRouter } from "vue-router";
-import { tree } from "@/constants/FileTree";
-import {
-  TrieBasedTerminalBackend,
-  TerminalError,
-} from "@/services/terminal-backend";
-import { detectBrowser } from "@/utils";
+<script lang="ts" setup vapor>
+import { reactive, computed } from 'vue'
+import { useRouter } from 'vue-router'
+import { tree } from '@/constants/FileTree'
+import { TrieBasedTerminalBackend, TerminalError } from '@/services/terminal-backend'
+import { detectBrowser } from '@/utils'
 
 interface ShellState {
-  line: string;
-  history: string[];
-  cmdHistory: string[];
-  cmdHistoryIndex: number;
-  cwdName: string;
+  line: string
+  history: string[]
+  cmdHistory: string[]
+  cmdHistoryIndex: number
+  cwdName: string
 }
 
-const router = useRouter();
+const router = useRouter()
 const shell = reactive<ShellState>({
-  line: "",
+  line: '',
   cwdName: tree.label,
   cmdHistory: [],
   cmdHistoryIndex: 0,
   history: [],
-});
-const formattedLine = computed(() => shell.line.replace(/\s+/g, " ").trim());
+})
+const formattedLine = computed(() => shell.line.replace(/\s+/g, ' ').trim())
 
 const terminalBackend = new TrieBasedTerminalBackend(tree, {
   ls: (args) => {
-    const dir = args.length === 0 ? undefined : args[0];
-    let results: string[];
+    const dir = args.length === 0 ? undefined : args[0]
+    let results: string[]
     try {
-      results = terminalBackend.ls(dir);
-      printTerminalResult(terminalBackend.ls(args[0]));
+      results = terminalBackend.ls(dir)
+      printTerminalResult(terminalBackend.ls(args[0]))
     } catch (e) {
       if (e instanceof TerminalError) {
-        printTerminalResult([e.message]);
-        return;
+        printTerminalResult([e.message])
+        return
       }
-      throw e;
+      throw e
     }
     const formattedResults = results.map((path) => {
-      if (path.endsWith("/")) {
-        return `<span class="text-blue-700">${path}</span>`;
+      if (path.endsWith('/')) {
+        return `<span class="text-blue-700">${path}</span>`
       }
-      return path;
-    });
-    printTerminalResult(formattedResults);
+      return path
+    })
+    printTerminalResult(formattedResults)
   },
   cd: (args) => {
     if (args.length === 0) {
-      printTerminalResult(["Error: expected at least one argument"]);
-      return;
+      printTerminalResult(['Error: expected at least one argument'])
+      return
     }
     try {
-      const newCwd = terminalBackend.changeDirectory(args[0]);
-      printTerminalResult([]);
-      shell.cwdName = newCwd;
+      const newCwd = terminalBackend.changeDirectory(args[0])
+      printTerminalResult([])
+      shell.cwdName = newCwd
     } catch (e) {
       if (e instanceof TerminalError) {
-        printTerminalResult([e.message]);
-        return;
+        printTerminalResult([e.message])
+        return
       }
-      throw e;
+      throw e
     }
   },
   clear: () => {
-    shell.history = [];
+    shell.history = []
   },
   open: (args) => {
     if (args.length === 0) {
-      printTerminalResult(["Error: expected at least one argument"]);
+      printTerminalResult(['Error: expected at least one argument'])
     }
     try {
-      const file = terminalBackend.getFile(args[0]);
+      const file = terminalBackend.getFile(args[0])
       if (file.metadata) {
-        router.push(file.metadata.routePath);
+        router.push(file.metadata.routePath)
       }
     } catch (e) {
       if (e instanceof TerminalError) {
-        printTerminalResult([e.message]);
-        return;
+        printTerminalResult([e.message])
+        return
       }
-      throw e;
+      throw e
     }
   },
   history: () => {
-    printTerminalResult(
-      shell.cmdHistory.map((cmd, i) => `${i + 1}&nbsp;&nbsp;${cmd}`),
-    );
+    printTerminalResult(shell.cmdHistory.map((cmd, i) => `${i + 1}&nbsp;&nbsp;${cmd}`))
   },
   help: () => {
-    const helpStr = Object.entries(commandDescriptions).map(
-      ([cmdName, desc]) => {
-        return `${cmdName} - ${desc}`;
-      },
-    );
-    printTerminalResult(["Available commands:", ...helpStr]);
+    const helpStr = Object.entries(commandDescriptions).map(([cmdName, desc]) => {
+      return `${cmdName} - ${desc}`
+    })
+    printTerminalResult(['Available commands:', ...helpStr])
   },
-});
+})
 
 const generateTerminalBase = (cwd: string) =>
   `<span class="text-green-400">visitor@${detectBrowser()}</span>` +
   `<span>:</span>` +
   `<span class="text-blue-600">${cwd}</span>` +
-  `<span>$&nbsp;</span>`;
+  `<span>$&nbsp;</span>`
 
 async function scrollBottom() {
   // NOTE: Wrapped in timeout since for some reason the element doesn't scroll if you don't
   setTimeout(() => {
-    const innerTerminalElement = document.getElementById("inner-terminal");
+    const innerTerminalElement = document.getElementById('inner-terminal')
     if (innerTerminalElement) {
-      innerTerminalElement.scrollTop = innerTerminalElement.scrollHeight;
+      innerTerminalElement.scrollTop = innerTerminalElement.scrollHeight
     }
-  }, 10);
+  }, 10)
 }
 
 function printTerminalResult(results: string[]) {
   shell.history = shell.history.concat([
     generateTerminalBase(shell.cwdName) + shell.line,
     ...results,
-  ]);
+  ])
 }
 
 function processCommand() {
-  if (formattedLine.value === "") {
-    printTerminalResult([""]);
+  if (formattedLine.value === '') {
+    printTerminalResult([''])
   }
   try {
-    terminalBackend.processCommand(formattedLine.value);
+    terminalBackend.processCommand(formattedLine.value)
   } catch (e) {
     if (e instanceof TerminalError) {
-      printTerminalResult([e.message]);
+      printTerminalResult([e.message])
     } else {
-      throw e;
+      throw e
     }
   }
 
-  if (formattedLine.value !== "") {
-    shell.cmdHistory.push(formattedLine.value);
-    shell.cmdHistoryIndex = shell.cmdHistory.length;
+  if (formattedLine.value !== '') {
+    shell.cmdHistory.push(formattedLine.value)
+    shell.cmdHistoryIndex = shell.cmdHistory.length
   }
-  shell.line = "";
-  scrollBottom();
+  shell.line = ''
+  scrollBottom()
 }
 
-function fillCommandHistory(direction: "up" | "down") {
+function fillCommandHistory(direction: 'up' | 'down') {
   if (shell.cmdHistory.length === 0) {
-    return;
+    return
   }
-  shell.cmdHistoryIndex += direction === "up" ? -1 : 1;
+  shell.cmdHistoryIndex += direction === 'up' ? -1 : 1
   if (shell.cmdHistoryIndex < 0) {
-    shell.cmdHistoryIndex = 0;
-    return;
+    shell.cmdHistoryIndex = 0
+    return
   }
   if (shell.cmdHistoryIndex >= shell.cmdHistory.length) {
-    shell.cmdHistoryIndex = shell.cmdHistory.length;
-    shell.line = "";
-    return;
+    shell.cmdHistoryIndex = shell.cmdHistory.length
+    shell.line = ''
+    return
   }
-  shell.line = shell.cmdHistory[shell.cmdHistoryIndex];
+  shell.line = shell.cmdHistory[shell.cmdHistoryIndex]
 }
 
 function processAutoComplete() {
-  const autocomplete = terminalBackend.tabComplete(shell.line);
+  const autocomplete = terminalBackend.tabComplete(shell.line)
   if (autocomplete.length === 1) {
-    const splitLine = shell.line.split(" ");
-    const nonAutoCompletePart = splitLine
-      .slice(0, splitLine.length - 1)
-      .join(" ");
-    const separator = nonAutoCompletePart === "" ? "" : " ";
-    shell.line = nonAutoCompletePart + separator + autocomplete[0];
+    const splitLine = shell.line.split(' ')
+    const nonAutoCompletePart = splitLine.slice(0, splitLine.length - 1).join(' ')
+    const separator = nonAutoCompletePart === '' ? '' : ' '
+    shell.line = nonAutoCompletePart + separator + autocomplete[0]
   } else if (autocomplete.length > 1) {
-    printTerminalResult(autocomplete);
+    printTerminalResult(autocomplete)
   }
-  scrollBottom();
+  scrollBottom()
 }
 
 function handleEsc(e: KeyboardEvent) {
-  const target = e.target as HTMLElement;
-  target.blur();
+  const target = e.target as HTMLElement
+  target.blur()
 }
 </script>
 
 <template>
   <div
-    class="text-white p-3 pr-0 bg-darcula-500"
+    class="bg-darcula-500 p-3 pr-0 text-white"
     :style="{ 'font-family': 'Ubuntu Mono, monospace' }"
   >
     <div
       id="inner-terminal"
-      class="flex flex-col h-full overflow-auto bg-darcula-700 box-border p-4"
+      class="bg-darcula-700 box-border flex h-full flex-col overflow-auto p-4"
     >
       <span v-for="(entry, i) in shell.history" :key="i" v-html="entry" />
       <div class="flex">
@@ -208,7 +199,7 @@ function handleEsc(e: KeyboardEvent) {
         <input
           ref="cmdLine"
           v-model="shell.line"
-          class="grow bg-transparent text-white border-none outline-none"
+          class="grow border-none bg-transparent text-white outline-none"
           @keydown.prevent.tab="processAutoComplete"
           @keyup.enter="processCommand"
           @keyup.esc="handleEsc"

@@ -1,41 +1,41 @@
-<script setup lang="ts">
-import ProjectPageLayout from "@/components/layout/ProjectPageLayout.vue";
-import VueLogo from "@/assets/logo.png";
-import SpotifyLogo from "@/assets/ext-logos/spotify-logo.png";
-import BootstrapLogo from "@/assets/ext-logos/bootstrap-logo.png";
-import { TechnologyItemProps } from "@/components/layout/ProjectTechnologyItem.vue";
-import { IconLinkProps } from "@/components/shared/IconLink.vue";
-import { faGamepad } from "@fortawesome/free-solid-svg-icons";
-import { faGitAlt } from "@fortawesome/free-brands-svg-icons";
+<script setup lang="ts" vapor>
+import ProjectPageLayout from '@/components/layout/ProjectPageLayout.vue'
+import VueLogo from '@/assets/ext-logos/vue-logo.svg'
+import SpotifyLogo from '@/assets/ext-logos/spotify-logo.svg'
+import BootstrapLogo from '@/assets/ext-logos/bootstrap-logo.svg'
+import type { TechnologyItemProps } from '@/components/layout/ProjectTechnologyItem.vue'
+import type { IconLinkProps } from '@/components/shared/IconLink.vue'
+import { faGamepad } from '@fortawesome/free-solid-svg-icons'
+import { faGitAlt } from '@fortawesome/free-brands-svg-icons'
 
 const technologies: TechnologyItemProps[] = [
   {
-    name: "Vue.js",
+    name: 'Vue.js',
     imgSrc: VueLogo,
-    description: "Front-end SPA",
+    description: 'Front-end SPA',
   },
   {
-    name: "Bootstrap",
+    name: 'Bootstrap',
     imgSrc: BootstrapLogo,
-    description: "CSS with BootstrapVue for Vue components",
+    description: 'CSS with BootstrapVue for Vue components',
   },
   {
-    name: "Spotify API",
+    name: 'Spotify API',
     imgSrc: SpotifyLogo,
-    description: "Getting user playlists and playing music (via Playback SDK)",
+    description: 'Getting user playlists and playing music (via Playback SDK)',
   },
-];
+]
 
 const links: IconLinkProps[] = [
   {
-    href: "https://kmdiogo.github.io/Trivialize",
+    href: 'https://kmdiogo.github.io/Trivialize',
     icon: faGamepad,
   },
   {
-    href: "https://github.com/kmdiogo/Trivialize",
+    href: 'https://github.com/kmdiogo/Trivialize',
     icon: faGitAlt,
   },
-];
+]
 </script>
 
 <template>
@@ -46,8 +46,8 @@ const links: IconLinkProps[] = [
     description="The Spotify Trivia Game"
   >
     <h4>
-      A fun, purely client-side Single Page Application that turns any Spotify
-      playlist into a Trivia game.
+      A fun, purely client-side Single Page Application that turns any Spotify playlist into a
+      Trivia game.
     </h4>
   </ProjectPageLayout>
 </template>
