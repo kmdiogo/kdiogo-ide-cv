@@ -8,8 +8,23 @@ import GovHostLogo from '@/assets/ext-logos/govhost-logo.svg'
 import OhcLogo from '@/assets/ext-logos/ohc-logo.png'
 import ChaseLogo from '@/assets/ext-logos/chase-logo.svg'
 import ExpLogo from '@/assets/ext-logos/exp-logo.png'
+import ReliableLogo from '@/components/ui/ReliableLogo.vue'
 
 const timelineData: TimelineEntryProps[] = [
+  {
+    id: 'reliable',
+    date: '01/2026 - Present',
+    company: 'Reliable Robotics',
+    jobTitle: 'Software Engineer - Internal Tools',
+    description:
+      'Develop zero-touch deployment automation mechanisms to deploy entire application stacks across multiple cloud environments. Lead codebase refactoring efforts to make various services more cloud-agnostic and configuration driven.',
+    skills: [
+      { name: 'C#', type: 'Backend' },
+      { name: 'Azure', type: 'Infrastructure' },
+      { name: 'Powershell', type: 'Infrastructure' },
+      { name: 'DevOps', type: 'Infrastructure' },
+    ],
+  },
   {
     id: 'microsoft',
     date: '06/2024 - 01/2026',
@@ -110,6 +125,13 @@ const timelineData: TimelineEntryProps[] = [
 <template>
   <PersonalPageLayout title="Experience">
     <VerticalTimeline :timeline-data="timelineData" class="mt-6">
+      <template #reliable-icon>
+        <ReliableLogo
+          class="fill-darcula-700 size-11"
+          alt="Reliable Robotics Logo"
+          :src="ReliableLogo"
+        />
+      </template>
       <template #microsoft-icon>
         <img class="size-12" alt="Microsoft Logo" :src="MicrosoftLogo" />
       </template>

@@ -3,7 +3,7 @@ import Typer from '@/components/shared/Typer.vue'
 </script>
 
 <template>
-  <div class="flex flex-col items-center justify-center gap-4">
+  <div class="flex flex-col items-center justify-center gap-4 font-fancy">
     <img
       class="w-72 md:w-96"
       src="../assets/logos/dilogo-light-color.png"
