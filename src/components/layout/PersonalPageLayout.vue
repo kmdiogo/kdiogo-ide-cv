@@ -8,7 +8,7 @@ withDefaults(defineProps<PersonalPageLayoutProps>(), {})
 
 <template>
   <div class="relative p-5">
-    <h1 class="text-forest-green-500 text-5xl">
+    <h1 class="text-forest-green-500 text-4xl">
       {{ title }}
     </h1>
     <hr />

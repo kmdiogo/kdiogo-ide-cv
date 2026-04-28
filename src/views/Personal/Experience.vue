@@ -16,13 +16,12 @@ const timelineData: TimelineEntryProps[] = [
     date: '01/2026 - Present',
     company: 'Reliable Robotics',
     jobTitle: 'Software Engineer - Internal Tools',
-    description:
-      'Develop zero-touch deployment automation mechanisms to deploy entire application stacks across multiple cloud environments. Lead codebase refactoring efforts to make various services more cloud-agnostic and configuration driven.',
+    description: '- ',
     skills: [
-      { name: 'C#', type: 'Backend' },
-      { name: 'Azure', type: 'Infrastructure' },
-      { name: 'Powershell', type: 'Infrastructure' },
-      { name: 'DevOps', type: 'Infrastructure' },
+      { name: 'React.js', type: 'Frontend' },
+      { name: 'Node.js', type: 'Backend' },
+      { name: 'AWS', type: 'Infrastructure' },
+      { name: 'Docker', type: 'Infrastructure' },
     ],
   },
   {
