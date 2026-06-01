@@ -4,30 +4,25 @@ import PersonalPageLayout from '@/components/layout/PersonalPageLayout.vue'
 
 <template>
   <PersonalPageLayout title="About Me">
-    <h2 class="text-3xl">Kenny Diogo</h2>
-    <h3 class="text-xl">An avid coder with a passion for solving problems and automation</h3>
+    <h2 class="mb-0 text-2xl leading-tight font-semibold">Kenny Diogo</h2>
+    <h3 class="text-darcula-300 mt-0 mb-6 text-xl">
+      An avid software engineer with a passion for solving problems
+    </h3>
     <div class="text-lg">
       <p>
-        I am a <span class="font-bold">full-stack developer</span> with industry experience working
-        with <span class="font-bold">web development</span> technologies. The types of work I do
-        include web <span class="font-bold">front-ends</span>, web server
-        <span class="font-bold">back-ends</span>, <span class="font-bold">CI/CD</span> pipeline
-        automation, and deployment of
-        <span class="font-bold">containerized micro-services</span> into
-        <span class="font-bold">Kubernetes</span> environments
+        I am a versatile software engineer with a proven track record of architecting scalable
+        platforms, creating full-stack solutions, and automating complex CI/CD infrastructure.
       </p>
       <p>
-        I graduated from Youngstown State University (YSU) with a degree in
-        <span class="font-bold">Computer Science</span> and a minor in Mathematics.
-      </p>
-      <p>
-        Ever since beginning my studies at YSU, I have developed a passion for Computer Science and
-        programming. Though I primarily specialize in Web Development, I'm always interested in
-        learning more about a wide variety of other technologies. I frequently find myself applying
-        concepts from these other technologies into my everyday work. Whether it's design patterns
-        from OS-level architecture making its way into my applications or Graph Theory knowledge
-        informing how I design data models, a healthy breadth of technical knowledge (even if at a
-        surface-level) always seems to find a way to help in some way.
+        I graduated from Youngstown State University (YSU) with a degree in Computer Science, and
+        have been intensely passionate about the world of software ever since. Though my
+        professional career has skewed towards Web Development, I love diving into a wide breadth of
+        software related topics and discovering unexpected ways to apply them to my life. Whether
+        it's from OS concepts, compilers, game dev, or even some graph theory, I am always finding
+        myself being inspired to create novel solutions for my everyday problems. Like any art,
+        software to me is simply another medium to explore and examine the world around me in
+        alternative ways, and the experiences I've had while exploring it have been formative in
+        shaping the problem solver I am today.
       </p>
     </div>
   </PersonalPageLayout>

@@ -39,9 +39,9 @@ const links: IconLinkProps[] = [
       Linux machine where the contents of the VDI can be accessed using the OS's filesystem.
     </p>
     <p>
-      The filesystem was implemented using the Filesystem in USErspace (FUSE) software interface. As
-      part of this project, I also implemented an ext2 filesystem driver to parse the binary
-      contents of VDI files with an ext2 filesystem installed. This means that this program
+      The filesystem was gill implemented using the Filesystem in USErspace (FUSE) software
+      interface. As part of this project, I also implemented an ext2 filesystem driver to parse the
+      binary contents of VDI files with an ext2 filesystem installed. This means that this program
       currently only supports accessing ext2 content, but drivers for other filesystems (NTFS for
       Windows, ext4 for newer Linux, etc.) could theoretically be implemented to add support.
     </p>

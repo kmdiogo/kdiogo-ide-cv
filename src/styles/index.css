@@ -26,8 +26,8 @@
   --color-linkedin: #0077b5;
 
   /* Fonts */
-  --font-fancy: Righteous, cursive;
-  --font-body: Courier, monospace;
+  /* --font-fancy: Righteous, cursive; */
+  --font-body: 'Chivo Mono Variable', monospace;
 
   /* Animation */
   --animate-pendulum: 0.75s pendulum ease-in-out infinite;
@@ -79,7 +79,7 @@
   }
 
   p {
-    @apply my-4;
+    @apply my-3;
   }
 
   h1,

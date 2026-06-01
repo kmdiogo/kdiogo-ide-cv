@@ -185,10 +185,7 @@ function handleEsc(e: KeyboardEvent) {
 </script>
 
 <template>
-  <div
-    class="bg-darcula-500 p-3 pr-0 text-white"
-    :style="{ 'font-family': 'Ubuntu Mono, monospace' }"
-  >
+  <div class="bg-darcula-500 font-terminal p-3 pr-0 text-white">
     <div
       id="inner-terminal"
       class="bg-darcula-700 box-border flex h-full flex-col overflow-auto p-4"

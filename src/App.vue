@@ -25,7 +25,7 @@ const route = useRoute()
 
 <template>
   <div
-    class="font-body bg-darcula-700 text-darcula-200 flex h-screen shrink-0 flex-col"
+    class="font-body bg-darcula-700 text-darcula-200 flex h-screen shrink-0 flex-col font-features-['calt'_0,'liga'_0]"
     @mouseup="handleMouseUp"
     @mousemove="handleMouseMove"
     @mouseleave="handleMouseUp"
