@@ -3,8 +3,8 @@ import App from './App.vue'
 import router from './router'
 import { createPinia } from 'pinia'
 
-import '@fontsource/righteous';
-import '@fontsource-variable/chivo-mono';
+import '@fontsource/righteous'
+import '@fontsource-variable/chivo-mono'
 import './styles/index.css'
 
 const app = createVaporApp(App)
